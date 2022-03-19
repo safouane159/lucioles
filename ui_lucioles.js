@@ -62,7 +62,7 @@ function init() {
     ]
     
     for (var i = 0; i < which_esps.length; i++) {
-	console.log('process_esp : ', i)
+	console.log('process_espp : ', i)
 	process_esp(which_esps, i)
     }
 };
@@ -72,7 +72,7 @@ function init() {
 function process_esp(which_esps,i){
     const refreshT = 10000 // Refresh period for chart
     esp = which_esps[i];    // L'ESP "a dessiner"
-    console.log('process_esp : ', esp) // cf console du navigateur
+    console.log('process_espp : ', esp) // cf console du navigateur
     
     // Gestion de la temperature
     // premier appel pour eviter de devoir attendre RefreshT
@@ -102,7 +102,7 @@ function get_samples(path_on_node, serie, wh){
     // serie => for choosing chart/serie on the page
     // wh => which esp do we want to query data
 
-    console.log('get samples !');
+    console.log('get sampless !');
     //node_url = window.location.href;
     node_url = 'https://lucioles.herokuapp.com'
     //node_url = 'http://localhost:3000'
