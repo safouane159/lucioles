@@ -189,7 +189,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '/')));
 
 app.use(function(request, response, next) { //Pour eviter les problemes de CORS/REST
-    response.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+    response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "*");
     response.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
     next();
