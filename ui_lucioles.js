@@ -57,7 +57,7 @@ function init() {
 
 
   
-    init1();
+    process_esp();
     //=== Gestion de la flotte d'ESP =================================
 
     
@@ -65,10 +65,11 @@ function init() {
 
 
 //=== Installation de la periodicite des requetes GET============
-function process_esp(which_esps,i){
+function process_esp(){
 
     const refreshT = 10000 // Refresh period for chart
-    esp = which_esps[i];    // L'ESP "a dessiner"
+  //  esp = which_esps[i];    // L'ESP "a dessiner"
+  esp = "80:7D:3A:FD:CF:68";
     console.log('process_esp : ', esp) // cf console du navigateur
     
     // Gestion de la temperature
@@ -113,11 +114,12 @@ function init1() {
             }
         });
         console.log(which_esps.length)
-        for (var i = 0; i < which_esps.length; i++) {
-            console.log('process_esp : ', i)
-            process_esp(which_esps, i)
-            }
+       
     }
+    for (var i = 0; i < which_esps.length; i++) {
+        console.log('process_esp : ', i)
+        process_esp(which_esps, i)
+        }
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
 function get_samples(path_on_node, serie, wh){
