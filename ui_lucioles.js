@@ -106,9 +106,9 @@ function init1() {
                 
                 which_esp = resultat;
 
-                for (var i = 0; i < which_esps.length; i++) {
+                for (var i = 0; i < which_esp.length; i++) {
                     console.log('process_esp : ', i)
-                    process_esp(which_esps, i)
+                    process_esp(which_esp, i)
                     }
                
               
