@@ -53,7 +53,7 @@ function init() {
 			    }
 		     }
     });
-    var which_esps = []
+   
 
 
   
@@ -92,6 +92,7 @@ function process_esp(which_esps,i){
 }
 
 function init1() {
+    var which_esps = []
     node_url = 'https://lucioles.herokuapp.com';
     
     $.ajax({
