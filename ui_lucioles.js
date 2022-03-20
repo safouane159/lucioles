@@ -6,7 +6,7 @@
 //
 
 function init() {
-  
+    console.log("dkhel init")
     //=== Initialisation des traces/charts de la page html ===
     // Apply time settings globally
     Highcharts.setOptions({
@@ -55,9 +55,12 @@ function init() {
     });
    
 
+    var which_espsv = init1();
+    for (var i = 0; i < which_esps.length; i++) {
+        console.log('process_esp : ', i)
+        process_esp(which_espsv, i)
+        }
 
-  
-    process_esp();
     //=== Gestion de la flotte d'ESP =================================
 
     
@@ -65,35 +68,57 @@ function init() {
 
 
 //=== Installation de la periodicite des requetes GET============
-function process_esp(){
+function process_esp(which_esps,i){
 
     const refreshT = 10000 // Refresh period for chart
-  //  esp = which_esps[i];    // L'ESP "a dessiner"
-  esp = "80:7D:3A:FD:CF:68";
+    esp = which_esps[i];    // L'ESP "a dessiner"
     console.log('process_esp : ', esp) // cf console du navigateur
     
     // Gestion de la temperature
     // premier appel pour eviter de devoir attendre RefreshT
-    get_samples('/esp/temp', chart1.series[1], esp);
+    get_samples('/esp/temp', chart1.series[i], esp);
     //calls a function or evaluates an expression at specified
     //intervals (in milliseconds).
     window.setInterval(get_samples,
 		       refreshT,
 		       '/esp/temp',     // param 1 for get_samples()
-		       chart1.series[1],// param 2 for get_samples()
+		       chart1.series[i],// param 2 for get_samples()
 		       esp);            // param 3 for get_samples()
 
     // Gestion de la lumiere
-    get_samples('/esp/light', chart2.series[1], esp);
+    get_samples('/esp/light', chart2.series[i], esp);
     window.setInterval(get_samples,
 		       refreshT,
 		       '/esp/light',     // URL to GET
-		       chart2.series[1], // Serie to fill
+		       chart2.series[i], // Serie to fill
 		       esp);             // ESP targeted
 }
 
-
+function init1() {
+    var which_esps = []
+    node_url = 'https://lucioles.herokuapp.com';
     
+    $.ajax({
+            url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log(resultat)
+                
+                which_esps = resultat;
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+            },
+            complete: function (resultat, statut) {
+            }
+        });
+        console.log(which_esps.length)
+       return which_esps
+    }
+   
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
 function get_samples(path_on_node, serie, wh){
