@@ -6,6 +6,7 @@
 //
 
 function init() {
+    console.log("dkhel init")
     //=== Initialisation des traces/charts de la page html ===
     // Apply time settings globally
     Highcharts.setOptions({
@@ -83,6 +84,7 @@ function init() {
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
+
     const refreshT = 10000 // Refresh period for chart
     esp = which_esps[i];    // L'ESP "a dessiner"
     console.log('process_esp : ', esp) // cf console du navigateur
