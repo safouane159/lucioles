@@ -61,6 +61,7 @@ function init() {
             
     
             success: function (resultat, statut) { // Anonymous function on success
+                console.log(resultat)
                 which_esps = resultat;
               
             },
@@ -69,20 +70,7 @@ function init() {
             complete: function (resultat, statut) {
             }
         });
-        $.ajax({
-            url: node_url.concat('/tt'), // URL to "GET" : /esp/temp ou /esp/light
-            type: 'GET',
-            
-    
-            success: function (resultat, statut) { // Anonymous function on success
-             console.log("naja7na");
-              
-            },
-            error: function (resultat, statut, erreur) {
-            },
-            complete: function (resultat, statut) {
-            }
-        });
+       
     //=== Gestion de la flotte d'ESP =================================
     
     
