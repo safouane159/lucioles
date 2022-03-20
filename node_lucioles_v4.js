@@ -273,6 +273,7 @@ app.get('/esp/:what', function (req, res) {
 			complete: function (resultat, statut) {
 			}
 		});
+		res.send("fr"); 
 					});
 
 	
