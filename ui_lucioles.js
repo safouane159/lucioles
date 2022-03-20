@@ -4,27 +4,6 @@
 // Auteur : G.MENEZ
 // RMQ : Manipulation naive (debutant) de Javascript
 //
-var which_esps = []
-function init1() {
-node_url = 'https://lucioles.herokuapp.com';
-
-$.ajax({
-        url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
-        type: 'GET',
-        
-
-        success: function (resultat, statut) { // Anonymous function on success
-            console.log(resultat)
-            
-            which_esps = resultat;
-           
-          
-        },
-        error: function (resultat, statut, erreur) {
-        },
-        complete: function (resultat, statut) {
-        }
-    });}
 
 function init() {
     console.log("dkhel init")
@@ -74,15 +53,14 @@ function init() {
 			    }
 		     }
     });
+    var which_esps = []
+
 
   
-       
+    init1();
     //=== Gestion de la flotte d'ESP =================================
 
-    for (var i = 0; i < which_esps.length; i++) {
-        console.log('process_esp : ', i)
-        process_esp(which_esps, i)
-        }
+    
 };
 
 
@@ -113,7 +91,32 @@ function process_esp(which_esps,i){
 		       esp);             // ESP targeted
 }
 
-
+function init1() {
+    node_url = 'https://lucioles.herokuapp.com';
+    
+    $.ajax({
+            url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log(resultat)
+                
+                which_esps = resultat;
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+            },
+            complete: function (resultat, statut) {
+            }
+        });
+        console.log(which_esps.length)
+        for (var i = 0; i < which_esps.length; i++) {
+            console.log('process_esp : ', i)
+            process_esp(which_esps, i)
+            }
+    }
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
 function get_samples(path_on_node, serie, wh){
@@ -153,7 +156,7 @@ function get_samples(path_on_node, serie, wh){
 
 //assigns the onload event to the function init.
 //=> When the onload event fires, the init function will be run. 
-init1();
+
 
 window.onload = init;
 
