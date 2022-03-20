@@ -1,6 +1,7 @@
 {
   "engines": {
-	"node": "14.18.1"
+	"node": "16.14.0",
+  "npm":  "8.3.1"
   },  
   "name": "esp_lucioles",
   "version": "1.0.0",
