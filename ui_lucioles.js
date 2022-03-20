@@ -63,7 +63,6 @@ function init() {
             success: function (resultat, statut) { // Anonymous function on success
                 which_esps = resultat;
               
-                console.log(listeData);
             },
             error: function (resultat, statut, erreur) {
             },
