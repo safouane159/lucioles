@@ -56,7 +56,7 @@ function init() {
    
 
     var which_espsv = init1();
-    for (var i = 0; i < which_esps.length; i++) {
+    for (var i = 0; i < which_espsv.length; i++) {
         console.log('process_esp : ', i)
         process_esp(which_espsv, i)
         }
