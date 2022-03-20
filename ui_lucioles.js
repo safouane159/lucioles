@@ -92,34 +92,8 @@ function process_esp(){
 		       esp);             // ESP targeted
 }
 
-function init1() {
-    var which_esps = []
-    node_url = 'https://lucioles.herokuapp.com';
+
     
-    $.ajax({
-            url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
-            type: 'GET',
-            
-    
-            success: function (resultat, statut) { // Anonymous function on success
-                console.log(resultat)
-                
-                which_esps = resultat;
-               
-              
-            },
-            error: function (resultat, statut, erreur) {
-            },
-            complete: function (resultat, statut) {
-            }
-        });
-        console.log(which_esps.length)
-       
-    }
-    for (var i = 0; i < which_esps.length; i++) {
-        console.log('process_esp : ', i)
-        process_esp(which_esps, i)
-        }
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
 function get_samples(path_on_node, serie, wh){
