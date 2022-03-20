@@ -4,6 +4,9 @@ import mqtt from "mqtt";
 // Importation des modules
 
 import MongoClient from "mongodb";
+import express from "express";
+import bodyParser from "body";
+
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
@@ -176,9 +179,7 @@ v0().catch(console.error);
 //====================================
 // Utilisation du framework express
 // Notamment g�r�r les routes 
-const express = require('express');
-// et pour permettre de parcourir les body des requetes
-const bodyParser = require('body-parser');
+
 
 const app = express();
 
