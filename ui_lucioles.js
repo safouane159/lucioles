@@ -69,7 +69,7 @@ function init() {
 function process_esp(which_esps,i){
 
     const refreshT = 10000 // Refresh period for chart
-    esp = which_esps[i];    // L'ESP "a dessiner"
+    esp = which_esps[i].who;    // L'ESP "a dessiner"
     console.log('process_esp : ', esp) // cf console du navigateur
     
     // Gestion de la temperature
