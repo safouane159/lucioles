@@ -57,10 +57,7 @@ function init() {
 
     var which_espsv = init1();
     console.log(which_espsv.length)
-    for (var i = 0; i < which_espsv.length; i++) {
-        console.log('process_esp : ', i)
-        process_esp(which_espsv, i)
-        }
+   
 
     //=== Gestion de la flotte d'ESP =================================
 
@@ -96,7 +93,7 @@ function process_esp(which_esps,i){
 }
 
 function init1() {
-    var which_esps = []
+    var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
     $.ajax({
@@ -107,7 +104,12 @@ function init1() {
             success: function (resultat, statut) { // Anonymous function on success
                 console.log(resultat)
                 
-                which_esps = resultat;
+                which_esp = resultat;
+
+                for (var i = 0; i < which_esps.length; i++) {
+                    console.log('process_esp : ', i)
+                    process_esp(which_esps, i)
+                    }
                
               
             },
@@ -116,8 +118,8 @@ function init1() {
             complete: function (resultat, statut) {
             }
         });
-        console.log(which_esps.length)
-       return which_esps
+        console.log(which_esp.length)
+       return which_esp
     }
    
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
