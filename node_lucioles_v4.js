@@ -98,7 +98,7 @@ async function v0(){
 		}
 	    })
 	})
-	let wholist = []
+	var wholist = []
 	//================================================================
 	// Callback de la reception des messages MQTT pour les topics sur
 	// lesquels on s'est inscrit.
