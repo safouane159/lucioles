@@ -1,5 +1,6 @@
 // Importation des modules
 var path = require('path');
+import fetch from 'node-fetch';
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
