@@ -8,8 +8,8 @@ var path = require('path');
 const mqtt = require('mqtt')
 
 // Topics MQTT
-const TOPIC_LIGHT = 'sensors/light'
-const TOPIC_TEMP  = 'sensors/temp'
+const TOPIC_LIGHT = 'sensors/saf/light'
+const TOPIC_TEMP  = 'sensors/saf/temp'
 const TOPIC_both  = 'sensors/both'
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
@@ -262,6 +262,7 @@ app.get('/esp/:what', function (req, res) {
 	//	let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
 		
 		res.send("fr"); 
+		
 					});
 
 	
