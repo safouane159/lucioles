@@ -3,7 +3,7 @@ import path from "path";
 import mqtt from "mqtt";
 // Importation des modules
 
-
+import MongoClient from "mongodb";
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
@@ -19,7 +19,6 @@ const TOPIC_both  = 'sensors/both'
 // We can use an instance of MongoClient to connect to a cluster,
 // access the database in that cluster,
 // and close the connection to that cluster.
-const {MongoClient} = require('mongodb');
 
 //----------------------------------------------------------------
 // This function will retrieve a list of databases in our cluster and
