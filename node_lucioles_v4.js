@@ -5,7 +5,6 @@ var path = require('path');
 
 //--- MQTT module
 const mqtt = require('mqtt')
-var request = require('request');
 // Topics MQTT
 const TOPIC_LIGHT = 'sensors/light'
 const TOPIC_TEMP  = 'sensors/temp'
@@ -254,39 +253,7 @@ app.get('/esp/:what', function (req, res) {
 
 	// Get city name passed in the form
 	
-	app.get('/tt', function(req, res) {
 
-<<<<<<< Updated upstream
-		// Get city name passed in the form
-	
-		let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
-
-		request(url, function(err, response, body) {
-
-			// On return, check the json data fetched
-			if (err) {
-				res.send("lol" );
-			} else {
-				let weather = JSON.parse(body);
-				console.log(weather);
-				if (weather.main == undefined) {
-					res.send("lol" );
-				} else {
-					// we shall use the data got to set up your output
-					let place = `${weather.name}, ${weather.sys.country}`,
-					  /* you shall calculate the current timezone using the data fetched*/
-					  weatherTimezone = `${new Date(
-						weather.dt * 1000 - weather.timezone * 1000
-					  )}`;
-					let weatherTemp = `${weather.main.temp}`}
-					  }	});
-					});
-
-	
-	
-
-=======
->>>>>>> Stashed changes
 
 //================================================================
 //==== Demarrage du serveur Web  =======================
