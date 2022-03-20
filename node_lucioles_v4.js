@@ -26,7 +26,7 @@ async function listDatabases(client){
     console.log("Databases in Mongo Cluster : \n");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
-
+var wholist = [];
 //----------------------------------------------------------------
 // asynchronous function named main() where we will connect to our
 // MongoDB cluster, call functions that query our database, and
@@ -98,7 +98,7 @@ async function v0(){
 		}
 	    })
 	})
-	var wholist = []
+
 	//================================================================
 	// Callback de la reception des messages MQTT pour les topics sur
 	// lesquels on s'est inscrit.
