@@ -5,6 +5,7 @@ var path = require('path');
 
 //--- MQTT module
 const mqtt = require('mqtt')
+var request = require('request');
 // Topics MQTT
 const TOPIC_LIGHT = 'sensors/light'
 const TOPIC_TEMP  = 'sensors/temp'

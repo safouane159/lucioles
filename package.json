@@ -1,15 +1,15 @@
 {
   "engines": {
-	"node": "16.14.0",
-  "npm":  "8.3.1"
-  },  
+    "node": "14.18.1"
+  },
+  "engine-strict": true,
   "name": "esp_lucioles",
   "version": "1.0.0",
   "description": "Supervision ESP Lucioles v2021",
   "main": "node_lucioles_v4.js",
   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node_lucioles_v4.js"      
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_lucioles_v4.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/gmenez/ESP_Lucioles#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "fetch": "^1.1.0",
     "mongodb": "^4.2.1",
     "mqtt": "^4.2.8"
   }
