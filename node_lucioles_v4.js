@@ -204,7 +204,6 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 
     // Use that city name to fetch data
     // Use the API_KEY in the '.env' file
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
 
 // Route / => Le node renvoie la page HTML affichant les charts
