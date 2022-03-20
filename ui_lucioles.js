@@ -6,7 +6,7 @@
 //
 
 function init() {
-    console.log("dkhel init")
+  
     //=== Initialisation des traces/charts de la page html ===
     // Apply time settings globally
     Highcharts.setOptions({
@@ -74,21 +74,21 @@ function process_esp(){
     
     // Gestion de la temperature
     // premier appel pour eviter de devoir attendre RefreshT
-    get_samples('/esp/temp', chart1.series[i], esp);
+    get_samples('/esp/temp', chart1.series[1], esp);
     //calls a function or evaluates an expression at specified
     //intervals (in milliseconds).
     window.setInterval(get_samples,
 		       refreshT,
 		       '/esp/temp',     // param 1 for get_samples()
-		       chart1.series[i],// param 2 for get_samples()
+		       chart1.series[1],// param 2 for get_samples()
 		       esp);            // param 3 for get_samples()
 
     // Gestion de la lumiere
-    get_samples('/esp/light', chart2.series[i], esp);
+    get_samples('/esp/light', chart2.series[1], esp);
     window.setInterval(get_samples,
 		       refreshT,
 		       '/esp/light',     // URL to GET
-		       chart2.series[i], // Serie to fill
+		       chart2.series[1], // Serie to fill
 		       esp);             // ESP targeted
 }
 
