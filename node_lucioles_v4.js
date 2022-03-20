@@ -256,6 +256,7 @@ app.get('/esp/:what', function (req, res) {
 	
 	app.get('/tt', function(req, res) {
 
+<<<<<<< Updated upstream
 		// Get city name passed in the form
 	
 		let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
@@ -284,6 +285,8 @@ app.get('/esp/:what', function (req, res) {
 	
 	
 
+=======
+>>>>>>> Stashed changes
 
 //================================================================
 //==== Demarrage du serveur Web  =======================
