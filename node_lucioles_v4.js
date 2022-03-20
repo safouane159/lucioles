@@ -1,6 +1,5 @@
 // Importation des modules
 var path = require('path');
-var request = require('request');
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
@@ -255,25 +254,17 @@ app.get('/esp/:what', function (req, res) {
 	// Get city name passed in the form
 	
 
-
- var requestLoop = setInterval(function(){
-					request({
-						url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a",
-						method: "GET",
-						timeout: 10000,
-						followRedirect: true,
-						maxRedirects: 10
-					},function(error, response, body){
-						if(!error && response.statusCode == 200){
-							console.log(body);
-							console.log("halkwaaaaaaaa");
-						}else{
-							console.log('error' + response.statusCode);
-						}
-					});
-				  }, 6000);
-					
-							
+	function executeQuery() {
+		$.ajax({
+			url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a",
+		  success: function(data) {
+			console.log("halkwaaaaaaaa");
+		  }
+		});
+		setTimeout(executeQuery, 5000); // you could choose not to continue on failure...
+	  }
+	  setTimeout(executeQuery, 5000);
+	
 
 
 //================================================================
