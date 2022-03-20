@@ -1,12 +1,14 @@
 import fetch from "node-fetch";
+import path from "path";
+import mqtt from "mqtt";
 // Importation des modules
-var path = require('path');
+
 
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
 //--- MQTT module
-const mqtt = require('mqtt')
+
 
 // Topics MQTT
 const TOPIC_LIGHT = 'sensors/light'
