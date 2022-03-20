@@ -1,17 +1,11 @@
-import fetch from "node-fetch";
-import path from "path";
-import mqtt from "mqtt";
 // Importation des modules
-
-import MongoClient from "mongodb";
-import express from "express";
-import bodyParser from "body";
+var path = require('path');
 
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
 //--- MQTT module
-
+const mqtt = require('mqtt')
 
 // Topics MQTT
 const TOPIC_LIGHT = 'sensors/light'
@@ -22,6 +16,7 @@ const TOPIC_both  = 'sensors/both'
 // We can use an instance of MongoClient to connect to a cluster,
 // access the database in that cluster,
 // and close the connection to that cluster.
+const {MongoClient} = require('mongodb');
 
 //----------------------------------------------------------------
 // This function will retrieve a list of databases in our cluster and
@@ -179,7 +174,9 @@ v0().catch(console.error);
 //====================================
 // Utilisation du framework express
 // Notamment g�r�r les routes 
-
+const express = require('express');
+// et pour permettre de parcourir les body des requetes
+const bodyParser = require('body-parser');
 
 const app = express();
 
