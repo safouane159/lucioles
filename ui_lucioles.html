@@ -16,4 +16,25 @@
     <div id="container2" style="max-width: 1000px; height: 350px; margin: 0 auto"></div>    
     <div id="mydiv"></div>
   </body> 
+
+  <script>
+
+node_url = 'https://lucioles.herokuapp.com';
+  
+$.ajax({
+        url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
+        type: 'GET',
+        
+
+        success: function (resultat, statut) { // Anonymous function on success
+            let listeData = resultat;
+          
+            console.log(listeData);
+        },
+        error: function (resultat, statut, erreur) {
+        },
+        complete: function (resultat, statut) {
+        }
+    });
+  </script>
 </html>

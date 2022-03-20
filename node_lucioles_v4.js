@@ -105,6 +105,7 @@ async function v0(){
 	// => C'est cette fonction qui alimente la BD !
 	//
 	client_mqtt.on('message', function (topic, message) {
+
 	    console.log("\nMQTT msg on topic : ", topic.toString());
 	    console.log("Msg payload : ", message.toString());
 
@@ -199,10 +200,22 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 // Answering GET request on this node ... probably from navigator.
 // => REQUETES HTTP reconnues par le Node
 //================================================================
-    
+
+
+    // Use that city name to fetch data
+    // Use the API_KEY in the '.env' file
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+
 // Route / => Le node renvoie la page HTML affichant les charts
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
+});
+app.get('/esp/list', function (req, res) {
+	let wholist = [];
+	wholist.push("abdelhadi");
+	wholist.push("saf");
+    res.send(wholist) ;
 });
 
 
