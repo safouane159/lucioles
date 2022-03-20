@@ -98,7 +98,7 @@ async function v0(){
 		}
 	    })
 	})
-
+	let wholist = []
 	//================================================================
 	// Callback de la reception des messages MQTT pour les topics sur
 	// lesquels on s'est inscrit.
@@ -115,7 +115,7 @@ async function v0(){
 	    val = message.value
 
 	    // Debug : Gerer une liste de who pour savoir qui utilise le node server	
-	    let wholist = []
+	   
 	    var index = wholist.findIndex(x => x.who==wh)
 	    if (index === -1){
 		wholist.push({who:wh});	    
@@ -211,9 +211,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
 });
 app.get('/esp/list', function (req, res) {
-	let wholist = [];
-	wholist.push("abdelhadi");
-	wholist.push("saf");
+	
+	
     res.send(wholist) ;
 });
 
