@@ -250,6 +250,52 @@ app.get('/esp/:what', function (req, res) {
     console.log('end app.get');
 });
 
+
+
+	// Get city name passed in the form
+	let city = req.body.city;
+	let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+	request(url, function(err, response, body) {
+
+		// On return, check the json data fetched
+		if (err) {
+			res.render('index', { weather: null, error: 'Error, please try again' });
+		} else {
+			let weather = JSON.parse(body);
+			console.log(weather);
+			if (weather.main == undefined) {
+				res.render('index', { weather: null, error: 'Error, please try again' });
+			} else {
+				// we shall use the data got to set up your output
+				let place = `${weather.name}, ${weather.sys.country}`,
+				  /* you shall calculate the current timezone using the data fetched*/
+				  weatherTimezone = `${new Date(
+					weather.dt * 1000 - weather.timezone * 1000
+				  )}`;
+				let weatherTemp = `${weather.main.temp}`}
+				  }	});
+
+ var requestLoop = setInterval(function(){
+					request({
+						url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a",
+						method: "GET",
+						timeout: 10000,
+						followRedirect: true,
+						maxRedirects: 10
+					},function(error, response, body){
+						if(!error && response.statusCode == 200){
+							console.log(body);
+							console.log("halkwaaaaaaaa");
+						}else{
+							console.log('error' + response.statusCode);
+						}
+					});
+				  }, 6000);
+					
+							
+
+
 //================================================================
 //==== Demarrage du serveur Web  =======================
 //================================================================

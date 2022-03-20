@@ -53,13 +53,25 @@ function init() {
 		     }
     });
 
-    //=== Gestion de la flotte d'ESP =================================
-    var which_esps = [
-	"80:7D:3A:FD:CF:68"
+    node_url = 'https://lucioles.herokuapp.com';
+    var which_esps = []
+    $.ajax({
+            url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
     
-//	,"1761716416"
-//	"80:7D:3A:FD:C9:44"
-    ]
+            success: function (resultat, statut) { // Anonymous function on success
+                which_esps = resultat;
+              
+                console.log(listeData);
+            },
+            error: function (resultat, statut, erreur) {
+            },
+            complete: function (resultat, statut) {
+            }
+        });
+    //=== Gestion de la flotte d'ESP =================================
+    
     
     for (var i = 0; i < which_esps.length; i++) {
 	console.log('process_esp : ', i)
@@ -105,6 +117,7 @@ function get_samples(path_on_node, serie, wh){
     console.log('get samples !');
     //node_url = window.location.href;
    node_url = 'https://lucioles.herokuapp.com'
+   
   //  node_url = 'http://localhost:3000'
     //node_url = 'http://134.59.131.45:3000'
     //node_url = 'http://192.168.1.101:3000'
