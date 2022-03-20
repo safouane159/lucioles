@@ -263,12 +263,12 @@ app.get('/esp/:what', function (req, res) {
 
 			// On return, check the json data fetched
 			if (err) {
-				res.render('index', { weather: null, error: 'Error, please try again' });
+				res.send("lol" );
 			} else {
 				let weather = JSON.parse(body);
 				console.log(weather);
 				if (weather.main == undefined) {
-					//res.render('index', { weather: null, error: 'Error, please try again' });
+					res.send("lol" );
 				} else {
 					// we shall use the data got to set up your output
 					let place = `${weather.name}, ${weather.sys.country}`,
