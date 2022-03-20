@@ -55,7 +55,7 @@ function init() {
     });
 
     node_url = 'https://lucioles.herokuapp.com';
-    var which_esps = []
+
     $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
@@ -63,7 +63,12 @@ function init() {
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log(resultat)
+                var which_esps = []
                 which_esps = resultat;
+                for (var i = 0; i < which_esps.length; i++) {
+                    console.log('process_esp : ', i)
+                    process_esp(which_esps, i)
+                    }
               
             },
             error: function (resultat, statut, erreur) {
@@ -73,12 +78,8 @@ function init() {
         });
        
     //=== Gestion de la flotte d'ESP =================================
+
     
-    console.log(which_esps.length)
-    for (var i = 0; i < which_esps.length; i++) {
-	console.log('process_esp : ', i)
-	process_esp(which_esps, i)
-    }
 };
 
 
