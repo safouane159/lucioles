@@ -26,5 +26,6 @@
     "mongodb": "^4.2.1",
     "mqtt": "^4.2.8",
     "node-fetch": "^3.2.3"
-  }
+  },
+  "type": "module"
 }
