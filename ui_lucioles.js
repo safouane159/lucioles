@@ -73,7 +73,7 @@ function init() {
        
     //=== Gestion de la flotte d'ESP =================================
     
-    
+    console.log(which_esps.length)
     for (var i = 0; i < which_esps.length; i++) {
 	console.log('process_esp : ', i)
 	process_esp(which_esps, i)
