@@ -260,19 +260,7 @@ app.get('/esp/:what', function (req, res) {
 		// Get city name passed in the form
 	
 	//	let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
-			$.ajax({
-			url: 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a', // URL to "GET" : /esp/temp ou /esp/light
-			type: 'GET',
-			headers: { Accept: "application/json", },
-		data: {}, // parameter of the GET request
-			success: function (resultat, statut) { // Anonymous function on success
-				console.log("lkwa")
-			},
-			error: function (resultat, statut, erreur) {
-			},
-			complete: function (resultat, statut) {
-			}
-		});
+		
 		res.send("fr"); 
 					});
 
