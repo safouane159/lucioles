@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 // Importation des modules
 var path = require('path');
 
