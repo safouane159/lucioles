@@ -29,13 +29,15 @@ chart1 = new Highcharts.Chart({
 });
 
 //=== Gestion de la flotte d'ESP =================================
-/*var which_esps = [
-    "80:7D:3A:FD:E8:48"
+var which_esps = [
+    "80:7D:3A:FD:CF:68"
     //	,"1761716416"
     //	"80:7D:3A:FD:C9:44"
-]*/
-var which_espsv = init1();
-
+]
+// var which_espsv = init1();
+for (var i = 0; i < which_esps.length; i++) {
+    process_esp(which_esps, i)
+}
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
