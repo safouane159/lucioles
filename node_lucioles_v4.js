@@ -265,15 +265,10 @@ app.get('/esp/:what', function (req, res) {
 		res.send("fr"); 
 		
 					});
-
-	
-	
-
 					const request = require('request');
 
 					request('http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 					  if (err) { return console.log(err); }
-					  console.log("hani wsselt"); 
 					  console.log(body);
 					  console.log(body.text);
 					});
