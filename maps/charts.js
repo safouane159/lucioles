@@ -29,15 +29,13 @@ chart1 = new Highcharts.Chart({
 });
 
 //=== Gestion de la flotte d'ESP =================================
-var which_esps = [
+/*var which_esps = [
     "80:7D:3A:FD:E8:48"
     //	,"1761716416"
     //	"80:7D:3A:FD:C9:44"
-]
+]*/
+var which_espsv = init1();
 
-for (var i = 0; i < which_esps.length; i++) {
-    process_esp(which_esps, i)
-}
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
@@ -56,15 +54,49 @@ function process_esp(which_esps,i){
 		       chart1.series[i],// param 2 for get_samples()
 		       esp);            // param 3 for get_samples()
 }
+
+
+
+function init1() {
+    var which_esp = []
+    node_url = 'https://lucioles.herokuapp.com';
+    
+    $.ajax({
+            url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log(resultat)
+                
+                which_esp = resultat;
+
+                for (var i = 0; i < which_esp.length; i++) {
+                    console.log('process_esp : ', i)
+                    process_esp(which_esp, i)
+                    }
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+            },
+            complete: function (resultat, statut) {
+            }
+        });
+        console.log(which_esp.length)
+       return which_esp
+    }
+
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
+
 function get_samples(path_on_node, serie, wh){
     // path_on_node => help to compose url to get on Js node
     // serie => for choosing chart/serie on the page
     // wh => which esp do we want to query data
     
     //node_url = 'http://localhost:3000'
-    node_url = 'http://134.59.131.45:3000'
+    node_url = 'https://lucioles.herokuapp.com'
     //node_url = 'http://192.168.1.101:3000'
 
     //https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
