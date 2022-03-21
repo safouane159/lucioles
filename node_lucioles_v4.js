@@ -273,8 +273,9 @@ app.get('/esp/:what', function (req, res) {
 
 					request('https://gorest.co.in/public/v2/users', { json: true }, (err, res, body) => {
 					  if (err) { return console.log(err); }
-					  console.log(body.url);
-					  console.log(body.explanation);
+					  console.log("hani wsselt"); 
+					  console.log(body);
+					  console.log(body.text);
 					});
 //================================================================
 //==== Demarrage du serveur Web  =======================
