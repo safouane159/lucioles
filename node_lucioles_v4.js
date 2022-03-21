@@ -211,6 +211,7 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
 });
+
 app.get('/esp/list', function (req, res) {
 	
 	
@@ -268,7 +269,13 @@ app.get('/esp/:what', function (req, res) {
 	
 	
 
+					const request = require('request');
 
+					request('https://gorest.co.in/public/v2/users', { json: true }, (err, res, body) => {
+					  if (err) { return console.log(err); }
+					  console.log(body.url);
+					  console.log(body.explanation);
+					});
 //================================================================
 //==== Demarrage du serveur Web  =======================
 //================================================================
