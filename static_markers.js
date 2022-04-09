@@ -98,8 +98,8 @@ var myURL = jQuery('script[src$="static_markers.js"]')
     .replace('static_markers.js', '')
 
 var myIcon = L.icon({
-    iconUrl: myURL + 'images/pin24.png',
-    iconRetinaUrl: myURL + 'images/pin48.png',
+    iconUrl: myURL + 'pin24.png',
+    iconRetinaUrl: myURL + 'pin48.png',
     iconSize: [29, 24],
     iconAnchor: [9, 21],
     popupAnchor: [0, -14],
