@@ -60,15 +60,16 @@ function process_esp(which_esps,i){
 
 function proccess_loca_esp(esp,i){
     node_url = 'https://lucioles.herokuapp.com'
-
+    console.log(esp[i]);
 	$.ajax({
     // On fait une requete et on recupere un geo json
-    
+   
+   
     //URL de l'API
     url: node_url.concat("/geogs/"+ esp[i]) ,
     
     //Type de données
-    dataType: "jsonp",
+    dataType: "text",
     
     //Méthode appelée lorsque le téléchargement a fonctionné
     success: function(geojson) {

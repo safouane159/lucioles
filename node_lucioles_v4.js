@@ -220,9 +220,9 @@ app.get('/esp/list', function (req, res) {
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	
-
+var lol = "salam";
 	//build a geogson  
-	var lol = {
+	/*var lol = {
 		"type": "FeatureCollection",
 		"features": [
 			{
@@ -243,7 +243,7 @@ app.get('/geogs/:what', function (req, res) {
 			},
 			
 		]
-	};
+	};*/
     //send the geogson
     res.send(lol) ;
 });
