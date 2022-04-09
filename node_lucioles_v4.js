@@ -219,7 +219,7 @@ app.get('/esp/list', function (req, res) {
 });
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
-	if (esp_mac_address === "80:7D:3A:FD:CF:68"){
+	if (esp_mac_address == "80:7D:3A:FD:CF:68"){
 		var data = { name: 'Location B', category: 'House', street: 'Broad', lat: 39.284, lng: -75.833 };
   
 			}else{
