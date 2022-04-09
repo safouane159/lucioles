@@ -217,10 +217,35 @@ app.get('/esp/list', function (req, res) {
 	
     res.send(wholist) ;
 });
-app.get('/geogs', function (req, res) {
+app.get('/geogs/:what', function (req, res) {
+	esp_mac_address = req.params.what
 	
-	
-    res.send(wholist) ;
+
+	//build a geogson  
+	var lol = {
+		"type": "FeatureCollection",
+		"features": [
+			{
+			"geometry": {
+					"type": "Point", 
+					"coordinates": [ // lng, lat
+				-106.346771,
+				56.130366
+					]
+			},
+			"type": "Feature",		  
+			"properties": {
+					"popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!" +esp_mac_address ,
+			"url": 'https://en.wikipedia.org/wiki/Canada',
+			"name":"Canada"
+			},
+			"id": 51
+			},
+			
+		]
+	};
+    //send the geogson
+    res.send(lol) ;
 });
 
 // The request contains the name of the targeted ESP !

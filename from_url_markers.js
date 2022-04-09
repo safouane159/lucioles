@@ -1,8 +1,11 @@
-$.ajax({
+function proccess_loca_esp(esp,i){
+
+
+	$.ajax({
     // On fait une requete et on recupere un geo json
     
     //URL de l'API
-    url: "https://data.rennesmetropole.fr/explore/dataset/topologie-des-stations-le-velo-star/download/?format=geojson&timezone=Europe/Berlin",
+    url: "https://lucioles.herokuapp.com/geogs/"+ esp[i],
     
     //Type de données
     dataType: "jsonp",
@@ -29,4 +32,4 @@ $.ajax({
     error: function() {
 	alert("Erreur lors du téléchargement !");
     }      
-});
+});}
