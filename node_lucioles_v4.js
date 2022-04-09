@@ -6,7 +6,7 @@ var path = require('path');
 
 //--- MQTT module
 const mqtt = require('mqtt')
-
+var GeoJSON = require('geojson');
 // Topics MQTT
 const TOPIC_LIGHT = 'sensors/saf/light'
 const TOPIC_TEMP  = 'sensors/saf/temp'
@@ -222,28 +222,12 @@ app.get('/geogs/:what', function (req, res) {
 	
 
 	//build a geogson  
-	var lol = {
-		"type": "FeatureCollection",
-		"features": [
-			{
-			"geometry": {
-					"type": "Point", 
-					"coordinates": [ // lng, lat
-				-106.346771,
-				56.130366
-					]
-			},
-			"type": "Feature",		  
-			"properties": {
-					"popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!" + lol,
-			"url": 'https://en.wikipedia.org/wiki/Canada',
-			"name":"Canada"
-			},
-			"id": 51
-			},
-			
-		]
-	}
+	var data = 
+		{ name: 'Location A', category: 'Store', street: 'Market', lat: 39.984, lng: -75.343 }
+	  ;
+
+	  var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
+
     //send the geogson
     res.send(lol) ;
 });
