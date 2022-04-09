@@ -217,7 +217,11 @@ app.get('/esp/list', function (req, res) {
 	
     res.send(wholist) ;
 });
-
+app.get('/geogs', function (req, res) {
+	
+	
+    res.send(wholist) ;
+});
 
 // The request contains the name of the targeted ESP !
 //     /esp/temp?who=80%3A7D%3A3A%3AFD%3AC9%3A44
