@@ -217,7 +217,7 @@ app.get('/esp/list', function (req, res) {
 	
     res.send(wholist) ;
 });
-app.get('/geogs/:what', function (req, res) {
+app.get('/geogs/what', function (req, res) {
 	esp_mac_address = req.params.what
 	
 

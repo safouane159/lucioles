@@ -66,7 +66,7 @@ function proccess_loca_esp(esp,i){
    
    
     //URL de l'API
-    url: node_url.concat("/geogs/"+ esp[i]) ,
+    url: node_url.concat("/geogs/what") ,
     
     //Type de données
     dataType: "jsonp",
