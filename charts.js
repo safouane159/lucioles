@@ -30,11 +30,12 @@ chart1 = new Highcharts.Chart({
 
 //=== Gestion de la flotte d'ESP =================================
 var which_esps = [
-    "80:7D:3A:FD:CF:68"
+    
     //	,"1761716416"
-    //	"80:7D:3A:FD:C9:44"
+    "80:7D:3A:FD:C9:44","80:7D:3A:FD:CF:68"
 ]
 // var which_espsv = init1();
+console.log(which_esps.length);
 for (var i = 0; i < which_esps.length; i++) {
     process_esp(which_esps, i);
     proccess_loca_esp(which_esps, i);
