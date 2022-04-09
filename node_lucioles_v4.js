@@ -220,9 +220,9 @@ app.get('/esp/list', function (req, res) {
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	
-var lol = "salam";
+
 	//build a geogson  
-	/*var lol = {
+	var lol = {
 		"type": "FeatureCollection",
 		"features": [
 			{
@@ -235,7 +235,7 @@ var lol = "salam";
 			},
 			"type": "Feature",		  
 			"properties": {
-					"popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!" +esp_mac_address ,
+					"popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!" + lol,
 			"url": 'https://en.wikipedia.org/wiki/Canada',
 			"name":"Canada"
 			},
@@ -243,7 +243,7 @@ var lol = "salam";
 			},
 			
 		]
-	};*/
+	}
     //send the geogson
     res.send(lol) ;
 });

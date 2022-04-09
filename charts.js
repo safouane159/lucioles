@@ -69,7 +69,7 @@ function proccess_loca_esp(esp,i){
     url: node_url.concat("/geogs/"+ esp[i]) ,
     
     //Type de données
-    dataType: "text",
+    dataType: "jsonp",
     
     //Méthode appelée lorsque le téléchargement a fonctionné
     success: function(geojson) {
