@@ -217,17 +217,21 @@ app.get('/esp/list', function (req, res) {
 	
     res.send(wholist) ;
 });
-app.get('/geogs/what', function (req, res) {
+app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
-	
+	if (esp_mac_address === "80:7D:3A:FD:CF:68"){
+		var data = { name: 'Location B', category: 'House', street: 'Broad', lat: 39.284, lng: -75.833 },
+  
+			}else{
+		var data = { name: 'Location A', category: 'Store', street: 'Market', lat: 39.984, lng: -75.343 };
+
+		
+  
+	}
+	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
 
 	//build a geogson  
-	var data = 
-		{ name: 'Location A', category: 'Store', street: 'Market', lat: 39.984, lng: -75.343 }
-	  ;
-
-	  var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
-
+	
     //send the geogson
     res.jsonp(lol) ;
 });
