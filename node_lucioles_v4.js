@@ -229,7 +229,7 @@ app.get('/geogs/what', function (req, res) {
 	  var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
 
     //send the geogson
-    res.json(lol) ;
+    res.jsonp(lol) ;
 });
 
 // The request contains the name of the targeted ESP !
