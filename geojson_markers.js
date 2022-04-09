@@ -71,7 +71,7 @@ const refreshT = 10000 // Refresh period for chart
 var layer = null;
 
 function onEachFeature(feature, layer) {
-    console.log(feature.name);
+    console.log("hada feature : "+ feature.name);
     var popupContent = '<p>I started out as a GeoJSON ' +
 	feature.geometry.type + ', but now I\'m a Leaflet vector!</p>';
     
@@ -101,7 +101,7 @@ function add_esp(uri){
 
 	    // ========= Markers obtenus par la requete
 	    //Affichage des données dans la console
-	    console.log(geojson);
+	    console.log("hada geogson : "+geojson);
 	    //Création de la couche à partir du GeoJSON
 	    var layer_url = L.geoJSON(geojson);
 	    //Ajout de popup sur chaque objet
@@ -149,5 +149,5 @@ function add_esp(uri){
 // Install periodicity
 window.setInterval(add_esp,
 		   refreshT,
-		   "https://data.rennesmetropole.fr/explore/dataset/topologie-des-stations-le-velo-star/download/?format=geojson&timezone=Europe/Berlin",     // URL to GET
+		   "https://data.rennesmetropole.fr/explore/dataset/topologie-des-stations-le-velo-star/download/?format=geojson&timezone=Europe/Paris",     // URL to GET
 		  );   
