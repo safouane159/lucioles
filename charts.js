@@ -126,23 +126,26 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
-        setTimeout(() => {
-            getList();
-          }, 5000);
+        
         console.log(which_esp.length)
     
 
 
   });}
-
-  getList()
-  .then((data) => {
-    console.log(data)
-    process_each_esp(data)
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+function lol(){
+    getList()
+    .then((data) => {
+      console.log(data)
+      process_each_esp(data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    setTimeout(() => {
+        lol();
+      }, 5000);
+}
+  lol();
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
