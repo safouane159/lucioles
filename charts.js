@@ -160,7 +160,7 @@ console.log("hahowa"+wh.who);
         url: node_url.concat(path_on_node), // URL to "GET" : /esp/temp ou /esp/light
         type: 'GET',
         headers: { Accept: "application/json", },
-	data: {"who": wh1}, // parameter of the GET request
+	data: {"who": wh.who}, // parameter of the GET request
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
             resultat.forEach(function (element) {
