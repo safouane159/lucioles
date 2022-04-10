@@ -48,6 +48,7 @@ function process_each_esp(list_esp){
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
+    console.log(which_esps[i]);
     const refreshT = 10000 // Refresh period for chart
     esp = which_esps[i];    // L'ESP "a dessiner"
     //console.log(esp) // cf console du navigateur
@@ -130,7 +131,7 @@ return  new Promise(function(resolve, reject) {
 
 
   });}
-  
+
   getList()
   .then((data) => {
     console.log(data)

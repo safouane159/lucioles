@@ -245,7 +245,7 @@ app.get('/', function (req, res) {
 
 app.get('/esp/list', function (req, res) {
 	
-	
+	console.log("hahiya "+wholist)
     res.send(wholist) ;
 });
 app.get('/geogs/:what', function (req, res) {
