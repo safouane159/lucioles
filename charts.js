@@ -153,7 +153,7 @@ function get_samples(path_on_node, serie, wh){
     //node_url = 'http://localhost:3000'
     node_url = 'https://lucioles.herokuapp.com'
     //node_url = 'http://192.168.1.101:3000'
-
+console.log("hahowa"+wh);
     //https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
     $.ajax({
         url: node_url.concat(path_on_node), // URL to "GET" : /esp/temp ou /esp/light
