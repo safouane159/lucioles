@@ -36,11 +36,14 @@ var which_esps = [
     "80:7D:3A:FD:CF:68"
 ]
 // var which_espsv = init1();
-console.log(which_esps.length);
-for (var i = 0; i < which_esps.length; i++) {
-   
-    process_esp(which_esps, i);
-    proccess_loca_esp(which_esps, i);
+
+function process_each_esp(list_esp){
+    console.log(list_esp.length);
+    for (var i = 0; i < list_esp.length; i++) {
+       
+        process_esp(list_esp, i);
+        proccess_loca_esp(list_esp, i);
+    }
 }
 
 //=== Installation de la periodicite des requetes GET============
@@ -98,7 +101,8 @@ function proccess_loca_esp(esp,i){
     }      
 });}
 
-function init1() {
+function getList(){
+return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
@@ -110,13 +114,9 @@ function init1() {
             success: function (resultat, statut) { // Anonymous function on success
                 console.log(resultat)
                 
-                which_esp = resultat;
-
-                for (var i = 0; i < which_esp.length; i++) {
-                    console.log('process_esp : ', i)
-                    process_esp(which_esp, i)
-                   
-                    }
+                
+                resolve(resultat);
+                
                
               
             },
@@ -126,8 +126,20 @@ function init1() {
             }
         });
         console.log(which_esp.length)
-       return which_esp
-    }
+    
+
+
+  });}
+  
+  getList()
+  .then((data) => {
+    console.log(data)
+    process_each_esp(data)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
