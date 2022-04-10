@@ -126,6 +126,9 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
+        setTimeout(() => {
+            getList();
+          }, 5000);
         console.log(which_esp.length)
     
 
