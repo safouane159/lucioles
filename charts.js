@@ -32,13 +32,13 @@ chart1 = new Highcharts.Chart({
 var which_esps = [
     
     //	,"1761716416"
-    "80:7D:3A:FD:C9:44",
+  //  "80:7D:3A:FD:C9:44",
     "80:7D:3A:FD:CF:68"
 ]
 // var which_espsv = init1();
 console.log(which_esps.length);
 for (var i = 0; i < which_esps.length; i++) {
-    console.log("dora");
+   
     process_esp(which_esps, i);
     proccess_loca_esp(which_esps, i);
 }
@@ -150,7 +150,7 @@ function get_samples(path_on_node, serie, wh){
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
             resultat.forEach(function (element) {
-		listeData.push([Date.parse(element.date),element.value]);
+		listeData.push([Date.parse(element.date),element.temp]);
 		//listeData.push([Date.now(),element.value]);
             });
             serie.setData(listeData); //serie.redraw();

@@ -8,9 +8,8 @@ var path = require('path');
 const mqtt = require('mqtt')
 var GeoJSON = require('geojson');
 // Topics MQTT
-const TOPIC_LIGHT = 'sensors/saf/light'
-const TOPIC_TEMP  = 'sensors/saf/temp'
-const TOPIC_both  = 'sensors/both'
+const TOPIC_sensors = 'miage/loc'
+const TOPIC_loc  = 'miage/sensors'
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
 // We can use an instance of MongoClient to connect to a cluster,
@@ -28,6 +27,7 @@ async function listDatabases(client){
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
 var wholist = [];
+var wholist1 = [];
 //----------------------------------------------------------------
 // asynchronous function named main() where we will connect to our
 // MongoDB cluster, call functions that query our database, and
@@ -86,16 +86,16 @@ async function v0(){
 	// Des la connexion, le serveur NodeJS s'abonne aux topics MQTT 
 	//
 	client_mqtt.on('connect', function () {
-	    client_mqtt.subscribe(TOPIC_LIGHT, function (err) {
+	    client_mqtt.subscribe(TOPIC_sensors, function (err) {
 		if (!err) {
 		    //client_mqtt.publish(TOPIC_LIGHT, 'Hello mqtt')
-		    console.log('Node Server has subscribed to ', TOPIC_LIGHT);
+		    console.log('Node Server has subscribed to ', TOPIC_sensors);
 		}
 	    })
-	    client_mqtt.subscribe(TOPIC_TEMP, function (err) {
+	    client_mqtt.subscribe(TOPIC_loc, function (err) {
 		if (!err) {
 		    //client_mqtt.publish(TOPIC_TEMP, 'Hello mqtt')
-		    console.log('Node Server has subscribed to ', TOPIC_TEMP);
+		    console.log('Node Server has subscribed to ', TOPIC_loc);
 		}
 	    })
 	})
@@ -109,11 +109,15 @@ async function v0(){
 
 	    console.log("\nMQTT msg on topic : ", topic.toString());
 	    console.log("Msg payload : ", message.toString());
-
+		console.log("topic base: ", path.parse(topic.toString()).base);
+		
+		if ( topic.toString() === "miage/sensors"){   
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
-	    wh = message.who
-	    val = message.value
+	    wh = message.info.ident
+
+	    temper = message.status.temperature;
+		lght = message.status.light;
 
 	    // Debug : Gerer une liste de who pour savoir qui utilise le node server	
 	   
@@ -132,18 +136,45 @@ async function v0(){
 	    var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	    var new_entry = { date: frTime, // timestamp the value 
 			      who: wh,      // identify ESP who provide 
-			      value: val    // this value
+			      temp: temper,    // temp value
+				  light: lght      // light value
 			    };
 	    
 	    // On recupere le nom basique du topic du message
-	    var key = path.parse(topic.toString()).base;
+	    var key = path.parse("sensors").base;
 	    // Stocker le dictionnaire qui vient d'etre cr�� dans la BD
 	    // en utilisant le nom du topic comme key de collection
 	    dbo.collection(key).insertOne(new_entry, function(err, res) {
 		if (err) throw err;
 		console.log("\nItem : ", new_entry, 
 		"\ninserted in db in collection :", key);
+	    }); }
+		if (topic.toString() === "miage/loc" ){
+			message = JSON.parse(message);
+			wh1 = message.who;
+			var index1 = wholist1.findIndex(x1 => x1.who1==wh1)
+	    if (index1 === -1){
+        wholist1.push({who1:wh1});
+		
+		lat = message.lat;
+		lgn = message.lgn;
+		var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
+	    var new_entry = { date: frTime, // timestamp the value 
+			      who: wh1,      // identify ESP who provide 
+			      latitud: lat,    // temp value
+				  longitude: lgn      // light value
+			    };
+	    
+	    // On recupere le nom basique du topic du message
+	    var key = path.parse("localisation").base;
+ dbo.collection(key).insertOne(new_entry, function(err, res) {
+		if (err) throw err;
+		console.log("\nItem : ", new_entry, 
+		"\ninserted in db in collection :", key);
 	    });
+	    }
+		
+		}
 
 	    // Debug : voir les collections de la DB 
 	    //dbo.listCollections().toArray(function(err, collInfos) {
@@ -258,7 +289,7 @@ app.get('/esp/:what', function (req, res) {
     // R�cup�ration des nb derniers samples stock�s dans
     // la collection associ�e a ce topic (wa) et a cet ESP (wh)
     const nb = 200;
-    key = wa
+    key = "sensors"
     //dbo.collection(key).find({who:wh}).toArray(function(err,result) {
     dbo.collection(key).find({who:wh}).sort({_id:-1}).limit(nb).toArray(function(err, result) {
 	if (err) throw err;
