@@ -150,7 +150,7 @@ async function v0(){
 		//////////////////////
 		
 			
-			var index1 = wholist1.findIndex(x1 => x1.who1==wh1)
+			var index1 = wholist1.findIndex(x1 => x1.who1==wh)
 	    if (index1 === -1){
         wholist1.push({who1:wh});
 		
