@@ -247,7 +247,7 @@ app.get('/esp/list', function (req, res) {
 });
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
-	console.log(esp_mac_address);
+	console.log("haladress"+esp_mac_address);
 	key = "localisation";
 	dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
