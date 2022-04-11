@@ -252,14 +252,14 @@ app.get('/geogs/:what', function (req, res) {
 	dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
 		console.log("ta dreb1",result);
-	//	console.log("ta dreb",result.longitude);
-		/*var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
+		console.log("ta dreb",result.longitude);
+		var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
   
 			
 	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
 	res.jsonp(lol) ;
 		 // This is the response.
-		console.log('end find');*/
+		console.log('end find');
 		});
 		
 	
