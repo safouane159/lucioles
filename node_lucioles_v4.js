@@ -249,9 +249,9 @@ app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log(esp_mac_address);
 	key = "localisation";
-	dbo.collection(key).findOne({who:esp_mac_address},function(err, result) {
+	dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
-		console.log('get on ', key);
+		console.log("ta dreb1",result);
 		console.log("ta dreb",result.longitude);
 		var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
   
