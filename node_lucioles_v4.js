@@ -249,7 +249,7 @@ app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log(esp_mac_address);
 	key = "localisation";
-	dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
+	/*dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
 		console.log("ta dreb1",result);
 	//	console.log("ta dreb",result.longitude);
@@ -261,7 +261,7 @@ app.get('/geogs/:what', function (req, res) {
 		 // This is the response.
 		console.log('end find');
 		});
-		
+		*/
 	
 		
 
