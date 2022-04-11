@@ -8,8 +8,8 @@ var path = require('path');
 const mqtt = require('mqtt')
 var GeoJSON = require('geojson');
 // Topics MQTT
-const TOPIC_sensors = 'miage/loc'
-const TOPIC_loc  = 'miage/sensors'
+const TOPIC_Miage = 'iot/M1Miage2022/prive'
+
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
 // We can use an instance of MongoClient to connect to a cluster,
@@ -86,18 +86,13 @@ async function v0(){
 	// Des la connexion, le serveur NodeJS s'abonne aux topics MQTT 
 	//
 	client_mqtt.on('connect', function () {
-	    client_mqtt.subscribe(TOPIC_sensors, function (err) {
+	    client_mqtt.subscribe(TOPIC_Miage, function (err) {
 		if (!err) {
 		    //client_mqtt.publish(TOPIC_LIGHT, 'Hello mqtt')
 		    console.log('Node Server has subscribed to ', TOPIC_sensors);
 		}
 	    })
-	    client_mqtt.subscribe(TOPIC_loc, function (err) {
-		if (!err) {
-		    //client_mqtt.publish(TOPIC_TEMP, 'Hello mqtt')
-		    console.log('Node Server has subscribed to ', TOPIC_loc);
-		}
-	    })
+	  
 	})
 
 	//================================================================
@@ -111,14 +106,15 @@ async function v0(){
 	    console.log("Msg payload : ", message.toString());
 		console.log("topic base: ", path.parse(topic.toString()).base);
 		
-		if ( topic.toString() === "miage/sensors"){   
+		
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
 	    wh = message.info.ident
 
 	    temper = message.status.temperature;
 		lght = message.status.light;
-
+		lat = message.lat;
+		lgn = message.lgn;
 	    // Debug : Gerer une liste de who pour savoir qui utilise le node server	
 	   
 	    var index = wholist.findIndex(x => x.who==wh)
@@ -139,42 +135,43 @@ async function v0(){
 			      temp: temper,    // temp value
 				  light: lght      // light value
 			    };
-	    
+		
 	    // On recupere le nom basique du topic du message
 	    var key = path.parse("sensors").base;
+		
 	    // Stocker le dictionnaire qui vient d'etre cr�� dans la BD
 	    // en utilisant le nom du topic comme key de collection
 	    dbo.collection(key).insertOne(new_entry, function(err, res) {
 		if (err) throw err;
 		console.log("\nItem : ", new_entry, 
 		"\ninserted in db in collection :", key);
-	    }); }
-		if (topic.toString() === "miage/loc" ){
-			message = JSON.parse(message);
-			wh1 = message.who;
+	    });
+
+		//////////////////////
+		
+			
 			var index1 = wholist1.findIndex(x1 => x1.who1==wh1)
 	    if (index1 === -1){
-        wholist1.push({who1:wh1});
+        wholist1.push({who1:wh});
 		
-		lat = message.lat;
-		lgn = message.lgn;
-		var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
-	    var new_entry = { date: frTime, // timestamp the value 
-			      who: wh1,      // identify ESP who provide 
-			      latitud: lat,    // temp value
-				  longitude: lgn      // light value
-			    };
-	    
+	
+		var second_entry = { date: frTime, // timestamp the value 
+			who: wh,      // identify ESP who provide 
+			latitude: lat,    // temp value
+			longitude: lgn      // light value
+		  };
+	
 	    // On recupere le nom basique du topic du message
-	    var key = path.parse("localisation").base;
- dbo.collection(key).insertOne(new_entry, function(err, res) {
+		var key_loc = path.parse("localisation").base;
+
+ dbo.collection(key_loc).insertOne(second_entry, function(err, res) {
 		if (err) throw err;
-		console.log("\nItem : ", new_entry, 
-		"\ninserted in db in collection :", key);
+		console.log("\nItem : ", second_entry, 
+		"\ninserted in db in collection :", key_loc);
 	    });
 	    }
 		
-		}
+		
 
 	    // Debug : voir les collections de la DB 
 	    //dbo.listCollections().toArray(function(err, collInfos) {
@@ -251,21 +248,27 @@ app.get('/esp/list', function (req, res) {
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log(esp_mac_address);
-	if (esp_mac_address === "80:7D:3A:FD:CF:68"){
-		var data = { name: 'Location B', category: 'House', street: 'Broad', lat: 39.284, lng: -75.833 };
+	key = "localisation";
+	dbo.collection(key).findOne({who:esp_mac_address},function(err, result) {
+		if (err) throw err;
+		console.log('get on ', key);
+		console.log("ta dreb",result.longitude);
+		var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
   
-			}else{
-		var data = { name: 'Location A', category: 'Store', street: 'Market', lat: 39.984, lng: -75.343 };
-
-		
-  
-	}
+			
 	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
+	res.jsonp(lol) ;
+		 // This is the response.
+		console.log('end find');
+		});
+		
+	
+		
 
 	//build a geogson  
 	
     //send the geogson
-    res.jsonp(lol) ;
+  
 });
 
 // The request contains the name of the targeted ESP !
