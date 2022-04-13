@@ -110,14 +110,14 @@ function proccess_loca_esp(esp,i){
 
 
 function getList(){
-    fetch('https://lucioles.herokuapp.com/esp/list')
+  /*  fetch('https://lucioles.herokuapp.com/esp/list')
     .then(response => response.text())
     .then(data =>
-        process_each_esp(data));
+        process_each_esp(data));*/
 
 
 
-/*return  new Promise(function(resolve, reject) {
+return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
@@ -145,7 +145,7 @@ function getList(){
     
 
 
-  });*/}
+  });}
 
   var intervalId = window.setInterval(function(){
     getList();
