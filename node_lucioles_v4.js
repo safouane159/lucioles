@@ -304,9 +304,11 @@ app.get('/esp/:what', function (req, res) {
 	var jsonStr = JSON.stringify(all);
 	jsonStr.data = obj;
 	jsonStr.list = "salut" ;
+	console.log("ha 1 "+obj[0].temp );
+	console.log("ha 2 "+jsonStr.list );
+	console.log("ha 3 "+jsonStr.data );
 
-
-	res.json(jsonStr); // This is the response.
+	res.json(""); // This is the response.
 	console.log('end find');
     });
     console.log('end app.get');
