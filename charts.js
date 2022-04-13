@@ -123,7 +123,7 @@ function getList(){
 
 
 
-return  new Promise(function(resolve, reject) {
+
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
@@ -134,7 +134,7 @@ return  new Promise(function(resolve, reject) {
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("ha result "+resultat.length)
-                which_esp =resultat
+                process_each_esp(resultat)
                 
                 
                 
@@ -146,25 +146,16 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
-       
+       req1.abort();
         console.log("espppp"+which_esp)
-        resolve(which_esp);
-      
-  });
-  
+       
+     
 
 
 }
 
   var intervalId = window.setInterval(function(){
-    getList().then((data) => {
-        console.log(data)
-        process_each_esp(data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-      
+    getList()
  
   }, 5000);
 
