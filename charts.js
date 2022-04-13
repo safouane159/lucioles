@@ -127,7 +127,7 @@ return  new Promise(function(resolve, reject) {
             
     
             success: function (resultat, statut) { // Anonymous function on success
-                console.log("ha result "+resultat)
+                console.log("ha result "+resultat.length)
                 
                 
                 resolve(resultat);
@@ -141,7 +141,6 @@ return  new Promise(function(resolve, reject) {
             }
         });
         
-        console.log(resultat.length)
     
 
 
