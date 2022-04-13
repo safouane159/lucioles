@@ -298,16 +298,7 @@ app.get('/esp/:what', function (req, res) {
 	if (err) throw err;
 	console.log('get on ', key);
 	console.log(result);
-
-	var all = [{}]
-	var jsonStr = JSON.stringify(all);
-	jsonStr.data = result.reverse();
-	jsonStr.list = "salut" ;
-	console.log("ha 1 "+jsonStr[0].data[0].temp );
-	console.log("ha 2 "+jsonStr.list );
-	console.log("ha 3 "+jsonStr.data );
-
-	res.json(""); // This is the response.
+	res.json(result.reverse()); // This is the response.
 	console.log('end find');
     });
     console.log('end app.get');

@@ -68,7 +68,11 @@ function process_esp(which_esps,i){
 function proccess_loca_esp(esp,i){
     node_url = 'https://lucioles.herokuapp.com'
     console.log(esp[i]);
-	$.ajax({
+	
+		map.removeLayer(layer);
+		layer = null;
+	    
+    $.ajax({
     // On fait une requete et on recupere un geo json
    
    
@@ -106,11 +110,14 @@ function proccess_loca_esp(esp,i){
 
 
 function getList(){
+    fetch('https://lucioles.herokuapp.com/esp/list')
+    .then(response => response.text())
+    .then(data =>
+        process_each_esp(data));
 
 
 
-
-return  new Promise(function(resolve, reject) {
+/*return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
@@ -138,21 +145,12 @@ return  new Promise(function(resolve, reject) {
     
 
 
-  });}
-function lol(){
-    getList()
-    .then((data) => {
-      console.log(data)
-      process_each_esp(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    setTimeout(() => {
-        lol();
-      }, 5000);
-}
-  lol();
+  });*/}
+
+  var intervalId = window.setInterval(function(){
+    getList();
+  }, 5000);
+
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
@@ -176,8 +174,6 @@ console.log("hahowa"+wh.who);
 	data: {"who": wh.who}, // parameter of the GET request
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
-            console.log("chof hna asi mhmd"+ resultat.list)
-            
             resultat.data.forEach(function (element) {
 		listeData.push([Date.parse(element.date),element.temp]);
 		//listeData.push([Date.now(),element.value]);
