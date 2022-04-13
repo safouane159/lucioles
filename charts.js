@@ -124,7 +124,7 @@ return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
-    $.ajax({
+  var req =  $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
             
@@ -147,7 +147,14 @@ return  new Promise(function(resolve, reject) {
     
 
 
-  });}
+  });
+  setTimeout(function(){
+    // If the request is still running, abort it.
+    if ( req ) req.abort();
+  }, 3000);
+
+
+}
 
   var intervalId = window.setInterval(function(){
     getList().then((data) => {
@@ -177,7 +184,7 @@ function get_samples(path_on_node, serie, wh){
    
 console.log("hahowa"+wh.who);
     //https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
-    $.ajax({
+    var req =  $.ajax({
         url: node_url.concat(path_on_node), // URL to "GET" : /esp/temp ou /esp/light
         type: 'GET',
         headers: { Accept: "application/json", },
@@ -195,4 +202,8 @@ console.log("hahowa"+wh.who);
         complete: function (resultat, statut) {
         }
     });
+    setTimeout(function(){
+        // If the request is still running, abort it.
+        if ( req ) req.abort();
+      }, 3000);
 }
