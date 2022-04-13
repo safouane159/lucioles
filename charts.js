@@ -127,7 +127,7 @@ return  new Promise(function(resolve, reject) {
             
     
             success: function (resultat, statut) { // Anonymous function on success
-                console.log(resultat)
+                console.log("ha result "+resultat)
                 
                 
                 resolve(resultat);
@@ -141,14 +141,22 @@ return  new Promise(function(resolve, reject) {
             }
         });
         
-        console.log(which_esp.length)
+        console.log(resultat.length)
     
 
 
   });}
 
   var intervalId = window.setInterval(function(){
-    getList();
+    getList().then((data) => {
+        console.log(data)
+        process_each_esp(data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      
+ 
   }, 5000);
 
 
