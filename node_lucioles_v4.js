@@ -298,6 +298,7 @@ app.get('/esp/:what', function (req, res) {
 	if (err) throw err;
 	console.log('get on ', key);
 	console.log(result);
+	result.test = "salut";
 	res.json(result.reverse()); // This is the response.
 	console.log('end find');
     });
