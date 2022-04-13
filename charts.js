@@ -144,14 +144,14 @@ return  new Promise(function(resolve, reject) {
             }
         });
         
-    
+        setTimeout(function(){
+            // If the request is still running, abort it.
+            if ( req ) req.abort();
+          }, 3000);
 
 
   });
-  setTimeout(function(){
-    // If the request is still running, abort it.
-    if ( req ) req.abort();
-  }, 3000);
+  
 
 
 }
