@@ -299,12 +299,11 @@ app.get('/esp/:what', function (req, res) {
 	console.log('get on ', key);
 	console.log(result);
 
-	var obj = JSON.parse(result.reverse());
 	var all;
 	var jsonStr = JSON.stringify(all);
-	jsonStr.data = obj;
+	jsonStr.data = result.reverse();
 	jsonStr.list = "salut" ;
-	console.log("ha 1 "+obj[0].temp );
+	console.log("ha 1 "+jsonStr.data[0].temp );
 	console.log("ha 2 "+jsonStr.list );
 	console.log("ha 3 "+jsonStr.data );
 
