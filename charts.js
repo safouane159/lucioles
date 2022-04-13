@@ -69,8 +69,8 @@ function proccess_loca_esp(esp,i){
     node_url = 'https://lucioles.herokuapp.com'
     console.log(esp[i]);
 	
-		map.removeLayer(layer);
-		layer = null;
+		
+		
 	    
     $.ajax({
     // On fait une requete et on recupere un geo json
@@ -174,7 +174,7 @@ console.log("hahowa"+wh.who);
 	data: {"who": wh.who}, // parameter of the GET request
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
-            resultat.data.forEach(function (element) {
+            resultat.forEach(function (element) {
 		listeData.push([Date.parse(element.date),element.temp]);
 		//listeData.push([Date.now(),element.value]);
             });
