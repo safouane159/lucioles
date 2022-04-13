@@ -86,7 +86,10 @@ function proccess_loca_esp(esp,i){
     success: function(geojson) {
 	//Affichage des données dans la console
 	console.log(geojson);
-	
+    if (layer != null){
+		map.removeLayer(layer);
+		layer = null;
+	    }
 	//Création de la couche à partir du GeoJSON
 	var layer = L.geoJSON(geojson);
 	
