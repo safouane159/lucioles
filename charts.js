@@ -146,7 +146,8 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
-        req1.abort();
+       
+        console.log("espppp"+which_esp)
         resolve(which_esp);
       
   });
