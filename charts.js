@@ -102,7 +102,14 @@ function proccess_loca_esp(esp,i){
     }      
 });}
 
+
+
+
 function getList(){
+
+
+
+
 return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
@@ -169,7 +176,9 @@ console.log("hahowa"+wh.who);
 	data: {"who": wh.who}, // parameter of the GET request
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
-            resultat.forEach(function (element) {
+            console.log("chof hna asi mhmd"+ resultat.list)
+            
+            resultat.data.forEach(function (element) {
 		listeData.push([Date.parse(element.date),element.temp]);
 		//listeData.push([Date.now(),element.value]);
             });
