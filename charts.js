@@ -131,9 +131,9 @@ return  new Promise(function(resolve, reject) {
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("ha result "+resultat.length)
+                which_esp =resultat
                 
                 
-                resolve(resultat);
                 
                
               
@@ -143,13 +143,9 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
-        
-        setTimeout(function(){
-            // If the request is still running, abort it.
-            if ( req ) req.abort();
-          }, 3000);
-
-
+        req.abort();
+        resolve(which_esp);
+      
   });
   
 
@@ -202,8 +198,5 @@ console.log("hahowa"+wh.who);
         complete: function (resultat, statut) {
         }
     });
-    setTimeout(function(){
-        // If the request is still running, abort it.
-        if ( req ) req.abort();
-      }, 3000);
+    req.abort();
 }
