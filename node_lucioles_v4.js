@@ -303,7 +303,7 @@ app.get('/esp/:what', function (req, res) {
 	var jsonStr = JSON.stringify(all);
 	jsonStr.data = result.reverse();
 	jsonStr.list = "salut" ;
-	console.log("ha 1 "+jsonStr.data[0].temp );
+	console.log("ha 1 "+jsonStr[0].data[0].temp );
 	console.log("ha 2 "+jsonStr.list );
 	console.log("ha 3 "+jsonStr.data );
 
