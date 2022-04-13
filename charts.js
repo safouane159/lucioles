@@ -72,7 +72,7 @@ function proccess_loca_esp(esp,i){
 		
 		
 	    
-    $.ajax({
+    var req2 = $.ajax({
     // On fait une requete et on recupere un geo json
    
    
@@ -107,7 +107,10 @@ function proccess_loca_esp(esp,i){
     error: function() {
 	alert("Erreur lors du téléchargement !");
     }      
-});}
+});
+req2.abort();
+
+}
 
 
 
@@ -124,7 +127,7 @@ return  new Promise(function(resolve, reject) {
     var which_esp = []
     node_url = 'https://lucioles.herokuapp.com';
     
-  var req =  $.ajax({
+  var req1 =  $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
             
@@ -143,7 +146,7 @@ return  new Promise(function(resolve, reject) {
             complete: function (resultat, statut) {
             }
         });
-        req.abort();
+        req1.abort();
         resolve(which_esp);
       
   });
