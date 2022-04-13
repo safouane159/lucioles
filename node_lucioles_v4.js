@@ -299,7 +299,7 @@ app.get('/esp/:what', function (req, res) {
 	console.log('get on ', key);
 	console.log(result);
 
-	var all;
+	var all = [{}]
 	var jsonStr = JSON.stringify(all);
 	jsonStr.data = result.reverse();
 	jsonStr.list = "salut" ;
