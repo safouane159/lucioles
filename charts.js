@@ -45,7 +45,29 @@ function process_each_esp(list_esp){
         proccess_loca_esp(list_esp, i);
     }
 }
-
+function tst(){
+    node_url = 'https://lucioles.herokuapp.com';
+    
+    $.ajax({
+            url: node_url.concat('/getPaye/London'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log("ha London "+resultat)
+                
+                
+                
+                
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+            },
+            complete: function (resultat, statut) {
+            }
+        });
+}
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
     console.log(which_esps[i]);
@@ -150,7 +172,8 @@ return  new Promise(function(resolve, reject) {
   var intervalId = window.setInterval(function(){
     getList().then((data) => {
         
-        process_each_esp(data)
+        process_each_esp(data);
+        tst();
       })
       .catch((error) => {
         console.log(error)

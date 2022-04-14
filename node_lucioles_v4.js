@@ -27,7 +27,7 @@ async function listDatabases(client){
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
 var wholist = [];
-var wholist1 = [];
+var wholist_payes = [];
 //----------------------------------------------------------------
 // asynchronous function named main() where we will connect to our
 // MongoDB cluster, call functions that query our database, and
@@ -58,7 +58,7 @@ async function v0(){
 	dbo = mg_client.db(mongoName);
 
 	// Remove "old collections : temp and light
-	/*dbo.listCollections({name: "localisation"})
+	dbo.listCollections({name: "localisation"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
 		    //console.log('Collection temp already exists');
@@ -72,7 +72,7 @@ async function v0(){
 		    //console.log('Collection temp already exists');
 		    dbo.collection("sensors").drop() 
 		}
-	    });*/
+	    });
 
 	//===============================================
 	// Connexion au broker MQTT distant
@@ -308,22 +308,31 @@ app.get('/esp/:what', function (req, res) {
 
 	// Get city name passed in the form
 	
-	app.get('/tt', function(req, res) {
+	app.get('/getPaye/:paye', function(req, res) {
+
+		payee = req.query.paye;
+
+		var index = wholist_payes.findIndex(x => x.who==payee)
+	    if (index === -1){
+			wholist_payes.push({who:payee});	    
+	    }
+	    console.log("payee using the node server :", wholist);
 
 		// Get city name passed in the form
 	
 	//	let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
-		
+	for (var i = 0; i < wholist_payes.length; i++) { 
+		const request = require('request');
+	
+		request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i]+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
+		  if (err) { return console.log(err); }
+		  console.log(body);
+		 
+		});}
 		res.send("fr"); 
 		
 					});
-					const request = require('request');
-
-					request('http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
-					  if (err) { return console.log(err); }
-					  console.log(body);
-					  console.log(body.text);
-					});
+					
 //================================================================
 //==== Demarrage du serveur Web  =======================
 //================================================================
