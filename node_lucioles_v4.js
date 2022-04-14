@@ -311,7 +311,7 @@ app.get('/esp/:what', function (req, res) {
 	app.get('/getPaye/:paye', function(req, res) {
 
 		payee = req.query.paye;
-
+		console.log("lmachakil", payee);
 		var index = wholist_payes.findIndex(x => x.who==payee)
 	    if (index === -1){
 			wholist_payes.push({who:payee});	    
