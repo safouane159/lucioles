@@ -359,13 +359,11 @@ app.get('/getPaye', function(req, res) {
 			console.log("\nItem : ", second_entry, 
 			"\ninserted in db in collection :", key);
 			});
-			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
+			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i-1].who)
 //console.log("achahboun"+wholist_payes[i].who);
-console.log("tabouna"+wholist_payes.length);
-console.log("idzeb "+i);
-console.log("taboun"+wholist_payes[i]);
+
 			if (index1 === -1){
-				wholist_payes1.push({who:wholist_payes[i].who});
+				wholist_payes1.push({who:wholist_payes[i-1].who});
 				
 			
 				var third_entry = { date: frTime, // timestamp the value 
