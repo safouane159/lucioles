@@ -327,7 +327,7 @@ app.get('/getPaye', function(req, res) {
 	function process_cities(){
 		
 		
-		for (var i = 0; i < wholist_payes.length; i++) { 
+		for (var i = 0; i < wholist_payes.length; ) { 
 			console.log("payee using the node server :", wholist_payes[i]);
 	
 			const request = require('request');
@@ -385,7 +385,11 @@ console.log("taboun"+wholist_payes[i]);
 				}
 
 
-	});}}
+	});
+
+i++
+
+}}
 	let myVar = setInterval(function(){ process_cities() }, 1000);
 
 
