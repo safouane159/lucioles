@@ -310,81 +310,82 @@ app.get('/esp/:what', function (req, res) {
 
 
 
-	// Get city name passed in the form
-	
-	app.get('/getPaye', function(req, res) {
+app.get('/getPaye', function(req, res) {
 
-		wh = req.query.what;
+	wh = req.query.what;
+	var index = wholist_payes.findIndex(x => x.who==wh)
 		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
-		var index1 = wholist_payes1.findIndex(x1 => x1.who==wh)
+		
 	    if (index === -1){
 			wholist_payes.push({who:wh});	
 		
-			
-				 
 	    }
 	    console.log("payee using the node server :", wholist_payes);
 
-		// Get city name passed in the form
+});
+	function process_cities(){
+		
+		
+		for (var i = 0; i < wholist_payes.length; i++) { 
+			console.log("payee using the node server :", wholist_payes[i]);
 	
-	//	let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
-	for (var i = 0; i < wholist_payes.length; i++) { 
-		console.log("payee using the node server :", wholist_payes[i]);
+			const request = require('request');
+		
+			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
+			  if (err) { return console.log(err); }
+			  console.log(body);
+			  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
+			
+			  var second_entry = { date: frTime, // timestamp the value 
+				who: body.name,      // identify ESP who provide 
+				  // light value
+				temp: body.main.temp,
+				temp_min: body.main.temp_min,
+				temp_max: body.main.temp_max,
+				wind: body.wind.speed,
+				clouds: body.clouds.all
+	
+			  };
+			 
+			
+			// On recupere le nom basique du topic du message
+			var key = path.parse("sensors").base;
+			
+			// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
+			// en utilisant le nom du topic comme key de collection
+			dbo.collection(key).insertOne(second_entry, function(err, res) {
+			if (err) throw err;
+			console.log("\nItem : ", second_entry, 
+			"\ninserted in db in collection :", key);
+			});
+			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
+			if (index1 === -1){
+				wholist_payes1.push({who:wholist_payes[i].who});
+				
+			
+				var third_entry = { date: frTime, // timestamp the value 
+					who: body.name,      // identify ESP who provide 
+					latitude: body.coord.lat,    // temp value
+					longitude: body.coord.lon     // light value
+				  };
+			
+				// On recupere le nom basique du topic du message
+				var key_loc = path.parse("localisation").base;
+		
+		 dbo.collection(key_loc).insertOne(third_entry, function(err, res) {
+				if (err) throw err;
+				console.log("\nItem : ", third_entry, 
+				"\ninserted in db in collection :", key_loc);
+				});
+				}
 
-		const request = require('request');
-	
-		request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
-		  if (err) { return console.log(err); }
-		  console.log(body);
-		  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
-	    
-		  var second_entry = { date: frTime, // timestamp the value 
-			who: body.name,      // identify ESP who provide 
-			  // light value
-			temp: body.main.temp,
-			temp_min: body.main.temp_min,
-			temp_max: body.main.temp_max,
-			wind: body.wind.speed,
-		    clouds: body.clouds.all
 
-		  };
-		 
-		
-	    // On recupere le nom basique du topic du message
-	    var key = path.parse("sensors").base;
-		
-	    // Stocker le dictionnaire qui vient d'etre cr�� dans la BD
-	    // en utilisant le nom du topic comme key de collection
-	    dbo.collection(key).insertOne(second_entry, function(err, res) {
-		if (err) throw err;
-		console.log("\nItem : ", second_entry, 
-		"\ninserted in db in collection :", key);
-	    });
-	 if (index1 === -1){
-        wholist_payes1.push({who:wh});
-		
-	
-		var third_entry = { date: frTime, // timestamp the value 
-			who: body.name,      // identify ESP who provide 
-			latitude: body.coord.lat,    // temp value
-			longitude: body.coord.lon     // light value
-		  };
-	
-	    // On recupere le nom basique du topic du message
-		var key_loc = path.parse("localisation").base;
+	});}}
+	let myVar = setInterval(function(){ process_cities() }, 1000);
 
- dbo.collection(key_loc).insertOne(third_entry, function(err, res) {
-		if (err) throw err;
-		console.log("\nItem : ", third_entry, 
-		"\ninserted in db in collection :", key_loc);
-	    });
-	    }
-		 
-		});}
-		res.send("fr"); 
-		
-					});
+
+
 					
 //================================================================
 //==== Demarrage du serveur Web  =======================
