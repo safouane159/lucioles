@@ -245,6 +245,9 @@ app.get('/esp/list', function (req, res) {
 	console.log("hahiya "+wholist)
     res.send(wholist) ;
 });
+
+
+
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log("haladress"+esp_mac_address);
@@ -310,7 +313,7 @@ app.get('/esp/:what', function (req, res) {
 	
 	app.get('/getPaye/:what', function(req, res) {
 
-		wh = req.query.what;
+		wh = req.params.what;
 		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
 	    if (index === -1){
