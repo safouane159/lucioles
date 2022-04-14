@@ -308,13 +308,13 @@ app.get('/esp/:what', function (req, res) {
 
 	// Get city name passed in the form
 	
-	app.get('/getPaye/:paye', function(req, res) {
+	app.get('/getPaye/:what', function(req, res) {
 
-		payee = req.query.paye;
-		console.log("lmachakil", payee);
-		var index = wholist_payes.findIndex(x => x.who==payee)
+		wh = req.query.what;
+		console.log("lmachakil", wh);
+		var index = wholist_payes.findIndex(x => x.who==wh)
 	    if (index === -1){
-			wholist_payes.push({who:payee});	    
+			wholist_payes.push({who:wh});	    
 	    }
 	    console.log("payee using the node server :", wholist);
 
