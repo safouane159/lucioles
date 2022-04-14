@@ -1,5 +1,10 @@
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
+let lista;
+function dreb(list){
+    lista = list;
+    }
+    
 Highcharts.setOptions({
     global: { // https://stackoverflow.com/questions/13077518/highstock-chart-offsets-dates-for-no-reason
         useUTC: false,
@@ -139,7 +144,7 @@ function getList(){
                 console.log("ha result "+resultat.length)
                 which_esp=  resultat;
                 process_each_esp(resultat)
-                
+                dreb (resultat);
                 
                 
                
@@ -163,9 +168,8 @@ function getList(){
 
   var intervalId = window.setInterval(function(){
     getList()
- 
+    console.log(lista);
   }, 5000);
-
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
