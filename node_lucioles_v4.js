@@ -319,12 +319,14 @@ app.get('/esp/:what', function (req, res) {
 	    if (index === -1){
 			wholist_payes.push({who:wh});	    
 	    }
-	    console.log("payee using the node server :", wholist);
+	    console.log("payee using the node server :", wholist_payes);
 
 		// Get city name passed in the form
 	
 	//	let url = `http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&units=metric&appid=be603e7ca90475b301b1e312c2e5c71a`;
 	for (var i = 0; i < wholist_payes.length; i++) { 
+		console.log("payee using the node server :", wholist_payes[i]);
+
 		const request = require('request');
 	
 		request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i]+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
