@@ -329,7 +329,7 @@ app.get('/esp/:what', function (req, res) {
 
 		const request = require('request');
 	
-		request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i]+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
+		request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 		  if (err) { return console.log(err); }
 		  console.log(body);
 		 
