@@ -1,10 +1,5 @@
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
-let lista;
-function dreb(list){
-    lista = list;
-    }
-    
 Highcharts.setOptions({
     global: { // https://stackoverflow.com/questions/13077518/highstock-chart-offsets-dates-for-no-reason
         useUTC: false,
@@ -42,13 +37,12 @@ var which_esps = [
 ]
 // var which_espsv = init1();
 
-function process_each_esp(){
-
-    var lista1 = lista; 
-    for (var i = 0; i < lista1.length; i++) {
+function process_each_esp(list_esp){
+    console.log(list_esp.length);
+    for (var i = 0; i < list_esp.length; i++) {
        
-        process_esp(lista1, i);
-        proccess_loca_esp(lista1, i);
+        process_esp(list_esp, i);
+        proccess_loca_esp(list_esp, i);
     }
 }
 
@@ -78,7 +72,7 @@ function proccess_loca_esp(esp,i){
 		
 		
 	    
-    var req2 = $.ajax({
+    $.ajax({
     // On fait une requete et on recupere un geo json
    
    
@@ -92,10 +86,7 @@ function proccess_loca_esp(esp,i){
     success: function(geojson) {
 	//Affichage des données dans la console
 	console.log(geojson);
-    if (layer != null){
-		map.removeLayer(layer);
-		layer = null;
-	    }
+	
 	//Création de la couche à partir du GeoJSON
 	var layer = L.geoJSON(geojson);
 	
@@ -113,13 +104,7 @@ function proccess_loca_esp(esp,i){
     error: function() {
 	alert("Erreur lors du téléchargement !");
     }      
-});
-/*setTimeout(function(){
-    // If the request is still running, abort it.
-    if ( req2 ) req2.abort();
-  }, 3000);*/
-
-}
+});}
 
 
 
@@ -132,21 +117,20 @@ function getList(){
 
 
 
-
-    let which_esp ;
+return  new Promise(function(resolve, reject) {
+   
     node_url = 'https://lucioles.herokuapp.com';
     
-   $.ajax({
+    $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
             
     
             success: function (resultat, statut) { // Anonymous function on success
-                console.log("ha result "+resultat.length)
-                which_esp=  resultat;
+                console.log("ha result "+resultat)
                 
-                dreb (resultat);
                 
+                resolve(resultat);
                 
                
               
@@ -156,23 +140,25 @@ function getList(){
             complete: function (resultat, statut) {
             }
         });
-       /* setTimeout(function(){
-            // If the request is still running, abort it.
-            if ( req1 ) req1.abort();
-          }, 3000);*/
-        console.log("espppp"+which_esp)
+        
        
-     
+    
 
 
-}
+  });}
 
   var intervalId = window.setInterval(function(){
-    getList();
-
-    process_each_esp();
-    console.log(lista);
+    getList().then((data) => {
+        
+        process_each_esp(data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      
+ 
   }, 5000);
+
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
@@ -189,7 +175,7 @@ function get_samples(path_on_node, serie, wh){
    
 console.log("hahowa"+wh.who);
     //https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
-    var req =  $.ajax({
+    $.ajax({
         url: node_url.concat(path_on_node), // URL to "GET" : /esp/temp ou /esp/light
         type: 'GET',
         headers: { Accept: "application/json", },
@@ -207,9 +193,4 @@ console.log("hahowa"+wh.who);
         complete: function (resultat, statut) {
         }
     });
-    /*setTimeout(function(){
-        // If the request is still running, abort it.
-        if ( req ) req.abort();
-      }, 3000);*/
-    
 }
