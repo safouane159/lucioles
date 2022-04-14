@@ -360,7 +360,8 @@ app.get('/getPaye', function(req, res) {
 			"\ninserted in db in collection :", key);
 			});
 			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
-console.log("achahboun"+wholist_payes[i].who);
+//console.log("achahboun"+wholist_payes[i].who);
+console.log("tabouna"+wholist_payes.length);
 console.log("taboun"+wholist_payes[i]);
 			if (index1 === -1){
 				wholist_payes1.push({who:wholist_payes[i].who});
