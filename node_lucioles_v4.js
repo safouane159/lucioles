@@ -58,7 +58,7 @@ async function v0(){
 	dbo = mg_client.db(mongoName);
 
 	// Remove "old collections : temp and light
-	dbo.listCollections({name: "localisation"})
+	/*dbo.listCollections({name: "localisation"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
 		    //console.log('Collection temp already exists');
@@ -72,7 +72,7 @@ async function v0(){
 		    //console.log('Collection temp already exists');
 		    dbo.collection("sensors").drop() 
 		}
-	    });
+	    });*/
 
 	//===============================================
 	// Connexion au broker MQTT distant
