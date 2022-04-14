@@ -127,16 +127,17 @@ function getList(){
 
 
 
-    var which_esp = []
+    let which_esp ;
     node_url = 'https://lucioles.herokuapp.com';
     
-  var req1 =  $.ajax({
+   $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
             
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("ha result "+resultat.length)
+                which_esp=  resultat;
                 process_each_esp(resultat)
                 
                 
@@ -152,18 +153,18 @@ function getList(){
        /* setTimeout(function(){
             // If the request is still running, abort it.
             if ( req1 ) req1.abort();
-          }, 3000);
-        console.log("espppp"+which_esp)*/
+          }, 3000);*/
+        console.log("espppp"+which_esp)
        
      
 
 
 }
-getList();
-  /*var intervalId = window.setInterval(function(){
+
+  var intervalId = window.setInterval(function(){
     getList()
  
-  }, 5000);*/
+  }, 5000);
 
 
 
