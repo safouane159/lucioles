@@ -312,7 +312,7 @@ app.get('/esp/:what', function (req, res) {
 
 	// Get city name passed in the form
 	
-	app.get('/getPaye/:what', function(req, res) {
+	app.get('/getPaye', function(req, res) {
 
 		wh = req.query.what;
 		console.log("lmachakil", wh);
