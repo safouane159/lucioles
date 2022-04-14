@@ -28,6 +28,7 @@ async function listDatabases(client){
 };
 var wholist = [];
 var wholist_payes = [];
+var wholist_payes1 = [];
 //----------------------------------------------------------------
 // asynchronous function named main() where we will connect to our
 // MongoDB cluster, call functions that query our database, and
