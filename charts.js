@@ -43,7 +43,7 @@ var which_esps = [
 // var which_espsv = init1();
 
 function process_each_esp(){
-    console.log(lista1.length);
+
     var lista1 = lista; 
     for (var i = 0; i < lista1.length; i++) {
        
