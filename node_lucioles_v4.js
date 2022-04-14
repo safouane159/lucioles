@@ -374,7 +374,7 @@ app.get('/esp/:what', function (req, res) {
 	    // On recupere le nom basique du topic du message
 		var key_loc = path.parse("localisation").base;
 
- dbo.collection(key_loc).insertOne(second_entry, function(err, res) {
+ dbo.collection(key_loc).insertOne(third_entry, function(err, res) {
 		if (err) throw err;
 		console.log("\nItem : ", third_entry, 
 		"\ninserted in db in collection :", key_loc);
