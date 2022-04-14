@@ -173,7 +173,7 @@ return  new Promise(function(resolve, reject) {
     getList().then((data) => {
         
         process_each_esp(data);
-        tst();
+       // tst();
       })
       .catch((error) => {
         console.log(error)
