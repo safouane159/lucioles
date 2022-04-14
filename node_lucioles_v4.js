@@ -340,7 +340,7 @@ app.get('/esp/:what', function (req, res) {
 		  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	    
 		  var second_entry = { date: frTime, // timestamp the value 
-			who: wholist_payes[i].who,      // identify ESP who provide 
+			who: body.name,      // identify ESP who provide 
 			  // light value
 			temp: body.main.temp,
 			temp_min: body.main.temp_min,
@@ -366,7 +366,7 @@ app.get('/esp/:what', function (req, res) {
 		
 	
 		var third_entry = { date: frTime, // timestamp the value 
-			who: wh,      // identify ESP who provide 
+			who: body.name,      // identify ESP who provide 
 			latitude: body.coord.lat,    // temp value
 			longitude: body.coord.lon     // light value
 		  };
