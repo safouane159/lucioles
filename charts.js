@@ -108,10 +108,10 @@ function proccess_loca_esp(esp,i){
 	alert("Erreur lors du téléchargement !");
     }      
 });
-setTimeout(function(){
+/*setTimeout(function(){
     // If the request is still running, abort it.
     if ( req2 ) req2.abort();
-  }, 3000);
+  }, 3000);*/
 
 }
 
@@ -149,21 +149,21 @@ function getList(){
             complete: function (resultat, statut) {
             }
         });
-        setTimeout(function(){
+       /* setTimeout(function(){
             // If the request is still running, abort it.
             if ( req1 ) req1.abort();
           }, 3000);
-        console.log("espppp"+which_esp)
+        console.log("espppp"+which_esp)*/
        
      
 
 
 }
-
-  var intervalId = window.setInterval(function(){
+getList();
+  /*var intervalId = window.setInterval(function(){
     getList()
  
-  }, 5000);
+  }, 5000);*/
 
 
 
@@ -199,9 +199,9 @@ console.log("hahowa"+wh.who);
         complete: function (resultat, statut) {
         }
     });
-    setTimeout(function(){
+    /*setTimeout(function(){
         // If the request is still running, abort it.
         if ( req ) req.abort();
-      }, 3000);
+      }, 3000);*/
     
 }
