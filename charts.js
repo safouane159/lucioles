@@ -42,12 +42,13 @@ var which_esps = [
 ]
 // var which_espsv = init1();
 
-function process_each_esp(list_esp){
-    console.log(list_esp.length);
-    for (var i = 0; i < list_esp.length; i++) {
+function process_each_esp(){
+    console.log(lista1.length);
+    var lista1 = lista; 
+    for (var i = 0; i < lista1.length; i++) {
        
-        process_esp(list_esp, i);
-        proccess_loca_esp(list_esp, i);
+        process_esp(lista1, i);
+        proccess_loca_esp(lista1, i);
     }
 }
 
@@ -143,7 +144,7 @@ function getList(){
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("ha result "+resultat.length)
                 which_esp=  resultat;
-                process_each_esp(resultat)
+                
                 dreb (resultat);
                 
                 
@@ -167,7 +168,9 @@ function getList(){
 }
 
   var intervalId = window.setInterval(function(){
-    getList()
+    getList();
+
+    process_each_esp();
     console.log(lista);
   }, 5000);
 
