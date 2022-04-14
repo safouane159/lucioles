@@ -326,10 +326,10 @@ app.get('/getPaye', function(req, res) {
 });
 	function process_cities(){
 		
-		
-		for (var i = 0; i < wholist_payes.length; ) { 
+		var i = 0;
+		for ( ;i < wholist_payes.length; ) { 
 			console.log("payee using the node server :", wholist_payes[i]);
-	
+			console.log("idzeb "+i);
 			const request = require('request');
 		
 			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
@@ -362,7 +362,7 @@ app.get('/getPaye', function(req, res) {
 			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
 //console.log("achahboun"+wholist_payes[i].who);
 console.log("tabouna"+wholist_payes.length);
-console.log("tabouna"+i);
+console.log("idzeb "+i);
 console.log("taboun"+wholist_payes[i]);
 			if (index1 === -1){
 				wholist_payes1.push({who:wholist_payes[i].who});
