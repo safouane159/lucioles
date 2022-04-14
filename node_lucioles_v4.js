@@ -313,7 +313,7 @@ app.get('/esp/:what', function (req, res) {
 app.get('/getPaye', function(req, res) {
 
 	wh = req.query.what;
-	var index = wholist_payes.findIndex(x => x.who==wh)
+	
 		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
 		
@@ -360,6 +360,8 @@ app.get('/getPaye', function(req, res) {
 			"\ninserted in db in collection :", key);
 			});
 			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
+console.log("achahboun"+wholist_payes[i].who);
+console.log("taboun"+wholist_payes[i]);
 			if (index1 === -1){
 				wholist_payes1.push({who:wholist_payes[i].who});
 				
