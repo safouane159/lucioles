@@ -73,7 +73,7 @@
   </head>
 
   <body>
-	<form id="myform" method="GET" action="/getPaye">
+	<form id="myform" >
 		<label for="fname">country:</label><br>
 		<input type="text" name="what" id="what" value="London"><br><br>
 		<input type="submit" value="Submit">
@@ -148,17 +148,7 @@
 
 
 		$(function() {
-    $('#myform').submit(function(event) {
-		event.preventDefault();
-		$(this).submit();
-		console.log('inside prevent');
-      /*  $.ajax({
-            type: 'GET',
-            url: '/getPaye',
-            data: { what: $(this).what.value }
-        });
-        */
-    }); 
+  
 })
 	      </script>
   </body>

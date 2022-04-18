@@ -45,38 +45,40 @@ function process_each_esp(list_esp){
         proccess_loca_esp(list_esp, i);
     }
 }
-
-$('#myform').submit(function(event) {
-    event.preventDefault();
-    console.log('inside prevent');
-    node_url = 'https://lucioles.herokuapp.com';
-    
-    /*   $.ajax({
-            url: node_url.concat('/getPaye/London'), // URL to "GET" : /esp/temp ou /esp/light
+$(function() {
+    $('#myform').submit(function(event) {
+        event.preventDefault();
+        console.log('inside prevent');
+        node_url = 'https://lucioles.herokuapp.com';
+        
+        /*   $.ajax({
+                url: node_url.concat('/getPaye/London'), // URL to "GET" : /esp/temp ou /esp/light
+                type: 'GET',
+                
+        
+                success: function (resultat, statut) { // Anonymous function on success
+                    console.log("ha London "+resultat)
+                    
+                    
+                    
+                    
+                   
+                  
+                },
+                error: function (resultat, statut, erreur) {
+                },
+                complete: function (resultat, statut) {
+                } });
+        
+     $.ajax({
             type: 'GET',
-            
-    
-            success: function (resultat, statut) { // Anonymous function on success
-                console.log("ha London "+resultat)
-                
-                
-                
-                
-               
-              
-            },
-            error: function (resultat, statut, erreur) {
-            },
-            complete: function (resultat, statut) {
-            } });
-    
- $.ajax({
-        type: 'GET',
-        url: '/getPaye',
-        data: { what: $(this).what.value }
+            url: '/getPaye',
+            data: { what: $(this).what.value }
+        });
+        */
     });
-    */
-}); 
+})
+ 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
     console.log(which_esps[i]);
