@@ -76,6 +76,9 @@
 	<form id="myform" >
 		<label for="fname">country:</label><br>
 		<input type="text" name="what" id="what" value="London"><br><br>
+		<select id="cities">
+			<option value="--Select a City--">--Select a City--</option>
+		</select>
 		<input type="submit" value="Submit">
 	  </form>
     <h1>Leaflet for ESPs</h1>
@@ -147,9 +150,12 @@
 		}
 
 
-		$(function() {
-  
-})
+		$(document).ready(function() {
+var results = $.getJSON("cities.json", function(data) {
+    for(var i = 0; i < data.length; i++) {
+        $("#cities").append('<option value="' + data[i].name + '">' + data[i].name + '</option');
+    }
+});}
 	      </script>
   </body>
 </html>
