@@ -80,11 +80,11 @@ function process_esp(which_esps,i){
     get_samples('/esp/temp', chart1.series[i], esp);
     //calls a function or evaluates an expression at specified
     //intervals (in milliseconds).
-    window.setInterval(get_samples,
+  /*  window.setInterval(get_samples,
 		       refreshT,
 		       '/esp/temp',     // param 1 for get_samples()
 		       chart1.series[i],// param 2 for get_samples()
-		       esp);            // param 3 for get_samples()
+		       esp);            // param 3 for get_samples()*/
 }
 
 function proccess_loca_esp(esp,i){
@@ -182,6 +182,21 @@ return  new Promise(function(resolve, reject) {
  
   }, 5000);
 
+  function processForm(e) {
+    if (e.preventDefault) e.preventDefault();
+
+    /* do what you want with the form */
+tst();
+    // You must return false to prevent the default form behavior
+    return false;
+}
+
+var form = document.getElementById('my-form');
+if (form.attachEvent) {
+    form.attachEvent("submit", processForm);
+} else {
+    form.addEventListener("submit", processForm);
+}
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 

@@ -73,7 +73,7 @@
   </head>
 
   <body>
-	<form method="GET" action="/getPaye">
+	<form id="myform" method="GET" action="/getPaye">
 		<label for="fname">country:</label><br>
 		<input type="text" name="what" id="what" value="London"><br><br>
 		<input type="submit" value="Submit">
@@ -145,6 +145,20 @@
 		    document.getElementById(animalName).style.display = "block";
 		    evt.currentTarget.className += " active";
 		}
+
+
+		$(function() {
+    $('#myform').submit(function(event) {
+		event.preventDefault();
+		$(this).submit();
+      /*  $.ajax({
+            type: 'GET',
+            url: '/getPaye',
+            data: { what: $(this).what.value }
+        });
+        */
+    }); 
+})
 	      </script>
   </body>
 </html>
