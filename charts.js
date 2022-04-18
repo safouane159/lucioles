@@ -48,7 +48,7 @@ function process_each_esp(list_esp){
 $(function() {
     $('#myform').submit(function(event) {
         event.preventDefault();
-        console.log('inside prevent'+$(this).what.val() );
+       // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+$(this).elements["what"] );
         node_url = 'https://lucioles.herokuapp.com';
         
