@@ -310,7 +310,7 @@ app.get('/esp/:what', function (req, res) {
 
 
 
-app.get('/getPaye', function(req, res) {
+app.get('/getPaye/:what', function(req, res) {
 
 	wh = req.query.what;
 	
