@@ -45,16 +45,13 @@ function process_each_esp(list_esp){
         proccess_loca_esp(list_esp, i);
     }
 }
-function tst(){
-    
-       
-}
+
 $('#myform').submit(function(event) {
     event.preventDefault();
     console.log('inside prevent');
     node_url = 'https://lucioles.herokuapp.com';
     
-    $.ajax({
+    /*   $.ajax({
             url: node_url.concat('/getPaye/London'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
             
@@ -73,7 +70,7 @@ $('#myform').submit(function(event) {
             complete: function (resultat, statut) {
             } });
     
-  /*  $.ajax({
+ $.ajax({
         type: 'GET',
         url: '/getPaye',
         data: { what: $(this).what.value }
@@ -194,15 +191,7 @@ return  new Promise(function(resolve, reject) {
  
   }, 5000);
 
-  window.addEventListener("load", function() {
-    document.getElementById('my-form').addEventListener("submit", function(e) {
-      e.preventDefault(); // before the code
-      /* do what you want with the form */
-  tst();
-      // Should be triggered on form submit
-      console.log('hi');
-    })
-  });
+
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
