@@ -48,11 +48,12 @@ function process_each_esp(list_esp){
 $(function() {
     $('#myform').submit(function(event) {
         event.preventDefault();
-        console.log('inside prevent');
+        console.log('inside prevent'+$(this).what );
+        console.log('inside preventval'+$(this).what.value );
         node_url = 'https://lucioles.herokuapp.com';
         
          $.ajax({
-                url: node_url.concat('/getPaye/'+$(this).what ), // URL to "GET" : /esp/temp ou /esp/light
+                url: node_url.concat('/getPaye/'), // URL to "GET" : /esp/temp ou /esp/light
                 type: 'GET',
                 
         
