@@ -51,7 +51,7 @@ $(function() {
         console.log('inside prevent');
         node_url = 'https://lucioles.herokuapp.com';
         
-        /*   $.ajax({
+         $.ajax({
                 url: node_url.concat('/getPaye/London'), // URL to "GET" : /esp/temp ou /esp/light
                 type: 'GET',
                 
@@ -70,7 +70,7 @@ $(function() {
                 complete: function (resultat, statut) {
                 } });
         
-     $.ajax({
+    /* $.ajax({
             type: 'GET',
             url: '/getPaye',
             data: { what: $(this).what.value }
