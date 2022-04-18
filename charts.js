@@ -46,6 +46,12 @@ function process_each_esp(list_esp){
     }
 }
 function tst(){
+    
+       
+}
+$('#myform').submit(function(event) {
+    event.preventDefault();
+    console.log('inside prevent');
     node_url = 'https://lucioles.herokuapp.com';
     
     $.ajax({
@@ -65,9 +71,15 @@ function tst(){
             error: function (resultat, statut, erreur) {
             },
             complete: function (resultat, statut) {
-            }
-        });
-}
+            } });
+    
+  /*  $.ajax({
+        type: 'GET',
+        url: '/getPaye',
+        data: { what: $(this).what.value }
+    });
+    */
+}); 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
     console.log(which_esps[i]);
@@ -182,21 +194,15 @@ return  new Promise(function(resolve, reject) {
  
   }, 5000);
 
-  function processForm(e) {
-    if (e.preventDefault) e.preventDefault();
-
-    /* do what you want with the form */
-tst();
-    // You must return false to prevent the default form behavior
-    return false;
-}
-
-var form = document.getElementById('my-form');
-if (form.attachEvent) {
-    form.attachEvent("submit", processForm);
-} else {
-    form.addEventListener("submit", processForm);
-}
+  window.addEventListener("load", function() {
+    document.getElementById('my-form').addEventListener("submit", function(e) {
+      e.preventDefault(); // before the code
+      /* do what you want with the form */
+  tst();
+      // Should be triggered on form submit
+      console.log('hi');
+    })
+  });
 
 
 //=== Recuperation dans le Node JS server des samples de l'ESP et 

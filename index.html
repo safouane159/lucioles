@@ -151,6 +151,7 @@
     $('#myform').submit(function(event) {
 		event.preventDefault();
 		$(this).submit();
+		console.log('inside prevent');
       /*  $.ajax({
             type: 'GET',
             url: '/getPaye',
