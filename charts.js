@@ -54,7 +54,7 @@ $(function() {
         node_url = 'https://lucioles.herokuapp.com';
         
          $.ajax({
-                url: node_url.concat('/getPaye/'), // URL to "GET" : /esp/temp ou /esp/light
+                url: node_url.concat('/getPaye/'+form.elements["what"].value ), // URL to "GET" : /esp/temp ou /esp/light
                 type: 'GET',
                 
         
