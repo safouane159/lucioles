@@ -321,6 +321,10 @@ app.get('/getPaye/:what', function(req, res) {
 			wholist_payes.push({who:wh});	
 		
 	    }
+		var index1 = wholist.findIndex(x1 => x1.who==wh)
+	    if (index1 === -1){
+		wholist.push({who:wh});	    
+	    }
 	    console.log("payee using the node server :", wholist_payes);
 
 });
