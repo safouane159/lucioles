@@ -401,7 +401,7 @@ var transporter = nodemailer.createTransport({
 			if (err) throw err;
 			
 			console.log("results of keys",result);
-		if ( result != null){autirized =  true }
+		if ( result !== null){autirized =  true }
 
 
 			});
