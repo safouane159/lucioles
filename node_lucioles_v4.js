@@ -111,19 +111,21 @@ async function v0(){
 		
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
-/*var autirized = false;
+      /*  var autirized = false;
 		key = message.key;
 
 		dbo.collection("keys").findOne({key:key},function(err, result) {
 			if (err) throw err;
 			
 			console.log("results of keys",result);
-		
-			});*/
+		if ( result != null){autirized =  true }
 
 
+			});
 
 
+console.log("autirized?",autirized);
+*/
 
 
 	    wh = message.info.ident;
@@ -391,15 +393,21 @@ var transporter = nodemailer.createTransport({
 
 	
 		console.log("the key ", key);
+		
 		var autirized = false;
-		var key1 = "fr"
+		key = "cr";
 
-		dbo.collection("keys").findOne({key:key1},function(err, result) {
+		dbo.collection("keys").findOne({key:key},function(err, result) {
 			if (err) throw err;
 			
 			console.log("results of keys",result);
-		
+		if ( result != null){autirized =  true }
+
+
 			});
+
+
+console.log("autirized?",autirized);
 
 });
 	function process_cities(){
