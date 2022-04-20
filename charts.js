@@ -46,6 +46,39 @@ function process_each_esp(list_esp){
     }
 }
 $(function() {
+    $('#form-keys').submit(function(event) {
+        event.preventDefault();
+        //generaing random SHA1 hash
+        var current_date = (new Date()).valueOf().toString();
+        var random = Math.random().toString();
+       var key =  crypto.createHash('sha1').update(current_date + random).digest('hex');
+       
+       // console.log('inside prevent'+$(this).what.val() );
+        console.log('key from form : '+key);
+        node_url = 'https://lucioles.herokuapp.com';
+        $.ajax({
+            url: node_url.concat('/getkey/test'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log("Envoi key to server results : "+resultat)
+                
+                
+                
+                
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+                console.log("Envoi key to server statut : "+statut+"resultat"+resultat+"erreur : "+erreur) 
+            },
+            complete: function (resultat, statut) {
+                console.log("Envoi key to server statut : "+statut+"resultat"+resultat)
+            } });
+    });
+})
+$(function() {
     $('#myform').submit(function(event) {
         event.preventDefault();
         let form = document.getElementById('myform');

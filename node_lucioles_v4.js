@@ -241,6 +241,7 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
 });
 
+
 app.get('/esp/list', function (req, res) {
 	
 	console.log("hahiya "+wholist)
@@ -326,6 +327,14 @@ app.get('/getPaye/:what', function(req, res) {
 		wholist.push({who:wh});	    
 	    }
 	    console.log("payee using the node server :", wholist_payes);
+
+});
+app.get('/getkey/:what', function(req, res) {
+
+	wh = req.params.what;
+	
+		console.log("the key ", wh);
+		
 
 });
 	function process_cities(){

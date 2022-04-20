@@ -81,6 +81,11 @@
 		</select>
 		<input type="submit" value="Submit">
 	  </form>
+	  <form id="form-keys" >
+		
+
+		<input type="submit" value="Submit">
+	  </form>
     <h1>Leaflet for ESPs</h1>
 
     <!-- 
@@ -128,13 +133,7 @@
 	      </div>      
 	      
 	      <script>
-$(document).ready(function() {
-var results = $.getJSON("cities.json", function(data) {
-	console.log("dkhlna"+results)
-    for(var i = 0; i < data.length; i++) {
-        $("#cities").append('<option value="' + data[i].name + '">' + data[i].name + '</option');
-    }
-});});
+
 
 
 		//https://www.educative.io/edpresso/how-to-create-tabs-in-html
