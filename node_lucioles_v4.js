@@ -111,7 +111,22 @@ async function v0(){
 		
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
-	    wh = message.info.ident
+/*var autirized = false;
+		key = message.key;
+
+		dbo.collection("keys").findOne({key:key},function(err, result) {
+			if (err) throw err;
+			
+			console.log("results of keys",result);
+		
+			});*/
+
+
+
+
+
+
+	    wh = message.info.ident;
 
 	    temper = message.status.temperature;
 		lght = message.status.light;
@@ -362,7 +377,7 @@ var transporter = nodemailer.createTransport({
 	from: 'safouan1ouazri@gmail.com',
 	to: 'safouane1ouazri@gmail.com',
 	subject: 'Sending Email using Node.js',
-	text: 'That was easy!'+key
+	text: 'your key is : '+key
   };
   
   transporter.sendMail(mailOptions, function(error, info){
@@ -373,10 +388,18 @@ var transporter = nodemailer.createTransport({
 	}
   });
 
-	wh = req.params.what;
+
 	
 		console.log("the key ", key);
+		var autirized = false;
+		var key1 = "fr"
+
+		dbo.collection("keys").findOne({key:key1},function(err, result) {
+			if (err) throw err;
+			
+			console.log("results of keys",result);
 		
+			});
 
 });
 	function process_cities(){
