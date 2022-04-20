@@ -5,7 +5,8 @@ var path = require('path');
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
 //--- MQTT module
-const mqtt = require('mqtt')
+const mqtt = require('mqtt');
+const crypto = require('crypto')
 var GeoJSON = require('geojson');
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
@@ -330,10 +331,13 @@ app.get('/getPaye/:what', function(req, res) {
 
 });
 app.get('/getkey/:what', function(req, res) {
-
+	var current_date = (new Date()).valueOf().toString();
+	var random = Math.random().toString();
+   var key =  crypto.createHash('sha1').update(current_date + random).digest('hex');
+   
 	wh = req.params.what;
 	
-		console.log("the key ", wh);
+		console.log("the key ", key);
 		
 
 });
