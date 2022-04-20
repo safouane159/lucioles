@@ -403,11 +403,11 @@ var transporter = nodemailer.createTransport({
 			console.log("results of keys",result);
 		if ( result !== null){autirized =  true }
 
-
+		console.log("autirized?",autirized);
 			});
 
 
-console.log("autirized?",autirized);
+console.log("autirized after?",autirized);
 
 });
 	function process_cities(){
