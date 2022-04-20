@@ -1,6 +1,6 @@
 // Importation des modules
 var path = require('path');
-
+var nodemailer = require('nodemailer');
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 
@@ -331,10 +331,48 @@ app.get('/getPaye/:what', function(req, res) {
 
 });
 app.get('/getkey/:what', function(req, res) {
+	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
 	var random = Math.random().toString();
    var key =  crypto.createHash('sha1').update(current_date + random).digest('hex');
    
+   var new_entry = { date: frTime, // timestamp the value 
+	key: key    // light value
+  };
+
+// On recupere le nom basique du topic du message
+var key_collection = path.parse("keys").base;
+
+// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
+// en utilisant le nom du topic comme key de collection
+dbo.collection(key_collection).insertOne(new_entry, function(err, res) {
+if (err) throw err;
+console.log("\nItem : ", new_entry, 
+"\ninserted in db in collection :", key_collection);
+});
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+	  user: 'safouan1ouazri@gmail.com',
+	  pass: 'Wardaa144159@'
+	}
+  });
+  
+  var mailOptions = {
+	from: 'safouan1ouazri@gmail.com',
+	to: 'safouane1ouazri@gmail.com',
+	subject: 'Sending Email using Node.js',
+	text: 'That was easy!'+key
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+	  console.log(error);
+	} else {
+	  console.log('Email sent: ' + info.response);
+	}
+  });
+
 	wh = req.params.what;
 	
 		console.log("the key ", key);
