@@ -395,7 +395,7 @@ var transporter = nodemailer.createTransport({
 		console.log("the key ", key);
 		
 		var autirized = false;
-		key = "7a75439dfd102591af41d0ac1f1df7d62cc594f5";
+		key = "7a75439dfd102591af41d0ac1f1df7d62cnjc594f5";
 
 		dbo.collection("keys").findOne({key:key},function(err, result) {
 			if (err) throw err;
