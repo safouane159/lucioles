@@ -28,6 +28,7 @@ async function listDatabases(client){
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
 var wholist = [];
+var wholist1 = [];
 var wholist_payes = [];
 var wholist_payes1 = [];
 //----------------------------------------------------------------
