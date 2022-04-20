@@ -111,84 +111,88 @@ async function v0(){
 		
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
-      /*  var autirized = false;
+ 
 		key = message.key;
 
 		dbo.collection("keys").findOne({key:key},function(err, result) {
 			if (err) throw err;
 			
 			console.log("results of keys",result);
-		if ( result != null){autirized =  true }
+		if ( result !== null){
+
+
+			wh = message.info.ident;
+
+			temper = message.status.temperature;
+			lght = message.status.light;
+			lat = message.lat;
+			lgn = message.lgn;
+			// Debug : Gerer une liste de who pour savoir qui utilise le node server	
+		   
+			var index = wholist.findIndex(x => x.who==wh)
+			if (index === -1){
+			wholist.push({who:wh});	    
+			}
+			console.log("wholist using the node server :", wholist);
+	
+			// Mise en forme de la donnee � stocker => dictionnaire
+			// Le format de la date est iomportant => compatible avec le
+			// parsing qui sera realise par hightcharts dans l'UI
+			// cf https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tolocalestring_date_all
+			// vs https://jsfiddle.net/BlackLabel/tgahn7yv
+			// var frTime = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"});
+			var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
+			var new_entry = { date: frTime, // timestamp the value 
+					  who: wh,      // identify ESP who provide 
+					  temp: temper,    // temp value
+					  light: lght      // light value
+					};
+			
+			// On recupere le nom basique du topic du message
+			var key = path.parse("sensors").base;
+			
+			// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
+			// en utilisant le nom du topic comme key de collection
+			dbo.collection(key).insertOne(new_entry, function(err, res) {
+			if (err) throw err;
+			console.log("\nItem : ", new_entry, 
+			"\ninserted in db in collection :", key);
+			});
+	
+			//////////////////////
+			
+				
+				var index1 = wholist1.findIndex(x1 => x1.who1==wh)
+			if (index1 === -1){
+			wholist1.push({who1:wh});
+			
+		
+			var second_entry = { date: frTime, // timestamp the value 
+				who: wh,      // identify ESP who provide 
+				latitude: lat,    // temp value
+				longitude: lgn      // light value
+			  };
+		
+			// On recupere le nom basique du topic du message
+			var key_loc = path.parse("localisation").base;
+	
+	 dbo.collection(key_loc).insertOne(second_entry, function(err, res) {
+			if (err) throw err;
+			console.log("\nItem : ", second_entry, 
+			"\ninserted in db in collection :", key_loc);
+			});
+			}
+
+
+		 }
 
 
 			});
 
 
-console.log("autirized?",autirized);
-*/
 
 
-	    wh = message.info.ident;
-
-	    temper = message.status.temperature;
-		lght = message.status.light;
-		lat = message.lat;
-		lgn = message.lgn;
-	    // Debug : Gerer une liste de who pour savoir qui utilise le node server	
 	   
-	    var index = wholist.findIndex(x => x.who==wh)
-	    if (index === -1){
-		wholist.push({who:wh});	    
-	    }
-	    console.log("wholist using the node server :", wholist);
-
-	    // Mise en forme de la donnee � stocker => dictionnaire
-	    // Le format de la date est iomportant => compatible avec le
-	    // parsing qui sera realise par hightcharts dans l'UI
-	    // cf https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tolocalestring_date_all
-	    // vs https://jsfiddle.net/BlackLabel/tgahn7yv
-	    // var frTime = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"});
-	    var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
-	    var new_entry = { date: frTime, // timestamp the value 
-			      who: wh,      // identify ESP who provide 
-			      temp: temper,    // temp value
-				  light: lght      // light value
-			    };
-		
-	    // On recupere le nom basique du topic du message
-	    var key = path.parse("sensors").base;
-		
-	    // Stocker le dictionnaire qui vient d'etre cr�� dans la BD
-	    // en utilisant le nom du topic comme key de collection
-	    dbo.collection(key).insertOne(new_entry, function(err, res) {
-		if (err) throw err;
-		console.log("\nItem : ", new_entry, 
-		"\ninserted in db in collection :", key);
-	    });
-
-		//////////////////////
-		
-			
-			var index1 = wholist1.findIndex(x1 => x1.who1==wh)
-	    if (index1 === -1){
-        wholist1.push({who1:wh});
-		
-	
-		var second_entry = { date: frTime, // timestamp the value 
-			who: wh,      // identify ESP who provide 
-			latitude: lat,    // temp value
-			longitude: lgn      // light value
-		  };
-	
-	    // On recupere le nom basique du topic du message
-		var key_loc = path.parse("localisation").base;
-
- dbo.collection(key_loc).insertOne(second_entry, function(err, res) {
-		if (err) throw err;
-		console.log("\nItem : ", second_entry, 
-		"\ninserted in db in collection :", key_loc);
-	    });
-	    }
 		
 		
 
@@ -394,20 +398,6 @@ var transporter = nodemailer.createTransport({
 	
 		console.log("the key ", key);
 		
-		var autirized = false;
-		key = "7a75439dfd102591af41d0ac1f1df7d62cnjc594f5";
-
-		dbo.collection("keys").findOne({key:key},function(err, result) {
-			if (err) throw err;
-			
-			console.log("results of keys",result);
-		if ( result !== null){autirized =  true }
-
-		console.log("autirized?",autirized);
-			});
-
-
-console.log("autirized after?",autirized);
 
 });
 	function process_cities(){
