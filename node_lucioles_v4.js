@@ -282,7 +282,7 @@ app.post('/inscription', function (req, res) {
 			  mdps: req.body.mdps,
 			  authorized: false      // light value
 			};
-			dbo.collection("keys").findOne({key:key},function(err, result) {
+			dbo.collection("Users").findOne({email:req.body.email},function(err, result) {
 				if (err) throw err;
 				
 				console.log("results of keys",result);
