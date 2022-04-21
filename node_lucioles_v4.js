@@ -271,7 +271,12 @@ app.get('/esp/list', function (req, res) {
     res.send(wholist) ;
 });
 
+app.post('/inscription', function (req, res) {
+	wh = req.query.email ;
 
+    console.log("there the data : "+wh);
+	res.send("touto bieno") ;
+});
 
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
