@@ -273,7 +273,7 @@ app.get('/esp/list', function (req, res) {
 });
 
 app.post('/inscription', function (req, res) {
-	
+	let ins ;
 
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var new_entry = { date: frTime, // timestamp the value 
@@ -297,14 +297,16 @@ dbo.collection(key).insertOne(new_entry, function(err, res) {
 if (err) throw err;
 console.log("\nItem : ", new_entry, 
 "\ninserted in db in collection :", key);
-res.send("inscrit") ;
+ins = "inscrit" ;
+return "inscrit" ;
 });
 
 			}else{
-				res.send("deja inscrit") ;
+				ins = "deja inscrit" ;
+				return "deja inscrit"  ;
 			}
 
-			
+		console.log(ins);	
 			});
 
 
