@@ -8,6 +8,18 @@ body{
 	font-family: 'Jost', sans-serif;
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
+.alert {
+	padding: 20px;
+	visibility :hidden;
+	background-color: #f44336;
+	color: white;
+  }
+  .done {
+	padding: 20px;
+	visibility :hidden;
+	background-color: green;
+	color: white;
+  }
 .main{
 	width: 350px;
 	height: 500px;

@@ -24,7 +24,13 @@ $(function() {
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("Envoi key to server results : "+resultat)
-                
+                if (resultat === 'deja insrit'){
+                    
+                    document.getElementById("dejainscrit").style.visibility = "visible";
+                }else{
+
+                    document.getElementById("doneU").style.visibility = "visible";
+                }
                 
                 
                 

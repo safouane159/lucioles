@@ -273,13 +273,46 @@ app.get('/esp/list', function (req, res) {
 });
 
 app.post('/inscription', function (req, res) {
-	wh = req.body.name,
+	
 
-    console.log("there the data : "+wh);
-	wh1 = req.body ;
+	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
+	var new_entry = { date: frTime, // timestamp the value 
+			  name: req.body.name,      // identify ESP who provide 
+			  email: req.body.email,    // temp value
+			  mdps: req.body.mdps,
+			  authorized: false      // light value
+			};
+			dbo.collection("keys").findOne({key:key},function(err, result) {
+				if (err) throw err;
+				
+				console.log("results of keys",result);
+			if ( result !== null){
 
-    console.log("there the data1 : "+wh1);
-	res.send("touto bieno") ;
+// On recupere le nom basique du topic du message
+var key = path.parse("Users").base;
+	
+// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
+// en utilisant le nom du topic comme key de collection
+dbo.collection(key).insertOne(new_entry, function(err, res) {
+if (err) throw err;
+console.log("\nItem : ", new_entry, 
+"\ninserted in db in collection :", key);
+res.send("inscrit") ;
+});
+
+			}else{
+				res.send("deja inscrit") ;
+			}
+
+			
+			});
+
+
+
+
+	
+
+
 });
 
 app.get('/geogs/:what', function (req, res) {
