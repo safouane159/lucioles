@@ -24,10 +24,10 @@ $(function() {
     
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("Envoi key to server results : "+resultat)
-                if (resultat === 'deja insrit'){
+                if (resultat === 'deja inscrit'){
                     
                     document.getElementById("dejainscrit").style.display = "inline";
-                }else if(resultat === 'insrit'){
+                }else if(resultat === 'inscrit'){
 
                     document.getElementById("doneU").style.display = "inline";
                 }

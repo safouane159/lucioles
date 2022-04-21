@@ -287,7 +287,19 @@ app.post('/inscription', function (req, res) {
 				
 				console.log("results of keys",result);
 			if ( result == null){
-				res.send("inscrit") ;
+				var key = path.parse("Users").base;
+	
+// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
+// en utilisant le nom du topic comme key de collection
+dbo.collection(key).insertOne(new_entry, function(err, res) {
+if (err) throw err;
+console.log("\nItem : ", new_entry, 
+"\ninserted in db in collection :", key);
+
+res.send("inscrit") ;
+return " inscrit" 
+});
+				
 				return " inscrit" 
 			}else{
 				res.send("deja inscrit") ;
@@ -296,17 +308,7 @@ app.post('/inscription', function (req, res) {
 			}	});
 /*
 // On recupere le nom basique du topic du message
-var key = path.parse("Users").base;
-	
-// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
-// en utilisant le nom du topic comme key de collection
-dbo.collection(key).insertOne(new_entry, function(err, res) {
-if (err) throw err;
-console.log("\nItem : ", new_entry, 
-"\ninserted in db in collection :", key);
-ins = "inscrit" ;
 
-});
 return "inscrit" ;*/
 
 			
