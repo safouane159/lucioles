@@ -296,10 +296,10 @@ if (err) throw err;
 console.log("\nItem : ", new_entry, 
 "\ninserted in db in collection :", key);
 
-res.send("inscrit") ;
+
 return " inscrit" 
 });
-				
+res.send("inscrit") ;
 				return " inscrit" 
 			}else{
 				res.send("deja inscrit") ;
