@@ -306,11 +306,11 @@ return "inscrit" ;
 				return "deja inscrit"  ;
 			}
 
-		console.log(ins);	
+		
 			});
 
 
-
+			console.log("inx"+ins);	
 
 	
 
