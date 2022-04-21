@@ -10,7 +10,7 @@ $(function() {
         var Name = form.elements["name"].value;
         var Email = form.elements["email"].value;
         var Mdps = form.elements["mdps"].value;
-         console.log('inside preventval'+form.elements["what"].value );
+         console.log('inside preventval'+form.elements["email"].value );
 
         node_url = 'https://lucioles.herokuapp.com';
         $.ajax({
