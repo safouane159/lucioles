@@ -272,7 +272,7 @@ app.get('/esp/list', function (req, res) {
 });
 
 app.post('/inscription', function (req, res) {
-	wh = req.query.email ;
+	wh = req.params.email ;
 
     console.log("there the data : "+wh);
 	res.send("touto bieno") ;
