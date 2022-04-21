@@ -18,8 +18,8 @@ $(function() {
             type: 'POST',
             data: {
                 name: Name,
-                Email: Email, 
-                Mdps: Mdps // Second add quotes on the value.
+                email: Email, 
+                mdps: Mdps // Second add quotes on the value.
               },
     
             success: function (resultat, statut) { // Anonymous function on success

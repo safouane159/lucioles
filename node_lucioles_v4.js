@@ -275,6 +275,9 @@ app.post('/inscription', function (req, res) {
 	wh = req.params.email ;
 
     console.log("there the data : "+wh);
+	wh1 = req.query.email ;
+
+    console.log("there the data1 : "+wh1);
 	res.send("touto bieno") ;
 });
 
