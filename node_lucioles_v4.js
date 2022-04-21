@@ -273,7 +273,7 @@ app.get('/esp/list', function (req, res) {
 });
 
 app.post('/inscription', function (req, res) {
-	let ins ;
+	
 
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var new_entry = { date: frTime, // timestamp the value 
@@ -282,12 +282,17 @@ app.post('/inscription', function (req, res) {
 			  mdps: req.body.mdps,
 			  authorized: false      // light value
 			};
-			dbo.collection("Users").findOne({email:req.body.email},function(err, result) {
+			var ins =	dbo.collection("Users").findOne({email:req.body.email},function(err, result) {
 				if (err) throw err;
 				
 				console.log("results of keys",result);
 			if ( result == null){
-
+				return " inscrit" 
+			}else{
+				ins = "deja inscrit" ;
+				return "deja inscrit"  ;
+			}	});
+/*
 // On recupere le nom basique du topic du message
 var key = path.parse("Users").base;
 	
@@ -298,16 +303,14 @@ if (err) throw err;
 console.log("\nItem : ", new_entry, 
 "\ninserted in db in collection :", key);
 ins = "inscrit" ;
-return "inscrit" ;
-});
 
-			}else{
-				ins = "deja inscrit" ;
-				return "deja inscrit"  ;
-			}
+});
+return "inscrit" ;*/
+
+			
 
 		
-			});
+		
 
 
 			console.log("inx"+ins);	
