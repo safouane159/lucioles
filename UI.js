@@ -27,7 +27,7 @@ $(function() {
                 if (resultat === 'deja insrit'){
                     
                     document.getElementById("dejainscrit").style.display = "inline";
-                }else{
+                }else if(resultat === 'insrit'){
 
                     document.getElementById("doneU").style.display = "inline";
                 }

@@ -286,7 +286,7 @@ app.post('/inscription', function (req, res) {
 				if (err) throw err;
 				
 				console.log("results of keys",result);
-			if ( result !== null){
+			if ( result == null){
 
 // On recupere le nom basique du topic du message
 var key = path.parse("Users").base;
