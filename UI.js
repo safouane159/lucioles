@@ -26,10 +26,10 @@ $(function() {
                 console.log("Envoi key to server results : "+resultat)
                 if (resultat === 'deja insrit'){
                     
-                    document.getElementById("dejainscrit").style.visibility = "visible";
+                    document.getElementById("dejainscrit").style.display = "inline";
                 }else{
 
-                    document.getElementById("doneU").style.visibility = "visible";
+                    document.getElementById("doneU").style.display = "inline";
                 }
                 
                 

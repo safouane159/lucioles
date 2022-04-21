@@ -10,13 +10,13 @@ body{
 }
 .alert {
 	padding: 20px;
-	visibility :hidden;
+	display :none;
 	background-color: #f44336;
 	color: white;
   }
   .done {
 	padding: 20px;
-	visibility :hidden;
+	display :none;
 	background-color: green;
 	color: white;
   }
