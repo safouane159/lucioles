@@ -287,6 +287,7 @@ app.post('/inscription', function (req, res) {
 				
 				console.log("results of keys",result);
 			if ( result == null){
+				res.send("wholist") ;
 				return " inscrit" 
 			}else{
 				ins = "deja inscrit" ;
