@@ -19,7 +19,9 @@ app.use(session({
   }))
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
+var swig  = require('swig');
+app.use(express.static(path.join(__dirname, '/')));
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
 // We can use an instance of MongoClient to connect to a cluster,
@@ -248,7 +250,7 @@ app.use(bodyParser.json())
 //served from a folder called public : 
 //app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(path.join(__dirname, 'lucioles')));
+
 
 app.use(function(request, response, next) { //Pour eviter les problemes de CORS/REST
     response.header("Access-Control-Allow-Origin", "*");
@@ -269,7 +271,8 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 
 // Route / => Le node renvoie la page HTML affichant les charts
 app.get('/', function (req, res) {
-	res.render("/try") ;
+	swig.renderFile('/try.html');
+	//res.render("/try") ;
 	//res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
 });
 
