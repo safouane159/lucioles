@@ -2,9 +2,12 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
 var session = require('express-session')
+const express = require('express');
+
+const app = express();
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
-app.set('view engine', 'ejs');
+let ejs = require('ejs');
 //--- MQTT module
 const mqtt = require('mqtt');
 const crypto = require('crypto')
@@ -16,7 +19,7 @@ app.use(session({
   }))
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
-
+app.set('view engine', 'ejs');
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
 // We can use an instance of MongoClient to connect to a cluster,
@@ -232,11 +235,10 @@ v0().catch(console.error);
 //====================================
 // Utilisation du framework express
 // Notamment g�r�r les routes 
-const express = require('express');
+
 // et pour permettre de parcourir les body des requetes
 const bodyParser = require('body-parser');
 
-const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
