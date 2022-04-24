@@ -21,7 +21,7 @@ app.use(session({
   var swig  = require('swig');
 	app.engine('html', swig.renderFile);
   
-	app.set('views', path.join(__dirname, 'views'));
+	//app.set('views', path.join(__dirnamee, 'views'));
 	app.set('view engine', 'html');
    
 // Topics MQTT
