@@ -15,7 +15,12 @@ var GeoJSON = require('geojson');
 app.use(session({
 	secret: 'safouaneKey',
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	cookie: {
+ 
+		// Session expires after 1 min of inactivity.
+		expires: 4000
+	}
   }));
 const isAuth = (req,res,next) => {
 
@@ -301,6 +306,13 @@ app.get('/esp/list', function (req, res) {
 	console.log("hahiya "+wholist)
     res.send(wholist) ;
 });
+
+app.get('/logout', function (req, res) {
+
+	req.session.destroy((err) => {
+		res.redirect('/') // will always fire after session is destroyed
+	  })
+});
 app.post('/login', function (req, res) {
 
 	var reqeEmail= req.body.email; // temp value
@@ -375,7 +387,7 @@ return "inscrit" ;*/
 
 });
 
-app.get('/geogs/:what', function (req, res) {
+app.get('/geogs/:what',isAuth, function (req, res) {
 	esp_mac_address = req.params.what
 	console.log("haladress"+esp_mac_address);
 	key = "localisation";
