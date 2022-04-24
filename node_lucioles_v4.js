@@ -248,7 +248,7 @@ app.use(bodyParser.json())
 //served from a folder called public : 
 //app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, 'lucioles')));
 
 app.use(function(request, response, next) { //Pour eviter les problemes de CORS/REST
     response.header("Access-Control-Allow-Origin", "*");
