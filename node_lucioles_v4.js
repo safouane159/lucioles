@@ -280,7 +280,7 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 app.get('/', function (req, res) {
 	//swig.renderFile('try.html');
 	//res.render("/try") ;
-	res.sendFile(path.join(__dirname + '/try.html'));
+	res.sendFile(path.join(__dirname + '/triy.html'));
 });
 
 
