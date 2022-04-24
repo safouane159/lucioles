@@ -301,7 +301,7 @@ app.post('/login', function (req, res) {
 		}else if(result.mdps !== mdps){
 			res.send("mdp incorect") ;
 		}else{
-			res.sendFile(path.join(__dirname + '/indexapp.html'));
+			res.sendFile(path.join(__dirname + '/indexApp.html'));
 		}
 		
 
