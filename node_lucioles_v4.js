@@ -28,7 +28,7 @@ app.use(session({
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
 //app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'lucioles')));
+app.use(express.static(path.join(__dirname, '/')));
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
 // We can use an instance of MongoClient to connect to a cluster,
