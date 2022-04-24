@@ -80,11 +80,11 @@ $(function() {
         event.preventDefault();
         let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
-        console.log('inside preventval'+form.elements["what"].value );
+        console.log('inside preventval'+form.elements["key"].value );
         node_url = 'https://lucioles.herokuapp.com';
         
          $.ajax({
-                url: node_url.concat('/getPaye/'+form.elements["what"].value ), // URL to "GET" : /esp/temp ou /esp/light
+                url: node_url.concat('/getPaye/'+form.elements["key"].value ), // URL to "GET" : /esp/temp ou /esp/light
                 type: 'GET',
                 
         
