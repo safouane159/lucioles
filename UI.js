@@ -81,6 +81,8 @@ $(function() {
                 }else if(resultat === 'mdp incorect'){
                     console.log("2")
                     //document.getElementById("doneU").style.display = "inline";
+                }else{
+                    window.location.href = resultat;
                 }
                 
                
