@@ -17,7 +17,15 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
   }));
+const isAuth = (req,res,next) => {
 
+if ( req.session.isAuth){
+	next()
+}else {
+	res.sendFile(path.join(__dirname + '/Pagelogin.html'));
+}
+
+}
  /* var swig  = require('swig');
 	app.engine('html', swig.renderFile);
   
@@ -301,8 +309,9 @@ app.post('/login', function (req, res) {
 		}else if(result.mdps !== mdps){
 			res.send("mdp incorect") ;
 		}else{
+			req.session.isAuth = true;
 		//	https://lucioles.herokuapp.com/indexApp.html
-			res.send("https://lucioles.herokuapp.com/indexApp.html") ;
+			res.send("https://lucioles.herokuapp.com/indexApp") ;
 			//res.sendFile(path.join(__dirname + '/indexApp.html'));
 		}
 		
