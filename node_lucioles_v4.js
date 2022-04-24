@@ -1,14 +1,19 @@
 // Importation des modules
 var path = require('path');
 var nodemailer = require('nodemailer');
-
+var session = require('express-session')
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
-
+app.set('view engine', 'ejs');
 //--- MQTT module
 const mqtt = require('mqtt');
 const crypto = require('crypto')
 var GeoJSON = require('geojson');
+app.use(session({
+	secret: 'safouaneKey',
+	resave: false,
+	saveUninitialized: true
+  }))
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
 
@@ -262,7 +267,8 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 
 // Route / => Le node renvoie la page HTML affichant les charts
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
+	res.render("/try") ;
+	//res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
 });
 
 
