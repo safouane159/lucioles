@@ -16,11 +16,18 @@ app.use(session({
 	secret: 'safouaneKey',
 	resave: false,
 	saveUninitialized: true
-  }))
+  }));
+
+  var swig  = require('swig');
+	app.engine('html', swig.renderFile);
+  
+	app.set('views', path.join(__dirname, 'views'));
+	app.set('view engine', 'html');
+   
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
 //app.set('view engine', 'ejs');
-var swig  = require('swig');
+
 app.use(express.static(path.join(__dirname, '/')));
 //---  The MongoDB module exports MongoClient, and that's what
 // we'll use to connect to a MongoDB database.
