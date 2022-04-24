@@ -289,7 +289,7 @@ app.get('/esp/list', function (req, res) {
 	console.log("hahiya "+wholist)
     res.send(wholist) ;
 });
-app.get('/login', function (req, res) {
+app.post('/login', function (req, res) {
 
 	var reqeEmail= req.body.email; // temp value
 	var mdps = req.body.mdps;
