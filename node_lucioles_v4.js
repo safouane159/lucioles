@@ -291,7 +291,11 @@ app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/Pagelogin.html'));
 });
 
-
+app.get('/indexApp', isAuth,function (req, res) {
+	//swig.renderFile('try.html');
+	//res.render("/try") ;
+	res.sendFile(path.join(__dirname + '/indexApp.html'));
+});
 app.get('/esp/list', function (req, res) {
 	
 	console.log("hahiya "+wholist)
