@@ -18,11 +18,11 @@ app.use(session({
 	saveUninitialized: true
   }));
 
-  var swig  = require('swig');
+ /* var swig  = require('swig');
 	app.engine('html', swig.renderFile);
   
 	//app.set('views', path.join(__dirnamee, 'views'));
-	app.set('view engine', 'html');
+	app.set('view engine', 'html');*/
    
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
@@ -278,9 +278,9 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 
 // Route / => Le node renvoie la page HTML affichant les charts
 app.get('/', function (req, res) {
-	swig.renderFile('try.html');
+	//swig.renderFile('try.html');
 	//res.render("/try") ;
-	//res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
+	res.sendFile(path.join(__dirname + '/try.html'));
 });
 
 
