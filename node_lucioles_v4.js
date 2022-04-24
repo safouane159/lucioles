@@ -280,7 +280,7 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 app.get('/', function (req, res) {
 	//swig.renderFile('try.html');
 	//res.render("/try") ;
-	res.sendFile(path.join(__dirname + '/triy.html'));
+	res.sendFile(path.join(__dirname + '/login.html'));
 });
 
 
@@ -289,7 +289,25 @@ app.get('/esp/list', function (req, res) {
 	console.log("hahiya "+wholist)
     res.send(wholist) ;
 });
+app.get('/login', function (req, res) {
 
+	var reqeEmail= req.body.email; // temp value
+	var mdps = req.body.mdps;
+
+	dbo.collection("Users").findOne({email:reqeEmail},function(err, result) {
+		if (err) throw err;
+		if ( result == null){
+			res.send("introuvable") ;
+		}else if(result.mdps !== mdps){
+			res.send("mdp incorect") ;
+		}else{
+			res.sendFile(path.join(__dirname + '/indexapp.html'));
+		}
+		
+
+		});
+		
+});
 app.post('/inscription', function (req, res) {
 	
 
