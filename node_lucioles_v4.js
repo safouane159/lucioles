@@ -293,7 +293,7 @@ app.get('/login', function (req, res) {
 
 	var reqeEmail= req.body.email; // temp value
 	var mdps = req.body.mdps;
-
+	console.log("reqeEmail",reqeEmail);
 	dbo.collection("Users").findOne({email:reqeEmail},function(err, result) {
 		if (err) throw err;
 		if ( result == null){
