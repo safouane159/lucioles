@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+<script type='text/javascript' src='UI.js'></script>  
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+			
+					<div class="alert" id="dejainscrit">
+						
+						<strong>Alert</strong> This mail already exist! you would like to sign in ?
+					  </div>
+					  <div class="done" id="doneU">
+						
+						<strong>Done</strong> you can now sign in!
+					  </div>
+				<form id="inscription" >
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text"  id="name"  name="name" placeholder="Name" required="">
+					<input type="email" id="email" name="email" placeholder="Email" required="">
+					<input type="password" id="mdps" name="mdps" placeholder="Password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form id="login">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
+</body>
+
+</html>
