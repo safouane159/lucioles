@@ -358,7 +358,7 @@ app.post('/inscription', function (req, res) {
 dbo.collection(key3).insertOne(new_entry, function(err, res) {
 if (err) throw err;
 console.log("\nItem : ", new_entry, 
-"\ninserted in db in collection :", key3);
+"\ninserted in db in collectiond :", key3);
 
 
 return " inscrit" 
