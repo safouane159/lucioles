@@ -168,7 +168,7 @@ function proccess_loca_esp(esp,i){
     
     //Méthode appelée lorsque le téléchargement a échoué
     error: function() {
-	alert("Erreur lors du téléchjargement !");
+	alert("Erreur lors du téléchjarkjgement !");
     }      
 });}
 
