@@ -131,9 +131,9 @@ function process_esp(which_esps,i){
 }
 
 function proccess_loca_esp(esp,i){
-    /*
+    
     node_url = 'https://lucioles.herokuapp.com'
-    console.log(esp[i]);
+    console.log("inside locali "+esp[i]);
 	
 		
 		
@@ -151,7 +151,7 @@ function proccess_loca_esp(esp,i){
     //Méthode appelée lorsque le téléchargement a fonctionné
     success: function(geojson) {
 	//Affichage des données dans la console
-	console.log(geojson);
+	console.log("inside locali geogson"+geojson);
 	
 	//Création de la couche à partir du GeoJSON
 	var layer = L.geoJSON(geojson);
@@ -170,7 +170,7 @@ function proccess_loca_esp(esp,i){
     error: function() {
 	alert("Erreur lors du téléchargement !");
     }      
-});*/}
+});}
 
 
 

@@ -388,7 +388,7 @@ return "inscrit" ;*/
 
 });
 
-app.get('/geogs/:what',isAuth, function (req, res) {
+app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log("haladress"+esp_mac_address);
 	key = "localisation";
