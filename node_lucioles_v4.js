@@ -19,9 +19,10 @@ app.use(session({
 	cookie: {
  
 		// Session expires after 1 min of inactivity.
-		expires: 4000
+		expires: 60000
 	}
   }));
+  //middleware responsible for checking authentification before every req
 const isAuth = (req,res,next) => {
 
 if ( req.session.isAuth){

@@ -131,6 +131,7 @@ function process_esp(which_esps,i){
 }
 
 function proccess_loca_esp(esp,i){
+    /*
     node_url = 'https://lucioles.herokuapp.com'
     console.log(esp[i]);
 	
@@ -169,7 +170,7 @@ function proccess_loca_esp(esp,i){
     error: function() {
 	alert("Erreur lors du téléchargement !");
     }      
-});}
+});*/}
 
 
 
