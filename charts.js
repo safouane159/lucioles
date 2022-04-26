@@ -168,7 +168,7 @@ function proccess_loca_esp(esp,i){
     
     //Méthode appelée lorsque le téléchargement a échoué
     error: function() {
-	alert("Erreur lors du téléchargement !");
+	alert("Erreur lors du téléchjargement !");
     }      
 });}
 
@@ -180,6 +180,7 @@ function getList(){
     .then(response => response.text())
     .then(data =>
         process_each_esp(data));*/
+
 
 
 
