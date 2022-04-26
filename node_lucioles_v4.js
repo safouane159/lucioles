@@ -145,9 +145,9 @@ async function v0(){
 	    // Parsing du message suppos� recu au format JSON
 	    message = JSON.parse(message);
  
-		key = message.key;
+		key6 = message.key;
 
-		dbo.collection("keys").findOne({key:key},function(err, result) {
+		dbo.collection("keys").findOne({key:key6},function(err, result) {
 			if (err) throw err;
 			
 			console.log("results of keys",result);
@@ -351,14 +351,14 @@ app.post('/inscription', function (req, res) {
 				
 				console.log("results of keys",result);
 			if ( result == null){
-				var key = path.parse("Users").base;
+				var key3 = path.parse("Users").base;
 	
 // Stocker le dictionnaire qui vient d'etre cr�� dans la BD
 // en utilisant le nom du topic comme key de collection
-dbo.collection(key).insertOne(new_entry, function(err, res) {
+dbo.collection(key3).insertOne(new_entry, function(err, res) {
 if (err) throw err;
 console.log("\nItem : ", new_entry, 
-"\ninserted in db in collection :", key);
+"\ninserted in db in collection :", key3);
 
 
 return " inscrit" 
@@ -391,8 +391,9 @@ return "inscrit" ;*/
 app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log("haladress"+esp_mac_address);
-	key = "localisation";
-	dbo.collection("localisation").findOne({who:esp_mac_address},function(err, result) {
+	
+	var key1 = path.parse("localisation").base;
+	dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
 		console.log("ta dreb1",result);
 		console.log("ta dreb",result.longitude);
@@ -435,11 +436,12 @@ app.get('/esp/:what', function (req, res) {
     // R�cup�ration des nb derniers samples stock�s dans
     // la collection associ�e a ce topic (wa) et a cet ESP (wh)
     const nb = 200;
-    key = "sensors"
+	var key2 = path.parse("sensors").base;
+    
     //dbo.collection(key).find({who:wh}).toArray(function(err,result) {
-    dbo.collection(key).find({who:wh}).sort({_id:-1}).limit(nb).toArray(function(err, result) {
+    dbo.collection(key2).find({who:wh}).sort({_id:-1}).limit(nb).toArray(function(err, result) {
 	if (err) throw err;
-	console.log('get on ', key);
+	console.log('get on ', key2);
 	console.log(result);
 	res.json(result.reverse()); // This is the response.
 	console.log('end find');
@@ -471,10 +473,10 @@ app.get('/getkey/:what', function(req, res) {
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
 	var random = Math.random().toString();
-   var key =  crypto.createHash('sha1').update(current_date + random).digest('hex');
+   var key4 =  crypto.createHash('sha1').update(current_date + random).digest('hex');
    
    var new_entry = { date: frTime, // timestamp the value 
-	key: key    // light value
+	key: key4    // light value
   };
 
 // On recupere le nom basique du topic du message
@@ -499,7 +501,7 @@ var transporter = nodemailer.createTransport({
 	from: 'safouan1ouazri@gmail.com',
 	to: 'safouane1ouazri@gmail.com',
 	subject: 'Sending Email using Node.js',
-	text: 'your key is : '+key
+	text: 'your key is : '+key4
   };
   
   transporter.sendMail(mailOptions, function(error, info){
@@ -512,7 +514,7 @@ var transporter = nodemailer.createTransport({
 
 
 	
-		console.log("the key ", key);
+		console.log("the key ", key4);
 		
 
 });
@@ -542,14 +544,14 @@ var transporter = nodemailer.createTransport({
 			 
 			
 			// On recupere le nom basique du topic du message
-			var key = path.parse("sensors").base;
+			var key5 = path.parse("sensors").base;
 			
 			// Stocker le dictionnaire qui vient d'etre cr�� dans la BD
 			// en utilisant le nom du topic comme key de collection
-			dbo.collection(key).insertOne(second_entry, function(err, res) {
+			dbo.collection(key5).insertOne(second_entry, function(err, res) {
 			if (err) throw err;
 			console.log("\nItem : ", second_entry, 
-			"\ninserted in db in collection :", key);
+			"\ninserted in db in collection :", key5);
 			});
 			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i-1].who)
 //console.log("achahboun"+wholist_payes[i].who);
