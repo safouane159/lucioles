@@ -420,7 +420,7 @@ app.get('/geogs/:what', function (req, res) {
 // Exemple d'utilisation de routes dynamiques
 //    => meme fonction pour /esp/temp et /esp/light
 app.get('/esp/:what', function (req, res) {
-   /* // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
+   // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
     console.log(req.originalUrl);
     
     wh = req.query.who // get the "who" param from GET request
@@ -446,7 +446,7 @@ app.get('/esp/:what', function (req, res) {
 	res.json(result.reverse()); // This is the response.
 	console.log('end find');
     });
-    console.log('end app.get');*/
+    console.log('end app.get');
 });
 
 
