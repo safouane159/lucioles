@@ -76,9 +76,9 @@ $(function() {
     });
 })
 $(function() {
-    $('#myform').submit(function(event) {
-       event.preventDefault();
-     /*   let form = document.getElementById('myform');
+    /* $('#myform').submit(function(event) {
+      // event.preventDefault();
+       let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+form.elements["key"].value );
         node_url = 'https://lucioles.herokuapp.com';
@@ -107,8 +107,8 @@ $(function() {
             url: '/getPaye',
             data: { what: }
         });
-        */
-    });
+        
+    });*/
 })
  
 //=== Installation de la periodicite des requetes GET============
