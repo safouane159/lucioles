@@ -453,7 +453,7 @@ app.get('/esp/:what', function (req, res) {
 
 app.get('/getPaye', function(req, res) {
 
-	wh = req.query.key;;
+	wh = req.body.key;;
 	
 		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
@@ -467,7 +467,7 @@ app.get('/getPaye', function(req, res) {
 		wholist.push({who:wh});	    
 	    }
 	    console.log("payee using the node server :", wholist_payes);
-		res.redirect('/') 
+		
 
 });
 app.get('/getkey/:what', function(req, res) {

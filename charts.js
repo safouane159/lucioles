@@ -76,8 +76,27 @@ $(function() {
     });
 })
 $(function() {
-    /* $('#myform').submit(function(event) {
-      // event.preventDefault();
+    $('#myform').submit(function(event) {
+        let xhr = new XMLHttpRequest();
+        let form = document.getElementById('myform');
+        xhr.open("POST", "https://lucioles.herokuapp.com/getPaye");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+          }};
+        
+          let textToPost = `{
+           
+            "key": "${form.elements["key"].value}"
+           }`;
+        
+        xhr.send(textToPost);
+
+      /*// event.preventDefault();
        let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+form.elements["key"].value );
@@ -107,8 +126,8 @@ $(function() {
             url: '/getPaye',
             data: { what: }
         });
-        
-    });*/
+        */
+    });
 })
  
 //=== Installation de la periodicite des requetes GET============
@@ -176,6 +195,10 @@ function proccess_loca_esp(esp,i){
 
 
 function getList(){
+  
+
+
+
   /*  fetch('https://lucioles.herokuapp.com/esp/list')
     .then(response => response.text())
     .then(data =>
