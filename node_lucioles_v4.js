@@ -3,7 +3,7 @@ var path = require('path');
 var nodemailer = require('nodemailer');
 var session = require('express-session')
 const express = require('express');
-
+const request = require('request');
 const app = express();
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
@@ -520,15 +520,15 @@ var transporter = nodemailer.createTransport({
 });
 	function process_cities(){
 		
-		var i = 0;
-		for ( ;i < wholist_payes.length; ) { 
+		
+		for ( var i in wholist_payes  ) { 
 			console.log("payee using the node server :", wholist_payes[i]);
 			console.log("idzeb "+i);
-			const request = require('request');
+			
 		
 			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 			  if (err) { return console.log(err); }
-			  console.log(body);
+			  console.log("igot the body");
 			  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 			
 			  var second_entry = { date: frTime, // timestamp the value 
@@ -578,8 +578,6 @@ var transporter = nodemailer.createTransport({
 
 
 	});
-
-i++
 
 }}
 	let myVar = setInterval(function(){ process_cities() }, 1000);
