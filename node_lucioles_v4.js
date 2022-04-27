@@ -453,8 +453,8 @@ app.get('/esp/:what', function (req, res) {
 
 app.post('/getPaye', function(req, res) {
 
-	wh = req.query.key;
-	console.log("lmachakil", req.body);
+	wh = req.body.key;
+	
 		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
 		
