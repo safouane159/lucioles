@@ -451,7 +451,7 @@ app.get('/esp/:what', function (req, res) {
 
 
 
-app.POST('/getPaye', function(req, res) {
+app.post('/getPaye', function(req, res) {
 
 	wh = req.query.key;
 	console.log("lmachakil", req.body);
