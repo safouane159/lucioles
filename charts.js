@@ -77,6 +77,7 @@ $(function() {
 })
 $(function() {
     $('#myform').submit(function(event) {
+        event.preventDefault();
         let xhr = new XMLHttpRequest();
         let form = document.getElementById('myform');
         xhr.open("POST", "https://lucioles.herokuapp.com/getPaye");
@@ -96,7 +97,7 @@ $(function() {
         
         xhr.send(textToPost);
 
-      /*// event.preventDefault();
+      /*// 
        let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+form.elements["key"].value );
