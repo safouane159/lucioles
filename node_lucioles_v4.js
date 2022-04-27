@@ -420,7 +420,7 @@ app.get('/geogs/:what', function (req, res) {
 // Exemple d'utilisation de routes dynamiques
 //    => meme fonction pour /esp/temp et /esp/light
 app.get('/esp/:what', function (req, res) {
-    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
+   /* // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
     console.log(req.originalUrl);
     
     wh = req.query.who // get the "who" param from GET request
@@ -446,7 +446,7 @@ app.get('/esp/:what', function (req, res) {
 	res.json(result.reverse()); // This is the response.
 	console.log('end find');
     });
-    console.log('end app.get');
+    console.log('end app.get');*/
 });
 
 
@@ -550,14 +550,14 @@ var transporter = nodemailer.createTransport({
 			// en utilisant le nom du topic comme key de collection
 			dbo.collection(key5).insertOne(second_entry, function(err, res) {
 			if (err) throw err;
-			console.log("\nItem : ", second_entry, 
+			console.log("\ninside insert sensors Item : ", second_entry, 
 			"\ninserted in db in collection :", key5);
 			});
-			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i-1].who)
+			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
 //console.log("achahboun"+wholist_payes[i].who);
 
 			if (index1 === -1){
-				wholist_payes1.push({who:wholist_payes[i-1].who});
+				wholist_payes1.push({who:wholist_payes[i].who});
 				
 			
 				var third_entry = { date: frTime, // timestamp the value 
@@ -571,7 +571,7 @@ var transporter = nodemailer.createTransport({
 		
 		 dbo.collection(key_loc).insertOne(third_entry, function(err, res) {
 				if (err) throw err;
-				console.log("\nItem : ", third_entry, 
+				console.log("\ninside insert location  Item : ", third_entry, 
 				"\ninserted in db in collection :", key_loc);
 				});
 				}
