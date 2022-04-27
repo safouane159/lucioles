@@ -431,7 +431,7 @@ app.get('/esp/:what', function (req, res) {
     console.log("A client/navigator ", req.ip);
     console.log("sending URL ",  req.originalUrl);
     console.log("wants to GET ", wa);
-    console.log("values from object ", wh);
+    console.log("values from zobject ", wh);
     
     // R�cup�ration des nb derniers samples stock�s dans
     // la collection associ�e a ce topic (wa) et a cet ESP (wh)
