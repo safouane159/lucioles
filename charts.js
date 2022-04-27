@@ -78,7 +78,7 @@ $(function() {
 $(function() {
     $('#myform').submit(function(event) {
         event.preventDefault();
-        let form = document.getElementById('myform');
+     /*   let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+form.elements["key"].value );
         node_url = 'https://lucioles.herokuapp.com';
