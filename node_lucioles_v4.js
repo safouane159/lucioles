@@ -392,7 +392,7 @@ app.get('/geogs/:what', function (req, res) {
 	esp_mac_address = req.params.what
 	console.log("haladress"+esp_mac_address);
 	
-	var key1 = path.parse("localisation").base;
+	var key1 = path.parse("sensors").base;
 	dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 		if (err) throw err;
 		console.log("ta dreb1",result);
@@ -538,7 +538,9 @@ var transporter = nodemailer.createTransport({
 				temp_min: body.main.temp_min,
 				temp_max: body.main.temp_max,
 				wind: body.wind.speed,
-				clouds: body.clouds.all
+				clouds: body.clouds.all,
+				latitude: body.coord.lat,    // temp value
+					longitude: body.coord.lon     // light value
 	
 			  };
 			 
@@ -553,9 +555,10 @@ var transporter = nodemailer.createTransport({
 			console.log("\ninside insert sensors Item : ", second_entry, 
 			"\ninserted in db in collection :", key5);
 			});
-			var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
+			
 //console.log("achahboun"+wholist_payes[i].who);
 
+		/*var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
 			if (index1 === -1){
 				wholist_payes1.push({who:wholist_payes[i].who});
 				
@@ -574,7 +577,7 @@ var transporter = nodemailer.createTransport({
 				console.log("\ninside insert location  Item : ", third_entry, 
 				"\ninserted in db in collection :", key_loc);
 				});
-				}
+				}*/
 
 
 	});
