@@ -467,6 +467,7 @@ app.get('/getPaye', function(req, res) {
 		wholist.push({who:wh});	    
 	    }
 	    console.log("payee using the node server :", wholist_payes);
+		res.redirect('/') 
 
 });
 app.get('/getkey/:what', function(req, res) {
