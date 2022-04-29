@@ -1,15 +1,8 @@
-<!doctype html>
-<html >
-
-<head>
-  
-    <title>Luciole esp</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-    <link rel="stylesheet" href="style.css">
-	
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaflet for ESPs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -35,119 +28,9 @@
       crossorigin="anonymous"
       ></script>
 
-
     <style>
-*, :before, :after {
-	 box-sizing: border-box;
-}
- .unstyled {
-	 list-style: none;
-	 padding: 0;
-	 margin: 0;
-}
- .unstyled a {
-	 text-decoration: none;
-}
- .list-inline {
-	 overflow: hidden;
-}
- .list-inline li {
-	 float: left;
-}
- .header {
-	 position: fixed;
-	 left: 0;
-	 top: 0;
-	 bottom: 0;
-	 width: 17.5em;
-	 background:whitesmoke;
-}
- .logo {
-	 text-transform: lowercase;
-	 font: 300 2em 'Source Sans Pro', Helvetica, Arial, sans-serif;
-	 text-align: center;
-	 padding: 0;
-	 margin: 0;
-}
- .logo a {
-	 display: block;
-	 padding: 1em 0;
-	 color: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-	 text-decoration: none;
-	 transition: 0.15s linear color;
-}
- .logo a:hover {
-	 color: #fff;
-}
- .logo a:hover span {
-	 color: #df4500;
-}
- .logo span {
-	 font-weight: 700;
-	 transition: 0.15s linear color;
-}
- .main-nav ul {
-	 border-top: solid 1px linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-}
- .main-nav li {
-	 border-bottom: solid 1px linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-}
- .main-nav a {
-	 padding: 1.1em 0;
-	 color: #302b63;
-	 font: 400 1.125em 'Source Sans Pro', Helvetica, Arial, sans-serif;
-}
- .main-nav a:hover {
-	 color: #fff;
-}
- .social-links {
-	 border-bottom: solid 1px #3c3735;
-}
- .social-links li {
-	 width: 25%;
-	 border-left: solid 1px #3c3735;
-}
- .social-links li:first-child {
-	 border: none;
-}
- .social-links a {
-	 display: block;
-	 height: 5.5em;
-	 text-align: center;
-	 color: #3c3735;
-	 font: 0.75em/5.5em 'Source Sans Pro', Helvetica, Arial, sans-serif;
-}
- .social-links a:hover {
-	 color: #dfdbd9;
-}
- .list-hover-slide li {
-	 position: relative;
-	 overflow: hidden;
-}
- .list-hover-slide a {
-	 display: block;
-	 position: relative;
-	 z-index: 1;
-	 transition: 0.35s ease color;
-}
- .list-hover-slide a:before {
-	 content: '';
-	 display: block;
-	 z-index: -1;
-	 position: absolute;
-	 left: -100%;
-	 top: 0;
-	 width: 100%;
-	 height: 100%;
-	 border-right: solid 5px #df4500;
-	 background: #337ab7;
-	 transition: 0.35s ease left;
-}
- .list-hover-slide a.is-current:before, .list-hover-slide a:hover:before {
-	 left: 0;
-}
-  /* Style the tab */
-  .tab {
+      /* Style the tab */
+      .tab {
 	  overflow: hidden;
 	  border: 1px solid #ccc;
 	  background-color: #f1f1f1;
@@ -186,72 +69,96 @@
 	  height: 350px;
 	  max-width: 1000px;
       }
-      
     </style>
-</head>
-<header class="header" role="banner">
-  <h1 class="logo">
-    <a href="#">Lucioles <span>Devine</span></a>
-  </h1>
-  <div class="nav-wrap">
-    <nav class="main-nav" role="navigation">
-      <ul class="unstyled list-hover-slide">
-        <li><a href="javascript:void(0);" onclick="ShowDash();">  Dashboard</a></li>
-        <li><a href="javascript:void(0);" onclick="ShowSub();">Subscribe your ESP32</a></li>
-      </ul>
-    </nav>
-    About my project <ul class="social-links list-inline unstyled list-hover-slide">
-       <li><a >Youtube</a></li>
-       <li><a >Git</a></li>
-    </ul>
-  </div>
-</header>
-<body>
-  <div id="acceuil">
-    <form id="myform" method="GET" action="/getPaye" >
-      <label for="fname">country:</label><br>
-      <input type="text" name="key" id="key" value="London"><br><br>
-    
-      <input type="submit" value="Submit">
-      </form>
-  </div>
-  <div id="subscribe">
+  </head>
+
+  <body>
+	<form id="myform" method="GET" action="/getPaye" >
+		<label for="fname">country:</label><br>
+		<input type="text" name="key" id="key" value="London"><br><br>
+	
+		<input type="submit" value="Submit">
+	  </form>
+
 
 	  <form id="form-keys" >
 		
 
-      <input type="submit" value="Submidt">
-      </form>
-  </div>
-  <script type='text/javascript' src='charts.js'></script>  
-<script>
+		<input type="submit" value="Submidt">
+	  </form>
+    <h1>Leaflet for ESPs</h1>
+
+    <!-- 
+	 =================== Map (and Markers) Division ========================
+      -->
+    <h2>The fleet in the world !</h2>
+    <div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;"></div>
+
+    <script type='text/javascript' src='map.js'></script>       <!-- map only-->
+
+    <!-- static definition of markers      
+    <script type='text/javascript' src='static_markers.js'></script>    -->
+
+    <!-- by  url GEOJSON !!! markers 
+	 <script type='text/javascript' src='from_url_markers.js'></script> 
+	 -->
+	 
+	    <!--  <script type='text/javascript' src='static_geojson_markers.js'></script>  GEOJSON !!! markers -->
+	 
+	 <!-- 
+	      =================== Plots Divisions ========================
+
+	      
+	      <br>
+	      <div class="tab">
+		<button class="tablinks" onclick="clickHandle(event, 'Cat')">Cat</button>
+		<button class="tablinks" onclick="clickHandle(event, 'Bear')">Bear</button>
+		<button class="tablinks" onclick="clickHandle(event, 'Fleet')">Fleet</button>
+	      </div>
+	      
+	      
+	      <div id="Cat" class="tabcontent">
+		<h3>Meowww.</h3>
+	      </div>
+	      
+	      <div id="Bear" class="tabcontent">
+		<h3>Rawrrr.</h3>
+	      </div>
+	      -->
+	      
+	      <div id="container1" class="tabcontent">
+		<h3>Bork Bork.</h3>
+
+		<script type='text/javascript' src='charts.js'></script>   	
+	      </div>      
+	      
+	      <script>
 
 
 
-	//https://www.educative.io/edpresso/how-to-create-tabs-in-html
-	function clickHandle(evt, animalName) {
-		let i, tabcontent, tablinks;
-		
-		// This is to clear the previous clicked content.
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
+		//https://www.educative.io/edpresso/how-to-create-tabs-in-html
+		function clickHandle(evt, animalName) {
+		    let i, tabcontent, tablinks;
+		    
+		    // This is to clear the previous clicked content.
+		    tabcontent = document.getElementsByClassName("tabcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		    }
+		    
+		    // Set the tab to be "active".
+		    tablinks = document.getElementsByClassName("tablinks");
+		    for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		    }
+		    
+		    // Display the clicked tab and set it to active.
+		    document.getElementById(animalName).style.display = "block";
+		    evt.currentTarget.className += " active";
 		}
+
+
 		
-		// Set the tab to be "active".
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		
-		// Display the clicked tab and set it to active.
-		document.getElementById(animalName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-
-
-	
-	  </script>
-</body>
-
+	      </script>
+  </body>
 </html>
