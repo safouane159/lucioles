@@ -287,12 +287,14 @@ console.log("hahowa"+wh.who);
         }
     });
 
-
-function showDash(){
+    
+function ShowDash(){
+    console.log("inside dahs")
     document.getElementById('acceuil').style.visibility='visible';
     document.getElementById('subscribe').style.visibility='hidden';
 }
 function ShowSub(){
+    console.log("inside sub");
     document.getElementById('acceuil').style.visibility='hidden';
     document.getElementById('subscribe').style.visibility='visible';
 }

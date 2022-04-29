@@ -9,8 +9,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
     <link rel="stylesheet" href="style.css">
-    <script type='text/javascript' src='charts.js'></script>  
-	
+   
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha384-VzLXTJGPSyTLX6d96AxgkKvE/LRb7ECGyTxuwtpjHnVWVZs2gp5RDjeM/tgBnVdM"
+      crossorigin="anonymous"
+      />
+	  
+    <script
+      src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"
+      integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+      crossorigin="anonymous"
+      ></script>
+    
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M"
+      crossorigin="anonymous"
+      ></script>
+
 
     <style>
 *, :before, :after {
@@ -200,5 +225,33 @@
       </form>
   </div>
 </body>
+<script type='text/javascript' src='charts.js'></script>  
+<script>
 
+
+
+	//https://www.educative.io/edpresso/how-to-create-tabs-in-html
+	function clickHandle(evt, animalName) {
+		let i, tabcontent, tablinks;
+		
+		// This is to clear the previous clicked content.
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+		}
+		
+		// Set the tab to be "active".
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		
+		// Display the clicked tab and set it to active.
+		document.getElementById(animalName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+
+
+	
+	  </script>
 </html>
