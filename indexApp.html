@@ -231,26 +231,13 @@
 
 
 		  <div class="col">
-			<div class="cover">
-				<h1>Add country:</h1>
-				<form   id="myform" method="GET" action="/getPaye" class="flex-form">
-				  <label for="from">
-					<i class="ion-location"></i>
-				  </label>
-				  <input type="text" name="key" id="key"  placeholder="Please enter a capital name..">
-				  <input type="submit" value="Add">
-				</form>
-				
-			  </div>
-			
-			<form id="myform" method="GET" action="/getPaye" >
-
-				<label for="fname">Add country:</label><br>
-				<input type="text" name="key" id="key" value="London"><br><br>
+			<form class="form-inline" id="myform" method="GET" action="/getPaye">
+				<label class="sr-only" for="inlineFormInputName2">Add Country</label>
+				<input  type="text" name="key" id="key"  class="form-control mb-2 mr-sm-2"  placeholder="London">
 			  
-				<input type="submit" value="Submit">
-		  
-				</form>
+				<button type="submit" class="btn btn-primary mb-2">Submit</button>
+			  </form>
+		
 		  </div>
 		</div>
 	  </div>
