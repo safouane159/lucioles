@@ -187,10 +187,11 @@
 	  height: 350px;
 	  max-width: 1000px;
       }
-	  empty1
-      #empty1 {
+	  
+      .empty1 {
 	
-	  width: 500px;
+	  width: 0px;
+	  display: none;
 	 
       }
     </style>
@@ -216,21 +217,35 @@
 	<div  id="acceuil" class="container">
 		
 		<div class="row">
-		  <div class="col" id="empty1">
+		  <div class="col empty1" >
 			
 
 
 
 		  </div>
 		  <div class="col">
-			<div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;"></div>
-				<div id="container1" class="tabcontent"> </div>  
+			<div id="map" style="width: 600px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;  margin-left: 80px"></div>
+				<div id="container1" class="tabcontent" style="margin-top:40px;"> </div>  
+				<div id="container1" class="tabcontent" style="margin-top:40px;margin-bottom:40px"> </div>  
 		  </div>
 
 
 		  <div class="col">
+			<div class="cover">
+				<h1>Add country:</h1>
+				<form   id="myform" method="GET" action="/getPaye" class="flex-form">
+				  <label for="from">
+					<i class="ion-location"></i>
+				  </label>
+				  <input type="text" name="key" id="key"  placeholder="Please enter a capital name..">
+				  <input type="submit" value="Add">
+				</form>
+				
+			  </div>
+			
 			<form id="myform" method="GET" action="/getPaye" >
-				<label for="fname">country:</label><br>
+
+				<label for="fname">Add country:</label><br>
 				<input type="text" name="key" id="key" value="London"><br><br>
 			  
 				<input type="submit" value="Submit">
@@ -243,10 +258,10 @@
 
 
 
-	  <div  id="subscribe" class="container" style="display: block;">
+	  <div  id="subscribe" class="container" style="display: none;">
 		
 		<div class="row">
-		  <div class="col">
+		  <div class="col empty1">
 			
 		  </div>
 

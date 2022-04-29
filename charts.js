@@ -294,10 +294,10 @@ console.log("hahowa"+wh.who);
 function ShowDash(){
     console.log("inside dahs")
     document.getElementById('acceuil').style.display='inline';
-    document.getElementById('subscribe').style.display =  'block';
+    document.getElementById('subscribe').style.display =  'none';
 }
 function ShowSub(){
     console.log("inside sub");
-    document.getElementById('acceuil').style.display =  'block';;
+    document.getElementById('acceuil').style.display =  'none';;
     document.getElementById('subscribe').style.display='inline';
 }
