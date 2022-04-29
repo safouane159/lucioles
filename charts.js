@@ -286,4 +286,16 @@ console.log("hahowa"+wh.who);
         complete: function (resultat, statut) {
         }
     });
+
+
+function showDash(){
+    document.getElementById('acceuil').style.visibility='visible';
+    document.getElementById('subscribe').style.visibility='hidden';
+}
+function ShowSub(){
+    document.getElementById('acceuil').style.visibility='hidden';
+    document.getElementById('subscribe').style.visibility='visible';
+}
+
+
 }
