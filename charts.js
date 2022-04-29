@@ -288,6 +288,9 @@ console.log("hahowa"+wh.who);
     });
 
     
+
+
+}
 function ShowDash(){
     console.log("inside dahs")
     document.getElementById('acceuil').style.visibility='visible';
@@ -297,7 +300,4 @@ function ShowSub(){
     console.log("inside sub");
     document.getElementById('acceuil').style.visibility='hidden';
     document.getElementById('subscribe').style.visibility='visible';
-}
-
-
 }
