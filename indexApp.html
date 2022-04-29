@@ -200,16 +200,19 @@
   <h1 class="logo">
     <a href="#">Lucioles <span>Devine</span></a>
   </h1>
-  <div class="nav-wrap">
+  <div class="nav-wrap par">
     <nav class="main-nav" role="navigation">
       <ul class="unstyled list-hover-slide">
         <li><a href="javascript:void(0);" onclick="ShowDash();">  Dashboard</a></li>
         <li><a href="javascript:void(0);" onclick="ShowSub();">Subscribe your ESP32</a></li>
       </ul>
     </nav>
-    About my project <ul class="social-links list-inline unstyled list-hover-slide">
-       <li><a >Youtube</a></li>
-       <li><a >Git</a></li>
+	<div class="chi">
+		About my project <ul class="social-links list-inline unstyled list-hover-slide">
+			<li><a >Youtube</a></li>
+			<li><a >Git</a></li>
+	</div>
+   <button onclick="llol();"></button>
     </ul>
   </div>
 </header>
@@ -224,18 +227,19 @@
 
 		  </div>
 		  <div class="col">
-			<div id="map" style="width: 600px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;  margin-left: 80px"></div>
+			<div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;  "></div>
 				<div id="container1" class="tabcontent" style="margin-top:40px;"> </div>  
 				<div id="container1" class="tabcontent" style="margin-top:40px;margin-bottom:40px"> </div>  
 		  </div>
 
 
 		  <div class="col">
+			  <h3 class="cap"> Add a capital to receive its real time data</h3>
 			<form class="form-inline" id="myform" method="GET" action="/getPaye">
-				<label class="sr-only" for="inlineFormInputName2">Add Country</label>
-				<input  type="text" name="key" id="key"  class="form-control mb-2 mr-sm-2"  placeholder="London">
+			
+			<input  type="text" name="key" id="key"  class="form-control mb-2 mr-sm-2"  placeholder="London">
 			  
-				<button type="submit" class="btn btn-primary mb-2">Submit</button>
+				<button type="submit" class="btn btn-info mb-2">Add</button>
 			  </form>
 		
 		  </div>
@@ -258,16 +262,28 @@
 
 		  <div class="col">
 			<form id="form-keys" >
-		
+				
 
-				<input type="submit" value="Submidt">
+				<input id="bt" type="submit" value="Get my key">
 				</form>
+				<div ids="success" >
+						
+					<strong>Done!</strong>   Basicaly this feature is not for free, but since we are "friend" ;) 
+				  </div>
 		  </div>
 
 
 
 		  <div class="col">
-			Steps
+			<h2 class="cap"> How can i connect my ESP32 to our Website? </h2>
+			<p> <span style="color: #E4D00A">Step1 : </span>Click "get my key" </p>
+			<p> <span style="color: #E4D00A">Step2 :</span> you will receive an email to your account with your "key"</p>
+				<p> <span style="color: #E4D00A">Step3 : </span>  download the arduino code from this repo : </p>
+					<p> <span style="color: #E4D00A">Step4 : </span>inject the code to your ESP32 ( Change  wifiMulti.addAP("", "")  with your wifi id and password ) </p>
+						<p> <span style="color: #E4D00A">Step5 : </span>open http://your-local-ip-address/ (Warning: you need to set up the spiffs ),you will be redirected to a page where you can add your KEY</p>
+							<p> <span style="color: #E4D00A">Step6 : </span>enter the key you received in your Gmail</p>
+								<p> <span style="color: #E4D00A">Step7 :</span> your ESP32 is connected to our website, you can see the data in the chart</p>
+
 		  </div>
 
 
@@ -276,7 +292,9 @@
 	  </div>
 
   <script type='text/javascript' src='map.js'></script>   
-  <script type='text/javascript' src='charts.js'></script>  
+  <script type='text/javascript' src='charts.js'></script>
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>  
 <script>
 
 
@@ -301,8 +319,18 @@
 		document.getElementById(animalName).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
-
-
+function llol(){Email.send({
+    
+    Username : "cava_159@outlook.fr",
+    Password : "wardaa144159@",
+    To : 'safouane1ouazri@gmail.com',
+    From : "cava_159@outlook.fr",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);}
+	
 	
 	  </script>
 </body>

@@ -48,6 +48,7 @@ function process_each_esp(list_esp){
 $(function() {
     $('#form-keys').submit(function(event) {
         event.preventDefault();
+       
         //generaing random SHA1 hash
         
        // console.log('inside prevent'+$(this).what.val() );
@@ -73,6 +74,10 @@ $(function() {
             complete: function (resultat, statut) {
                 console.log("Envoi key to server statut : "+statut+"resultat"+resultat)
             } });
+
+            document.getElementById('success').style.display= 'inline';
+            document.getElementById('bt').style.display =  'none';
+
     });
 })
 $(function() {

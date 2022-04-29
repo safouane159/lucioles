@@ -8,8 +8,17 @@ body{
 	font-family: 'Jost', sans-serif;
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
+.cap{
+	color : white;
+	font-family: Georgia, serif;
+}
+p{
+	color: white;
+	font-family: Georgia, serif;
+}
 
 #myform{
+	margin-top: 40px;
 	padding-left: 40px;
 }
 #acceuil{
@@ -25,6 +34,32 @@ body{
 
   
 
+
+.chi{
+	position: absolute; 
+	width: 100%;
+	bottom: 0;
+}
+
+#success {
+	padding: 20px;
+	margin-top: 20px;
+	background-color: green;
+	color: white;
+	display: none;
+  }
+  
+
+  #bt {
+	color: #fff;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+	
+  }
+  #form-keys {
+	margin-left: 100px;
+	
+  }
 .alert {
 	padding: 20px;
 	display :none;
@@ -75,7 +110,15 @@ input{
 	border: none;
 	outline: none;
 	border-radius: 5px;
+	cursor: pointer;
 }
+.btnDi{
+	width: 60%;
+	
+}
+
+
+
 button{
 	
 	height: 40px;
