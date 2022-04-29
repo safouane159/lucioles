@@ -207,32 +207,66 @@
   </div>
 </header>
 <body>
-  <div id="acceuil">
+	<div  id="acceuil" class="container">
+		
+		<div class="row">
+		  <div class="col">
+			
+
+
+
+		  </div>
+		  <div class="col">
+			<div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;"></div>
+				<div id="container1" class="tabcontent"> </div>  
+		  </div>
+
+
+		  <div class="col">
+			<form id="myform" method="GET" action="/getPaye" >
+				<label for="fname">country:</label><br>
+				<input type="text" name="key" id="key" value="London"><br><br>
+			  
+				<input type="submit" value="Submit">
+		  
+				</form>
+		  </div>
+		</div>
+	  </div>
 	  
-    <form id="myform" method="GET" action="/getPaye" >
-      <label for="fname">country:</label><br>
-      <input type="text" name="key" id="key" value="London"><br><br>
-    
-      <input type="submit" value="Submit">
 
-	  <div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;"></div>
-	  <div id="container1" class="tabcontent">
+
+
+	  <div  id="subscribe" class="container" style="display: block;">
 		
-	</div>  
-      </form>
-  </div>
+		<div class="row">
+		  <div class="col">
+			
+		  </div>
 
 
 
 
-  <div id="subscribe" style="display: block;">
-  
-	  <form id="form-keys" >
+
+		  <div class="col">
+			<form id="form-keys" >
 		
 
-      <input type="submit" value="Submidt">
-      </form>
-  </div>
+				<input type="submit" value="Submidt">
+				</form>
+		  </div>
+
+
+
+		  <div class="col">
+			Steps
+		  </div>
+
+
+		  
+		</div>
+	  </div>
+
   <script type='text/javascript' src='map.js'></script>   
   <script type='text/javascript' src='charts.js'></script>  
 <script>

@@ -293,11 +293,11 @@ console.log("hahowa"+wh.who);
 }
 function ShowDash(){
     console.log("inside dahs")
-    document.getElementById('acceuil').style.visibility='visible';
-    document.getElementById('subscribe').style.visibility='hidden';
+    document.getElementById('acceuil').style.display='inline';
+    document.getElementById('subscribe').style.display =  'block';
 }
 function ShowSub(){
     console.log("inside sub");
-    document.getElementById('acceuil').style.visibility='hidden';
-    document.getElementById('subscribe').style.visibility='visible';
+    document.getElementById('acceuil').style.display =  'block';;
+    document.getElementById('subscribe').style.display='inline';
 }
