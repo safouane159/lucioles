@@ -56,7 +56,7 @@ const {MongoClient} = require('mongodb');
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
     
-    console.log("Databases in Mongo Cluster : \n");
+    console.log("Databases in Mongo zCluster : \n");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
 var wholist = [];
