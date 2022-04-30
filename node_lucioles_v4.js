@@ -506,8 +506,8 @@ app.post('/deleteCapital', function(req, res) {
 		
 	    if (index === -1){
 	    }else{
-			arrayRemove(wholist_payes, wh)
-
+		
+			wholist_payes.splice(index, 1) 
 			var myquery = { who: wh };
 			dbo.collection("sensors").deleteMany(myquery, function(err, obj) {
 				if (err) throw err;
@@ -520,7 +520,7 @@ app.post('/deleteCapital', function(req, res) {
 	    if (index1 === -1){
 		  
 	    }else{
-			arrayRemove(wholist, wh)
+			wholist.splice(index1, 1) 
 		}
 	    console.log("payee using the node server :", wholist_payes);
 		
