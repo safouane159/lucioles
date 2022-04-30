@@ -187,7 +187,7 @@ function process_series(list){
 function proccess_loca_esp(esp,i){
     
     node_url = 'https://lucioles.herokuapp.com'
-    console.log("inside locali "+esp[i]);
+    console.log("inside localzi "+esp[i]);
 	
 		
 		
