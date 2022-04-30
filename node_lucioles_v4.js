@@ -515,11 +515,11 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 		  "to":[
 			 {
 				"email":"safouane1ouazri@gmail.com",
-				"name":req.session.isAuth
+				"name":req.session.naem
 			 }
 		  ],
 		  "params":{
-			 "name":req.session.isAuth
+			 "name":req.session.name
 		  },
 		  "subject":"Some deals worth to be looked at!"
 	   }
