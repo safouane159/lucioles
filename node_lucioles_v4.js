@@ -492,7 +492,7 @@ console.log("\nItem : ", new_entry,
 });
 
 var transporter = nodemailer.createTransport({
-	service: 'gmail',
+	service: 'outlook',
 	auth: {
 	  user: 'cava_159@outlouk.fr',
 	  pass: 'wardaa144159@'
