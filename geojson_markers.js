@@ -149,5 +149,5 @@ function add_esp(uri){
 // Install periodicity
 window.setInterval(add_esp,
 		   refreshT,
-		   "https://data.rennesmetropole.fr/explore/dataset/topologie-des-stations-le-velo-star/download/?format=geojson&timezone=Europe/Paris",     // URL to GET
+		   "https://luciole.herokuapp.com/geogs",     // URL to GET
 		  );   
