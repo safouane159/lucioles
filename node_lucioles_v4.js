@@ -77,8 +77,8 @@ async function v0(){
     const mongoName = "lucioles"                   //Nom de la base
     //const mongoUri = 'mongodb://localhost:27017/'; //URL de connection		
     //const mongoUri = 'mongodb://10.9.128.189:27017/'; //URL de connection
- // const mongoUri = 'mongodb+srv://safouane:ouazri@cluster0.6ylmr.mongodb.net/lucioles?retryWrites=true&w=majority';
-  var mongoUri = process.env.MONGOLAB_URI
+ const mongoUri = 'mongodb+srv://safouane:ouazri@cluster0.6ylmr.mongodb.net/lucioles?retryWrites=true&w=majority';
+ // var mongoUri = process.env.MONGOLAB_URI
    ;
 
 
