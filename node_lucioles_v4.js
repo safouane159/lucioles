@@ -501,13 +501,11 @@ app.post('/deleteCapital', function(req, res) {
 			dbo.collection("sensors").deleteMany(myquery, function(err, obj) {
 				if (err) throw err;
 
-				console.log(obj.result.n + " document(s) deleted");
 				
 			  });
 			  dbo.collection("location").deleteMany(myquery, function(err, obj) {
 				if (err) throw err;
 
-				console.log(obj.result.n + " document(s) deleted");
 				
 			  });
 
