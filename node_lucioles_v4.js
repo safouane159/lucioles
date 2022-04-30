@@ -406,7 +406,7 @@ return "inscrit" ;*/
 app.get('/geogs/:what', function (req, res) {
 
 	esp_mac_address = req.params.what
-	var index1 = wholist.findIndex(x1 => x1.who1==esp_mac_address)
+	var index1 = wholist.findIndex(x1 => x1.who==esp_mac_address)
 	
 	if (index1 === -1){
 	}else{
@@ -445,7 +445,7 @@ app.get('/esp/:what', function (req, res) {
    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
 
 
-   var index1 = wholist.findIndex(x1 => x1.who1==wh);
+   var index1 = wholist.findIndex(x1 => x1.who==wh);
    console.log("laaaybareek f3meer sidi-----------------------------------------------------+"+wholist[0].who);
 			if (index1 === -1){
 			}else{
@@ -527,7 +527,7 @@ app.post('/deleteCapital', function(req, res) {
 
 });
 function arrayRemove(arr, value) { 
-    
+	console.log("removed _________________________________ :", value);
 	return arr.filter(function(ele){ 
 		return ele != value; 
 	});
