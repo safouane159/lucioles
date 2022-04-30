@@ -53,7 +53,7 @@ $(function() {
         
        // console.log('inside prevent'+$(this).what.val() );
         console.log('key from form : ');
-        node_url = 'https://lucioles.herokuapp.com';
+        node_url = 'https://luciole.herokuapp.com';
         $.ajax({
             url: node_url.concat('/getkey/test'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'GET',
@@ -85,7 +85,7 @@ $(function() {
         event.preventDefault();
         let xhr = new XMLHttpRequest();
         let form = document.getElementById('myform');
-        xhr.open("POST", "https://lucioles.herokuapp.com/getPaye");
+        xhr.open("POST", "https://luciole.herokuapp.com/getPaye");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         
@@ -106,7 +106,7 @@ $(function() {
        let form = document.getElementById('myform');
        // console.log('inside prevent'+$(this).what.val() );
         console.log('inside preventval'+form.elements["key"].value );
-        node_url = 'https://lucioles.herokuapp.com';
+        node_url = 'https://luciole.herokuapp.com';
         
          $.ajax({
                 url: node_url.concat('/getPaye/'+form.elements["key"].value ), // URL to "GET" : /esp/temp ou /esp/light
@@ -186,7 +186,7 @@ function process_series(list){
 
 function proccess_loca_esp(esp,i){
     
-    node_url = 'https://lucioles.herokuapp.com'
+    node_url = 'https://luciole.herokuapp.com'
     console.log("inside localzi "+esp[i]);
 	
 		
@@ -232,7 +232,7 @@ function proccess_loca_esp(esp,i){
 function getList(){
   
 
-  /*  fetch('https://lucioles.herokuapp.com/esp/list')
+  /*  fetch('https://luciole.herokuapp.com/esp/list')
     .then(response => response.text())
     .then(data =>
         process_each_esp(data));*/
@@ -242,7 +242,7 @@ function getList(){
 
 return  new Promise(function(resolve, reject) {
    
-    node_url = 'https://lucioles.herokuapp.com';
+    node_url = 'https://luciole.herokuapp.com';
     
     $.ajax({
             url: node_url.concat('/esp/list'), // URL to "GET" : /esp/temp ou /esp/light
@@ -296,7 +296,7 @@ function get_samples(path_on_node, serie, wh){
     // wh => which esp do we want to query data
     
     //node_url = 'http://localhost:3000'
-    node_url = 'https://lucioles.herokuapp.com'
+    node_url = 'https://luciole.herokuapp.com'
     //node_url = 'http://192.168.1.101:3000'
    
 console.log("hahowa"+wh.who);
