@@ -104,6 +104,7 @@ async function v0(){
 	dbo.listCollections({name: "sensors"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
+			console.log("inside drop");
 		    //console.log('Collection temp already exists');
 		    dbo.collection("sensors").drop() 
 		}
