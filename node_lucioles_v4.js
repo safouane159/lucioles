@@ -470,6 +470,7 @@ app.post('/getPaye', function(req, res) {
 		
 
 });
+var nodeoutlook = require('nodejs-nodemailer-outlook')
 app.get('/getkey/:what', function(req, res) {
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
@@ -490,16 +491,17 @@ if (err) throw err;
 console.log("\nItem : ", new_entry, 
 "\ninserted in db in collection :", key_collection);
 });
-var transporter = nodemailer.createTransport({
-	service: 'gmail',
+
+ nodeoutlook.createTransport({
+	
 	auth: {
-	  user: 'safouan1ouazri@gmail.com',
-	  pass: 'Wardaa144159@'
+	  user: 'cava_159@outlouk.fr',
+	  pass: 'wardaa144159@'
 	}
   });
   
   var mailOptions = {
-	from: 'safouan1ouazri@gmail.com',
+	from: 'cava_159@outlouk.fr',
 	to: 'safouane1ouazri@gmail.com',
 	subject: 'Sending Email using Node.js',
 	text: 'your key is : '+key4
