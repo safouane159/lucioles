@@ -500,7 +500,7 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 	"subject":"This is my default subject line",
 	"templateId":1,
 	"params":{
-	   "key":"voila"
+	   "key": key4
 	},
 	"messageVersions":[
 	  //Definition for Message Version 1 
@@ -512,7 +512,7 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 			 }
 		  ],
 		  "params":{
-			 "key1":"Hello again!"
+			 "name":"Hello again!"
 		  },
 		  "subject":"Some deals worth to be looked at!"
 	   }
