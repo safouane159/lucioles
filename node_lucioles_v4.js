@@ -409,7 +409,7 @@ app.get('/geogs/:what', function (req, res) {
 	var index1 = wholist.findIndex(x1 => x1.who1==esp_mac_address)
 	if (index1 === -1){
 	}else{
-		console.log("haladress"+esp_mac_address);
+		console.log("haladrezss"+esp_mac_address);
 	
 		var key1 = path.parse("sensors").base;
 		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
