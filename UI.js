@@ -12,7 +12,7 @@ $(function() {
         var Mdps = form.elements["mdps"].value;
          console.log('inside preventval'+form.elements["email"].value );
 
-        node_url = 'https://lucioles.herokuapp.com';
+        node_url = 'https://luciole.herokuapp.com';
         $.ajax({
             url: node_url.concat('/inscription'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'POST',
@@ -63,7 +63,7 @@ $(function() {
         var Mdps = form.elements["mdps"].value;
          console.log('inside preventval'+form.elements["email"].value );
 
-        node_url = 'https://lucioles.herokuapp.com';
+        node_url = 'https://luciole.herokuapp.com';
         $.ajax({
             url: node_url.concat('/login'), // URL to "GET" : /esp/temp ou /esp/light
             type: 'POST',
