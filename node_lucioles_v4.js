@@ -19,7 +19,7 @@ app.use(session({
 	cookie: {
  
 		// Session expires after 1 min of inactivity.
-		expires: 60000
+		expires: 60000*5
 	}
   }));
   //middleware responsible for checking authentification before every req
@@ -326,7 +326,14 @@ app.post('/login', function (req, res) {
 		}else if(result.mdps !== mdps){
 			res.send("mdp incorect") ;
 		}else{
+		
+
+
 			req.session.isAuth = true;
+			req.session.name = result.name;
+
+
+
 		//	https://lucioles.herokuapp.com/indexApp.html
 			res.send("https://lucioles.herokuapp.com/indexApp") ;
 			//res.sendFile(path.join(__dirname + '/indexApp.html'));
@@ -497,7 +504,7 @@ console.log("\nItem : ", new_entry,
 new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 
 	"sender":{ "email":"cava_159@outlouk.fr", "name":"Safouane"},
-	"subject":"This is my default subject line",
+	"subject":" your Key to connect to luciole devine",
 	"templateId":1,
 	"params":{
 	   "key": key4
@@ -508,11 +515,11 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 		  "to":[
 			 {
 				"email":"safouane1ouazri@gmail.com",
-				"name":"Bob Anderson"
+				"name":req.session.isAuth
 			 }
 		  ],
 		  "params":{
-			 "name":"Hello again!"
+			 "name":req.session.isAuth
 		  },
 		  "subject":"Some deals worth to be looked at!"
 	   }
