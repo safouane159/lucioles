@@ -2,9 +2,11 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
 var session = require('express-session')
+const MemoryStore = require('memorystore')(session)
 const express = require('express');
 const request = require('request');
 const app = express();
+
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 let ejs = require('ejs');
@@ -12,9 +14,13 @@ let ejs = require('ejs');
 const mqtt = require('mqtt');
 const crypto = require('crypto')
 var GeoJSON = require('geojson');
+app.set('trust proxy', 1);
 app.use(session({
 	secret: 'safouaneKey',
-	resave: false,
+	resave: false, 
+	store: new MemoryStore({
+		checkPeriod: 86400000 // prune expired entries every 24h
+	  }),
 	saveUninitialized: true,
 	cookie: {
  
@@ -56,7 +62,7 @@ const {MongoClient} = require('mongodb');
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
     
-    console.log("Databases in Mongo zCluster : \n");
+    console.log("Databases in Mongo Cluster : \n");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
 var wholist = [];
