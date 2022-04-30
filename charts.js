@@ -216,7 +216,7 @@ function proccess_loca_esp(esp,i){
 	//Ajout de popup sur chaque objet
 	layer.bindPopup(function(layer) {
 	    console.log(layer.feature.properties);
-	    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.properties.nombreemplacementstheorique + "  emplacements";
+	    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.temp + "°C";
 	});
 	
 	//Ajout de la couche sur la carte

@@ -404,7 +404,11 @@ return "inscrit" ;*/
 });
 
 app.get('/geogs/:what', function (req, res) {
+
 	esp_mac_address = req.params.what
+if ( wholist.includes(esp_mac_address)){
+
+	
 	console.log("haladress"+esp_mac_address);
 	
 	var key1 = path.parse("sensors").base;
@@ -413,10 +417,10 @@ app.get('/geogs/:what', function (req, res) {
 		console.log("ta dreb1",result);
 		console.log("ta dreb",result.longitude);
 
-		var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
+		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
   
 			
-	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name']});
+	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']});
 	res.jsonp(lol) ;
 		 // This is the response.
 		console.log('end find');
@@ -428,7 +432,7 @@ app.get('/geogs/:what', function (req, res) {
 	//build a geogson  
 	
     //send the geogson
-  
+}
 });
 
 // The request contains the name of the targeted ESP !
@@ -436,11 +440,12 @@ app.get('/geogs/:what', function (req, res) {
 // Exemple d'utilisation de routes dynamiques
 //    => meme fonction pour /esp/temp et /esp/light
 app.get('/esp/:what', function (req, res) {
+	wh = req.query.who // get the "who" param from GET request
+    // => gives the Id of the ESP we look for in the db	
    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
     console.log(req.originalUrl);
-    
-    wh = req.query.who // get the "who" param from GET request
-    // => gives the Id of the ESP we look for in the db	
+    if ( wholist.includes(wh)){
+ 
     wa = req.params.what // get the "what" from the GET request : temp or light ?
     
     console.log("\n--------------------------------");
@@ -463,6 +468,7 @@ app.get('/esp/:what', function (req, res) {
 	console.log('end find');
     });
     console.log('end app.get');
+}
 });
 
 
@@ -503,12 +509,7 @@ app.post('/deleteCapital', function(req, res) {
 
 				
 			  });
-			  dbo.collection("location").deleteMany(myquery, function(err, obj) {
-				if (err) throw err;
-
-				
-			  });
-
+			
 		}
 		var index1 = wholist.findIndex(x1 => x1.who==wh)
 	    if (index1 === -1){
