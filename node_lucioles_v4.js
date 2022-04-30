@@ -406,33 +406,32 @@ return "inscrit" ;*/
 app.get('/geogs/:what', function (req, res) {
 
 	esp_mac_address = req.params.what
-if ( wholist.includes(esp_mac_address)){
-
+	var index1 = wholist.findIndex(x1 => x1.who1==esp_mac_address)
+	if (index1 === -1){
+	}else{
+		console.log("haladress"+esp_mac_address);
 	
-	console.log("haladress"+esp_mac_address);
+		var key1 = path.parse("sensors").base;
+		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
+			if (err) throw err;
+			console.log("ta dreb1",result);
+			console.log("ta dreb",result.longitude);
 	
-	var key1 = path.parse("sensors").base;
-	dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
-		if (err) throw err;
-		console.log("ta dreb1",result);
-		console.log("ta dreb",result.longitude);
-
-		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
-  
+			var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
+	  
+				
+		var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']});
+		res.jsonp(lol) ;
+			 // This is the response.
+			console.log('end find');
+			});
 			
-	var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']});
-	res.jsonp(lol) ;
-		 // This is the response.
-		console.log('end find');
-		});
-		
-	
 		
 
-	//build a geogson  
-	
-    //send the geogson
-}
+
+	}
+
+
 });
 
 // The request contains the name of the targeted ESP !
@@ -443,10 +442,12 @@ app.get('/esp/:what', function (req, res) {
 	wh = req.query.who // get the "who" param from GET request
     // => gives the Id of the ESP we look for in the db	
    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
-    console.log("laaaybareek f3meer sidi------------------------------------------------------"+wholist.includes(wh));
-    if ( wholist.includes(wh)){
- 
-    wa = req.params.what // get the "what" from the GET request : temp or light ?
+
+
+   var index1 = wholist.findIndex(x1 => x1.who1==wh)
+			if (index1 === -1){
+			}else{
+				wa = req.params.what // get the "what" from the GET request : temp or light ?
     
     console.log("\n--------------------------------");
     console.log("A client/navigator ", req.ip);
@@ -468,6 +469,11 @@ app.get('/esp/:what', function (req, res) {
 	console.log('end find');
     });
     console.log('end app.get');
+			}
+    console.log("laaaybareek f3meer sidi------------------------------------------------------"+wholist.includes(wh));
+    if ( wholist.includes(wh)){
+ 
+    
 }
 });
 
