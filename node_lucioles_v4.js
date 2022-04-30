@@ -124,7 +124,7 @@ async function v0(){
 	    client_mqtt.subscribe(TOPIC_Miage, function (err) {
 		if (!err) {
 		    //client_mqtt.publish(TOPIC_LIGHT, 'Hello mqtt')
-		    console.log('Node Server has subscribed to ', TOPIC_Miage);
+		    console.log('Node Server has subschribed to ', TOPIC_Miage);
 		}
 	    })
 	  
