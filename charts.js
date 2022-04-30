@@ -104,41 +104,32 @@ $(function() {
         
         xhr.send(textToPost);
 
-      /*// 
-       let form = document.getElementById('myform');
-       // console.log('inside prevent'+$(this).what.val() );
-        console.log('inside preventval'+form.elements["key"].value );
-        node_url = 'https://luciole.herokuapp.com';
-        
-         $.ajax({
-                url: node_url.concat('/getPaye/'+form.elements["key"].value ), // URL to "GET" : /esp/temp ou /esp/light
-                type: 'GET',
-                
-        
-                success: function (resultat, statut) { // Anonymous function on success
-                    console.log("ha London "+resultat)
-                    
-                    
-                    
-                    
-                   
-                  
-                },
-                error: function (resultat, statut, erreur) {
-                },
-                complete: function (resultat, statut) {
-                } });
-        
-    /* $.ajax({
-            type: 'GET',
-            url: '/getPaye',
-            data: { what: }
-        });
-        */
     });
 })
- 
+$(function() {
+    $('#delform').submit(function(event) {
+        event.preventDefault();
+        let xhr = new XMLHttpRequest();
+        let form = document.getElementById('delform');
+        xhr.open("POST", "https://luciole.herokuapp.com/deleteCapital");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+          }};
+        
+          let textToPost = `{
+           
+            "key": "${form.elements["capitalname"].value}"
+           }`;
+        
+        xhr.send(textToPost);
 
+    });
+})
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
@@ -165,6 +156,7 @@ function process_esp(which_esps,i){
 function process_series(list){
 
   
+    var elem = document.getElementById('capitalname');
 
     for (let i = 0; i < list.length; i++) {
        
@@ -182,19 +174,13 @@ function process_series(list){
             
           });
 
-       }
-       
-       var elem = document.getElementById('capitalname');
-       for(element in list)
-       {
-          var opt = document.createElement("opt");
-          opt.value= element.who;
-          opt.innerHTML = element.who; // whatever property it has
-       
+          var option = new Option(list[i].who, list[i].who);
           // then append it to the select element
-          elem.appendChild(opt);
-        
+          elem.appendChild(option);
        }
+       
+     
+       
       
       };
 

@@ -486,6 +486,48 @@ app.post('/getPaye', function(req, res) {
 		
 
 });
+app.post('/deleteCapital', function(req, res) {
+
+	wh = req.body.key;
+	
+		console.log("lmachakil", wh);
+		var index = wholist_payes.findIndex(x => x.who==wh)
+		
+	    if (index === -1){
+	    }else{
+			arrayRemove(wholist_payes, wh)
+
+			var myquery = { who: wh };
+			dbo.collection("sensors").deleteMany(myquery, function(err, obj) {
+				if (err) throw err;
+
+				console.log(obj.result.n + " document(s) deleted");
+				
+			  });
+			  dbo.collection("location").deleteMany(myquery, function(err, obj) {
+				if (err) throw err;
+
+				console.log(obj.result.n + " document(s) deleted");
+				
+			  });
+
+		}
+		var index1 = wholist.findIndex(x1 => x1.who==wh)
+	    if (index1 === -1){
+		  
+	    }else{
+			arrayRemove(wholist, wh)
+		}
+	    console.log("payee using the node server :", wholist_payes);
+		
+
+});
+function arrayRemove(arr, value) { 
+    
+	return arr.filter(function(ele){ 
+		return ele != value; 
+	});
+}
 
 var SibApiV3Sdk = require('sib-api-v3-sdk');
 SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';

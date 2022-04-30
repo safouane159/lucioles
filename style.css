@@ -31,8 +31,17 @@ p{
 #key{
 	height: 50x;
 }
-
-  
+.ok{
+	margin-left:40px;
+	width: 300px;
+}
+#capitalname{
+	margin-right: 10px;
+	width: 200px;
+}
+.t{
+	margin-top:30px;
+}
 
 
 .chi{
