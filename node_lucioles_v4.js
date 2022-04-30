@@ -443,7 +443,7 @@ app.get('/esp/:what', function (req, res) {
 	wh = req.query.who // get the "who" param from GET request
     // => gives the Id of the ESP we look for in the db	
    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
-    console.log(req.originalUrl);
+    console.log("laaaybareek f3meer sidi------------------------------------------------------"+wh);
     if ( wholist.includes(wh)){
  
     wa = req.params.what // get the "what" from the GET request : temp or light ?
