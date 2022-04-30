@@ -1,3 +1,5 @@
+var List_SERIES = [];
+
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
 Highcharts.setOptions({
@@ -10,7 +12,7 @@ Highcharts.setOptions({
 // cf https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/spline-irregular-time/
 chart1 = new Highcharts.Chart({
     title: {text: 'Temperatures'},
-    subtitle: { text: 'Irregular time data in Highcharts JS'},
+    subtitle: { text: 'Temperture all arround the world'},
     legend: {enabled: true},
     credits: false,
     chart: {renderTo: 'container1'},
@@ -136,6 +138,8 @@ $(function() {
     });
 })
  
+
+
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
     console.log(which_esps[i]);
@@ -146,6 +150,7 @@ function process_esp(which_esps,i){
     // Gestion de la temperature
     // premier appel pour eviter de devoir attendre RefreshT
     get_samples('/esp/temp', chart1.series[i], esp);
+  
     //calls a function or evaluates an expression at specified
     //intervals (in milliseconds).
   /*  window.setInterval(get_samples,
@@ -159,26 +164,38 @@ function process_esp(which_esps,i){
 
 function process_series(list){
 
-   
-    var series_ids = [];
-    for (var s in chart1.series) {
-        series_ids.push(chart1.series[s].options.id);
-    }
-    for (var id in series_ids) {
-        chart1.get(id).remove(false);
-    }
-
+  
 
     for (let i = 0; i < list.length; i++) {
        
-
        
+       if (List_SERIES.includes(list[i].who)) {
 
+
+
+       }else{
+        List_SERIES.push(list[i].who)
+      
         chart1.addSeries({
             name: list[i].who, 
             data: []
             
           });
+
+       }
+       
+       var elem = document.getElementById('capitalname');
+       for(element in list)
+       {
+          var opt = document.createElement("opt");
+          opt.value= element.who;
+          opt.innerHTML = element.who; // whatever property it has
+       
+          // then append it to the select element
+          elem.appendChild(opt);
+        
+       }
+      
       };
 
 
@@ -290,7 +307,7 @@ return  new Promise(function(resolve, reject) {
 //=== Recuperation dans le Node JS server des samples de l'ESP et 
 //=== Alimentation des charts ====================================
 
-function get_samples(path_on_node, serie, wh){
+function get_samples(path_on_node, serie, wh,what){
     // path_on_node => help to compose url to get on Js node
     // serie => for choosing chart/serie on the page
     // wh => which esp do we want to query data
@@ -305,7 +322,7 @@ console.log("hahowa"+wh.who);
         url: node_url.concat(path_on_node), // URL to "GET" : /esp/temp ou /esp/light
         type: 'GET',
         headers: { Accept: "application/json", },
-	data: {"who": wh.who}, // parameter of the GET request
+	data: {"who": wh.who,"what":what}, // parameter of the GET request
         success: function (resultat, statut) { // Anonymous function on success
             let listeData = [];
             resultat.forEach(function (element) {

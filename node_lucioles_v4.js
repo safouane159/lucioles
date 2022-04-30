@@ -587,9 +587,9 @@ var transporter = nodemailer.createTransport({
 			  var second_entry = { date: frTime, // timestamp the value 
 				who: body.name,      // identify ESP who provide 
 				  // light value
-				temp: body.main.temp,
-				temp_min: body.main.temp_min,
-				temp_max: body.main.temp_max,
+				temp: body.main.temp - 273.15,
+				temp_min: body.main.temp_min - 273.15,
+				temp_max: body.main.temp_max - 273.15,
 				wind: body.wind.speed,
 				clouds: body.clouds.all,
 				latitude: body.coord.lat,    // temp value

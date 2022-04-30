@@ -212,7 +212,7 @@
 			<li><a >Youtube</a></li>
 			<li><a >Git</a></li>
 	</div>
-   <button onclick="llol();"></button>
+ 
     </ul>
   </div>
 </header>
@@ -228,8 +228,8 @@
 		  </div>
 		  <div class="col">
 			<div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA; padding: 6px 12px;  "></div>
-				<div id="container1" class="tabcontent" style="margin-top:40px;"> </div>  
-				<div id="container1" class="tabcontent" style="margin-top:40px;margin-bottom:40px"> </div>  
+				<div id="container1" class="tabcontent" style="margin-top:40px;margin-bottom:40px;"> </div>  
+			
 		  </div>
 
 
@@ -242,6 +242,12 @@
 				<button type="submit" class="btn btn-info mb-2">Add</button>
 			  </form>
 		
+			  <form class="form-inline" name="delform" id="delform" method="GET" action="/deletePay">
+
+			  <select class="form-control form-control-sm" id="capitalname" name="capitalname" form="delform">
+				<option selected>Choose...</option>
+			  </select>
+			</form>
 		  </div>
 		</div>
 	  </div>
@@ -319,18 +325,7 @@
 		document.getElementById(animalName).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
-function llol(){Email.send({
-	Host: "smtp.gmail.com",
-	Username: "safouan1ouazri@gmail.com",
-	Password:"Wardaa144159@",
-    To : 'safouane1ouazri@gmail.com',
-    From : "safouan1ouazri@gmail.com",
-    Subject : "This is the subject",
-    Body : "And this is the body"
-}).then(
-  message => alert(message)
-);}
-	
+
 	
 	  </script>
 </body>
