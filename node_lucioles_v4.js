@@ -446,7 +446,7 @@ app.get('/esp/:what', function (req, res) {
 
 
    var index1 = wholist.findIndex(x1 => x1.who1==wh);
-   console.log("laaaybareek f3meer sidi------------------------------------------------------"+index1);
+   console.log("laaaybareek f3meer sidi-----------------------------------------------------+"+wholist);
 			if (index1 === -1){
 			}else{
 				wa = req.params.what // get the "what" from the GET request : temp or light ?
