@@ -99,18 +99,18 @@ async function v0(){
 	dbo = mg_client.db(mongoName);
 
 	// Remove "old collections : temp and light
-	dbo.listCollections({name: "localisation"})
+	/*dbo.listCollections({name: "localisation"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
 		    //console.log('Collection temp already exists');
 		    dbo.collection("localisation").drop() 
 		}
-	    });
+	    });*/
 
 	dbo.listCollections({name: "sensors"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
-			console.log("inside drfop");
+			console.log("inside drdfop");
 		    //console.log('Collection temp already exists');
 		    dbo.collection("sensors").drop() 
 		}
