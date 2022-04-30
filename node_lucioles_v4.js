@@ -470,6 +470,9 @@ app.post('/getPaye', function(req, res) {
 		
 
 });
+
+var SibApiV3Sdk = require('sib-api-v3-sdk');
+SibApiV3Sdk.ApiClient.instance.authentications['dibachat'].apiKey = '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';
 app.get('/getkey/:what', function(req, res) {
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
@@ -491,6 +494,38 @@ console.log("\nItem : ", new_entry,
 "\ninserted in db in collection :", key_collection);
 });
 
+new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
+
+	"sender":{ "email":"cava_159@outlouk.fr", "name":"Safouane"},
+	"subject":"This is my default subject line",
+	"templateId":1,
+	"params":{
+	   "key":"voila"
+	},
+	"messageVersions":[
+	  //Definition for Message Version 1 
+	  {
+		  "to":[
+			 {
+				"email":"safouane1ouazri@gmail.com",
+				"name":"Bob Anderson"
+			 }
+		  ],
+		  "params":{
+			 "key1":"Hello again!"
+		  },
+		  "subject":"Some deals worth to be looked at!"
+	   }
+   ]
+
+}).then(function(data) {
+ console.log(data);
+}, function(error) {
+ console.error(error);
+});
+
+
+/*
 var transporter = nodemailer.createTransport({
 	service: 'outlook',
 	auth: {
@@ -513,7 +548,7 @@ var transporter = nodemailer.createTransport({
 	  console.log('Email sent: ' + info.response);
 	}
   });
-
+*/
 
 	
 		console.log("the key ", key4);
