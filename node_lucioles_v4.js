@@ -472,7 +472,7 @@ app.post('/getPaye', function(req, res) {
 });
 
 var SibApiV3Sdk = require('sib-api-v3-sdk');
-SibApiV3Sdk.ApiClient.instance.authentications['dibachat'].apiKey = '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';
+SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
 app.get('/getkey/:what', function(req, res) {
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
