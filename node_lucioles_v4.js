@@ -470,7 +470,6 @@ app.post('/getPaye', function(req, res) {
 		
 
 });
-var nodeoutlook = require('nodejs-nodemailer-outlook')
 app.get('/getkey/:what', function(req, res) {
 	var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 	var current_date = (new Date()).valueOf().toString();
@@ -492,8 +491,8 @@ console.log("\nItem : ", new_entry,
 "\ninserted in db in collection :", key_collection);
 });
 
- nodeoutlook.createTransport({
-	
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
 	auth: {
 	  user: 'cava_159@outlouk.fr',
 	  pass: 'wardaa144159@'
