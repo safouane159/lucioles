@@ -407,6 +407,7 @@ app.get('/geogs/:what', function (req, res) {
 
 	esp_mac_address = req.params.what
 	var index1 = wholist.findIndex(x1 => x1.who1==esp_mac_address)
+	
 	if (index1 === -1){
 	}else{
 		console.log("haladrezss"+esp_mac_address);
@@ -444,7 +445,8 @@ app.get('/esp/:what', function (req, res) {
    // cf https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
 
 
-   var index1 = wholist.findIndex(x1 => x1.who1==wh)
+   var index1 = wholist.findIndex(x1 => x1.who1==wh);
+   console.log("laaaybareek f3meer sidi------------------------------------------------------"+index1);
 			if (index1 === -1){
 			}else{
 				wa = req.params.what // get the "what" from the GET request : temp or light ?
@@ -470,11 +472,8 @@ app.get('/esp/:what', function (req, res) {
     });
     console.log('end app.get');
 			}
-    console.log("laaaybareek f3meer sidi------------------------------------------------------"+wholist.includes(wh));
-    if ( wholist.includes(wh)){
- 
-    
-}
+  
+   
 });
 
 
