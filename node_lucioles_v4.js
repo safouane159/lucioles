@@ -515,7 +515,7 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 		  "to":[
 			 {
 				"email":"safouane1ouazri@gmail.com",
-				"name":req.session.naem
+				"name":req.session.name
 			 }
 		  ],
 		  "params":{
