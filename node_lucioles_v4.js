@@ -158,6 +158,7 @@ async function v0(){
 
 			temper = message.status.temperature;
 			lght = message.status.light;
+			
 			lat = message.lat;
 			lgn = message.lgn;
 			// Debug : Gerer une liste de who pour savoir qui utilise le node server	
@@ -404,6 +405,7 @@ app.get('/geogs/:what', function (req, res) {
 		if (err) throw err;
 		console.log("ta dreb1",result);
 		console.log("ta dreb",result.longitude);
+
 		var data = { name: esp_mac_address, category: 'House', street: 'Broad', lat: result.latitude , lng: result.longitude };
   
 			
@@ -521,7 +523,7 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 		  "params":{
 			 "name":req.session.name
 		  },
-		  "subject":"Some deals worth to be looked at!"
+		  "subject":"your Key to connect to luciole devine"
 	   }
    ]
 

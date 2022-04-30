@@ -16,9 +16,9 @@ chart1 = new Highcharts.Chart({
     chart: {renderTo: 'container1'},
     xAxis: {title: {text: 'Heure'}, type: 'datetime'},
     yAxis: {title: {text: 'Temperature (Deg C)'}},
-    series: [{name: 'ESP1', data: []},
+   /* series: [{name: 'ESP1', data: []},
 	     {name: 'ESP2', data: []},
-	     {name: 'ESP3', data: []}],
+	     {name: 'ESP3', data: []}],*/
     //colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
     colors: ['red', 'green', 'blue'],
     plotOptions: {line: {dataLabels: {enabled: true},
@@ -155,6 +155,35 @@ function process_esp(which_esps,i){
 		       esp);            // param 3 for get_samples()*/
 }
 
+
+
+function process_series(list){
+
+   
+    var series_ids = [];
+    for (var s in chart1.series) {
+        series_ids.push(chart1.series[s].options.id);
+    }
+    for (var id in series_ids) {
+        chart1.get(id).remove(false);
+    }
+
+
+    for (let i = 0; i < list.length; i++) {
+       
+
+       
+
+        chart1.addSeries({
+            name: list[i].who, 
+            data: []
+            
+          });
+      };
+
+
+}
+
 function proccess_loca_esp(esp,i){
     
     node_url = 'https://lucioles.herokuapp.com'
@@ -184,7 +213,7 @@ function proccess_loca_esp(esp,i){
 	//Ajout de popup sur chaque objet
 	layer.bindPopup(function(layer) {
 	    console.log(layer.feature.properties);
-	    return "Nom station : "+layer.feature.properties.nom+"<br/> "+layer.feature.properties.nombreemplacementstheorique + "  emplacements";
+	    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.properties.nombreemplacementstheorique + "  emplacements";
 	});
 	
 	//Ajout de la couche sur la carte
@@ -202,8 +231,6 @@ function proccess_loca_esp(esp,i){
 
 function getList(){
   
-
-
 
   /*  fetch('https://lucioles.herokuapp.com/esp/list')
     .then(response => response.text())
@@ -245,8 +272,9 @@ return  new Promise(function(resolve, reject) {
 
   var intervalId = window.setInterval(function(){
     getList().then((data) => {
-        
+        process_series(data);
         process_each_esp(data);
+       
        // tst();
       })
       .catch((error) => {
