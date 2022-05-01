@@ -310,15 +310,17 @@ app.get('/indexApp', isAuth,function (req, res) {
 	//res.render("/try") ;
 	res.sendFile(path.join(__dirname + '/indexApp.html'));
 });
-app.get('/cities', isAuth,function (req, res) {
+app.get('/cities',function (req, res) {
 	let rawdata = fs.readFileSync('cities.json');
+	
 let cities = JSON.parse(rawdata);
-
+console.log("----------hghfgzb-------------"+cities)
 	res.send(cities);
 });
 app.get('/esp/list', function (req, res) {
 	
 	console.log("hahiya "+wholist)
+
     res.send(wholist) ;
 });
 
