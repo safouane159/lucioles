@@ -347,7 +347,7 @@ app.post('/login', function (req, res) {
 
 			req.session.isAuth = true;
 			req.session.name = result.name;
-
+			req.session.mail = result.email;
 
 
 		//	https://lucioles.herokuapp.com/indexApp.html
@@ -579,7 +579,7 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 	  {
 		  "to":[
 			 {
-				"email":"safouane1ouazri@gmail.com",
+				"email":req.session.mail,
 				"name":req.session.name
 			 }
 		  ],

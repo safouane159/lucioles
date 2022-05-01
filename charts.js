@@ -289,7 +289,7 @@ function proccess_loca_esp(esp,i){
                 success: function(geojson) {
                 //Affichage des données dans la console
                 console.log("inside locali geogson"+geojson);
-                if (result.longitude  != undefined ){
+                if (geojson != undefined ){
 
   //Création de la couche à partir du GeoJSON
   var layer = L.geoJSON(geojson);
