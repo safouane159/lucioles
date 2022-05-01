@@ -332,7 +332,7 @@ app.get('/logout', function (req, res) {
 });
 app.get('/checkuser', function (req, res) {
 	
-	dbo.collection("Users").findOne({email:req.session.email},function(err, result) {
+	dbo.collection("Users").findOne({email:req.session.mail},function(err, result) {
 		if (err) throw err;
 
 	//	req.session.isAuthrized = result.authorized;
@@ -343,10 +343,10 @@ app.get('/checkuser', function (req, res) {
 
 });
 app.get('/setAuth', function (req, res) {
-	var myquery = { email: req.session.email };
+	var myquery = { email: req.session.mail };
 	var newvalues = { $set: {authorized: true} };
 
-	console.log("lmail"+req.session.email);
+	console.log("lmail"+req.session.mail);
 
 	dbo.collection("Users").updateOne(myquery, newvalues, function(err, res) {
 		if (err) throw err;
