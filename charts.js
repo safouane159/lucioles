@@ -1,6 +1,12 @@
 var List_SERIES = [];
 var List_map = [];
 
+
+fetch('https://luciole.herokuapp.com/cities')
+  .then(response => response.json())
+  .then(data =>  console.log(data));
+
+
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
 Highcharts.setOptions({
@@ -130,8 +136,14 @@ $(function() {
                 chart1.series[i].remove();
 
         }
-        List_SERIES.splice(form.elements["capitalname"].value, 1) 
-        List_map.splice(form.elements["capitalname"].value, 1) 
+
+
+
+        var index1 = List_SERIES.findIndex(x1 => x1==form.elements["capitalname"].value)
+        List_SERIES.splice(index1, 1) 
+        var index2 = List_map.findIndex(x1 => x1==form.elements["capitalname"].value)
+        List_map.splice(index2, 1) 
+
         var selectobject = document.getElementById("capitalname");
         
 
@@ -172,7 +184,7 @@ function renislizemap(){
         subdomains: ['a', 'b', 'c'],
     }).addTo(map)
     
-    getList();
+   // getList();
 }
 
 
@@ -204,15 +216,17 @@ function process_series(list){
     var elem = document.getElementById('capitalname');
 
     for (let i = 0; i < list.length; i++) {
+
        
        
        if (List_SERIES.includes(list[i].who)) {
 
-console.log("raha kat includi")
+
 
        }else{
+        console.log("inside else")
         List_SERIES.push(list[i].who)
-      
+        
         chart1.addSeries({
             id:i,
             name: list[i].who, 

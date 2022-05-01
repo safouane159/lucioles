@@ -6,7 +6,7 @@ const MemoryStore = require('memorystore')(session)
 const express = require('express');
 const request = require('request');
 const app = express();
-
+const fs = require('fs');
 // var, const, let :
 // https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
 let ejs = require('ejs');
@@ -309,6 +309,12 @@ app.get('/indexApp', isAuth,function (req, res) {
 	//swig.renderFile('try.html');
 	//res.render("/try") ;
 	res.sendFile(path.join(__dirname + '/indexApp.html'));
+});
+app.get('/cities', isAuth,function (req, res) {
+	let rawdata = fs.readFileSync('cities.json');
+let cities = JSON.parse(rawdata);
+
+	res.send(cities);
 });
 app.get('/esp/list', function (req, res) {
 	
@@ -655,28 +661,6 @@ var transporter = nodemailer.createTransport({
 			"\ninserted in db in collection :", key5);
 			});
 			
-//console.log("achahboun"+wholist_payes[i].who);
-
-		/*var index1 = wholist_payes1.findIndex(x1 => x1.who==wholist_payes[i].who)
-			if (index1 === -1){
-				wholist_payes1.push({who:wholist_payes[i].who});
-				
-			
-				var third_entry = { date: frTime, // timestamp the value 
-					who: body.name,      // identify ESP who provide 
-					latitude: body.coord.lat,    // temp value
-					longitude: body.coord.lon     // light value
-				  };
-			
-				// On recupere le nom basique du topic du message
-				var key_loc = path.parse("localisation").base;
-		
-		 dbo.collection(key_loc).insertOne(third_entry, function(err, res) {
-				if (err) throw err;
-				console.log("\ninside insert location  Item : ", third_entry, 
-				"\ninserted in db in collection :", key_loc);
-				});
-				}*/
 
 
 	});
