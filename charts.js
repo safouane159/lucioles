@@ -1,4 +1,5 @@
 var List_SERIES = [];
+var List_map = [];
 
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
@@ -130,7 +131,7 @@ $(function() {
 
         }
         List_SERIES.splice(form.elements["capitalname"].value, 1) 
-
+        List_map.splice(form.elements["capitalname"].value, 1) 
         var selectobject = document.getElementById("capitalname");
         
 
@@ -163,11 +164,7 @@ $(function() {
    
 function renislizemap(){
 
-    var map = L.map('map', {
-        center: [20.0, 5.0],
-        minZoom: 2,
-        zoom: 2,
-    })
+    List_map = [];
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
@@ -214,7 +211,7 @@ function process_series(list){
 console.log("raha kat includi")
 
        }else{
-        
+        List_SERIES.push(list[i].who)
       
         chart1.addSeries({
             id:i,
@@ -242,13 +239,13 @@ function proccess_loca_esp(esp,i){
     console.log("inside localzi "+esp[i]);
 	
      
-        if (List_SERIES.includes(esp[i].who)) {
+        if (List_map.includes(esp[i].who)) {
  
  
  
         }else{
          
-            List_SERIES.push(esp[i].who)
+            List_map.push(esp[i].who)
             $.ajax({
                 // On fait une requete et on recupere un geo json
                
