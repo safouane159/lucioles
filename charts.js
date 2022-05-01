@@ -502,8 +502,13 @@ function ShowSub(){
     document.getElementById('auth').style.display =  'none';
 }
 function Showauth(){
+   
     console.log("inside sub");
     document.getElementById('acceuil').style.display =  'none';;
     document.getElementById('auth').style.display='inline';
     document.getElementById('subscribe').style.display =  'none';
+    if ( autorized == true ){
+        document.getElementById('success2').style.display= 'inline';
+            document.getElementById('bt2').style.display =  'none';
+    }
 }

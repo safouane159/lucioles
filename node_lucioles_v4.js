@@ -343,7 +343,7 @@ app.get('/checkuser',isAuth, function (req, res) {
 		});
 
 });
-app.get('/setAuth', function (req, res) {
+app.get('/setAuth', isAuth,function (req, res) {
 	var myquery = { email: req.session.mail };
 	var newvalues = { $set: {authorized: true} };
 
