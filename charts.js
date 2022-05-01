@@ -10,7 +10,7 @@ fetch('https://luciole.herokuapp.com/cities')
   function setdatae(data){
     var elem2 = document.getElementById('key');
 for(let b=0;b<data.length;b++){
-    console.log("elemmm "+data[b].city)
+   
     var option1 = new Option(data[b].city, data[b].city);
 
     elem2.appendChild(option1);
@@ -71,7 +71,7 @@ function process_each_esp(list_esp){
 }
 $(function() {
     $('#form-keys').submit(function(event) {
-        map.removeLayer(markerVectorLayer);
+       
 
         event.preventDefault();
        
