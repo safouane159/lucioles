@@ -30,6 +30,8 @@ p{
 
 #key{
 	height: 50x;
+	margin-right: 10px;
+	width: 200px;
 }
 .ok{
 	margin-left:40px;
@@ -39,6 +41,7 @@ p{
 	margin-right: 10px;
 	width: 200px;
 }
+
 .t{
 	margin-top:30px;
 }

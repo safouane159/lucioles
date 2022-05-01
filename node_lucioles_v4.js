@@ -314,7 +314,7 @@ app.get('/cities',function (req, res) {
 	let rawdata = fs.readFileSync('cities.json');
 	
 let cities = JSON.parse(rawdata);
-console.log("----------hghfgzb-------------"+cities)
+
 	res.send(cities);
 });
 app.get('/esp/list', function (req, res) {

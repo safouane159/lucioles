@@ -237,15 +237,17 @@
 			  <h3 class="cap"> Add a capital to receive its real time data</h3>
 			<form class="form-inline" id="myform" method="GET" action="/getPaye">
 			
-			<input  type="text" name="key" id="key"  class="form-control mb-2 mr-sm-2"  placeholder="London">
-			  
+			<select class=" capitalname " name="key" id="key"  form="myform">
+				
+				
+			</select>
 				<button type="submit" class="btn btn-info mb-2">Add</button>
 			  </form>
 
 			  <h3 class="cap t"> delete a capital </h3>
 			  <form class="form-inline ok" name="delform" id="delform" method="GET" action="/deletePay">
 
-			  <select class="form-control form-control-sm " id="capitalname" name="capitalname" form="delform">
+			  <select class="form-control form-control-sm capitalname " id="capitalname" name="capitalname" form="delform">
 				
 				
 			  </select>

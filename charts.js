@@ -1,12 +1,27 @@
 var List_SERIES = [];
 var List_map = [];
-
+var List_cities = [];
 
 fetch('https://luciole.herokuapp.com/cities')
   .then(response => response.json())
-  .then(data =>  console.log(data));
+  .then(data =>  setdatae(data) );
 
 
+  function setdatae(data){
+    var elem2 = document.getElementById('key');
+for(let b=0;b<data.length;b++){
+    console.log("elemmm "+data[b].city)
+    var option1 = new Option(data[b].city, data[b].city);
+
+    elem2.appendChild(option1);
+}
+
+
+  }
+
+    
+ 
+ 
 //=== Initialisation des traces/charts de la page html ===
 // Apply time settings globally
 Highcharts.setOptions({
@@ -214,7 +229,7 @@ function process_series(list){
 
   
     var elem = document.getElementById('capitalname');
-
+    
     for (let i = 0; i < list.length; i++) {
 
        
