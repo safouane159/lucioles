@@ -454,7 +454,7 @@ app.get('/geogs/:what', function (req, res) {
 		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
 	  
 				
-		var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']});
+		var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']  });
 	}
 			
 		res.jsonp(lol) ;
@@ -658,6 +658,7 @@ var transporter = nodemailer.createTransport({
 			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 			  if (err) { return console.log(err); }
 			  console.log("igot the body");
+			  if (body  != undefined ){
 			  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 			
 			  var second_entry = { date: frTime, // timestamp the value 
@@ -684,7 +685,7 @@ var transporter = nodemailer.createTransport({
 			console.log("\ninside insert sensors Item : ", second_entry, 
 			"\ninserted in db in collection :", key5);
 			});
-			
+		}
 
 
 	});
