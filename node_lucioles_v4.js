@@ -423,13 +423,15 @@ app.get('/geogs/:what', function (req, res) {
 		var key1 = path.parse("sensors").base;
 		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 			if (err) throw err;
-			console.log("ta dreb1",result);
-			console.log("ta dreb",result.longitude);
 	
-			var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
+	if (result.longitude  != undefined ){
+
+		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
 	  
 				
 		var lol = GeoJSON.parse(data, {Point: ['lat', 'lng'], include: ['name','temp']});
+	}
+			
 		res.jsonp(lol) ;
 			 // This is the response.
 			console.log('end find');

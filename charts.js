@@ -289,18 +289,22 @@ function proccess_loca_esp(esp,i){
                 success: function(geojson) {
                 //Affichage des données dans la console
                 console.log("inside locali geogson"+geojson);
+                if (result.longitude  != undefined ){
+
+  //Création de la couche à partir du GeoJSON
+  var layer = L.geoJSON(geojson);
                 
-                //Création de la couche à partir du GeoJSON
-                var layer = L.geoJSON(geojson);
-                
-                //Ajout de popup sur chaque objet
-                layer.bindPopup(function(layer) {
-                    console.log(layer.feature.properties);
-                    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.temp + "°C";
-                });
-                
-                //Ajout de la couche sur la carte
-                layer.addTo(map);
+  //Ajout de popup sur chaque objet
+  layer.bindPopup(function(layer) {
+      console.log(layer.feature.properties);
+      return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.temp + "°C";
+  });
+  
+  //Ajout de la couche sur la carte
+  layer.addTo(map);
+
+                }
+              
                 },
                 
                 //Méthode appelée lorsque le téléchargement a échoué
