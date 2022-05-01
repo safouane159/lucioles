@@ -68,6 +68,21 @@ p{
 	border-color: #eea236;
 	
   }
+  #success2 {
+	padding: 20px;
+	margin-top: 20px;
+	background-color: green;
+	color: white;
+	display: none;
+  }
+  
+
+  #bt2 {
+	color: #fff;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+	
+  }
   #form-keys {
 	margin-left: 100px;
 	

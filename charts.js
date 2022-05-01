@@ -487,17 +487,17 @@ function ShowDash(){
     console.log("inside dahs")
     document.getElementById('acceuil').style.display='inline';
     document.getElementById('subscribe').style.display =  'none';
-    document.getElementById('form-auth').style.display =  'none';
+    document.getElementById('auth').style.display =  'none';
 }
 function ShowSub(){
     console.log("inside sub");
     document.getElementById('acceuil').style.display =  'none';;
     document.getElementById('subscribe').style.display='inline';
-    document.getElementById('form-auth').style.display =  'none';
+    document.getElementById('auth').style.display =  'none';
 }
 function Showauth(){
     console.log("inside sub");
     document.getElementById('acceuil').style.display =  'none';;
-    document.getElementById('form-auth').style.display='inline';
+    document.getElementById('auth').style.display='inline';
     document.getElementById('subscribe').style.display =  'none';
 }
