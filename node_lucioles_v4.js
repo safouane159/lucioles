@@ -448,8 +448,8 @@ app.get('/geogs/:what', function (req, res) {
 		var key1 = path.parse("sensors").base;
 		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 			if (err) throw err;
-	
-	if (result.longitude  != undefined ){
+	console.log("haaazaaabaa"+ result)
+	if (result  != undefined ){
 
 		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
 	  

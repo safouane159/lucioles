@@ -76,10 +76,11 @@ $(function() {
             success: function (resultat, statut) { // Anonymous function on success
                 console.log("Envoi key to server results : "+resultat)
                 if (resultat === 'introuvable'){
-                    console.log("1")
+
+                    alert("user not found ! please sign up  ")
                    // document.getElementById("dejainscrit").style.display = "inline";
                 }else if(resultat === 'mdp incorect'){
-                    console.log("2")
+                    alert("Wrong password ! ")
                     //document.getElementById("doneU").style.display = "inline";
                 }else{
                     window.location.href = resultat;
