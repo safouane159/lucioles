@@ -49,6 +49,8 @@ function process_each_esp(list_esp){
 }
 $(function() {
     $('#form-keys').submit(function(event) {
+        map.removeLayer(markerVectorLayer);
+
         event.preventDefault();
        
         //generaing random SHA1 hash
@@ -108,9 +110,31 @@ $(function() {
 })
 $(function() {
     $('#delform').submit(function(event) {
+
         event.preventDefault();
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+          
+
+        }); 
+        renislizemap()
+
         let xhr = new XMLHttpRequest();
         let form = document.getElementById('delform');
+        var seriesLength = chart1.series.length;
+        for(var i = seriesLength - 1; i > -1; i--)
+        {
+            //chart.series[i].remove();
+            if(chart1.series[i].name ==form.elements["capitalname"].value)
+                chart1.series[i].remove();
+
+        }
+        List_SERIES.splice(form.elements["capitalname"].value, 1) 
+
+        var selectobject = document.getElementById("capitalname");
+        
+
+
         xhr.open("POST", "https://luciole.herokuapp.com/deleteCapital");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -127,9 +151,33 @@ $(function() {
            }`;
         
         xhr.send(textToPost);
+        for (var i=0; i<selectobject.length; i++) {
+            if (selectobject.options[i].value == form.elements["capitalname"].value)
+                selectobject.remove(i);
+        }
 
     });
+
+   
 })
+   
+function renislizemap(){
+
+    var map = L.map('map', {
+        center: [20.0, 5.0],
+        minZoom: 2,
+        zoom: 2,
+    })
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: ['a', 'b', 'c'],
+    }).addTo(map)
+    
+    getList();
+}
+
 
 //=== Installation de la periodicite des requetes GET============
 function process_esp(which_esps,i){
@@ -163,12 +211,13 @@ function process_series(list){
        
        if (List_SERIES.includes(list[i].who)) {
 
-
+console.log("raha kat includi")
 
        }else{
-        List_SERIES.push(list[i].who)
+        
       
         chart1.addSeries({
+            id:i,
             name: list[i].who, 
             data: []
             
@@ -192,42 +241,59 @@ function proccess_loca_esp(esp,i){
     node_url = 'https://luciole.herokuapp.com'
     console.log("inside localzi "+esp[i]);
 	
-		
-		
+     
+        if (List_SERIES.includes(esp[i].who)) {
+ 
+ 
+ 
+        }else{
+         
+            List_SERIES.push(esp[i].who)
+            $.ajax({
+                // On fait une requete et on recupere un geo json
+               
+               
+                //URL de l'API
+                url: node_url.concat("/geogs/"+esp[i].who) ,
+                
+                //Type de données
+                dataType: "jsonp",
+                
+                //Méthode appelée lorsque le téléchargement a fonctionné
+                success: function(geojson) {
+                //Affichage des données dans la console
+                console.log("inside locali geogson"+geojson);
+                
+                //Création de la couche à partir du GeoJSON
+                var layer = L.geoJSON(geojson);
+                
+                //Ajout de popup sur chaque objet
+                layer.bindPopup(function(layer) {
+                    console.log(layer.feature.properties);
+                    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.temp + "°C";
+                });
+                
+                //Ajout de la couche sur la carte
+                layer.addTo(map);
+                },
+                
+                //Méthode appelée lorsque le téléchargement a échoué
+                error: function() {
+                alert("Erreur lors du téléchjarkjgement !");
+                }      
+            });
+ 
+        }
+        
+      
+        
+       
 	    
-    $.ajax({
-    // On fait une requete et on recupere un geo json
-   
-   
-    //URL de l'API
-    url: node_url.concat("/geogs/"+esp[i].who) ,
     
-    //Type de données
-    dataType: "jsonp",
-    
-    //Méthode appelée lorsque le téléchargement a fonctionné
-    success: function(geojson) {
-	//Affichage des données dans la console
-	console.log("inside locali geogson"+geojson);
-	
-	//Création de la couche à partir du GeoJSON
-	var layer = L.geoJSON(geojson);
-	
-	//Ajout de popup sur chaque objet
-	layer.bindPopup(function(layer) {
-	    console.log(layer.feature.properties);
-	    return "Nom station : "+layer.feature.properties.name+"<br/> "+layer.feature.temp + "°C";
-	});
-	
-	//Ajout de la couche sur la carte
-	layer.addTo(map);
-    },
-    
-    //Méthode appelée lorsque le téléchargement a échoué
-    error: function() {
-	alert("Erreur lors du téléchjarkjgement !");
-    }      
-});}
+
+
+
+}
 
 
 
@@ -275,6 +341,7 @@ return  new Promise(function(resolve, reject) {
 
   var intervalId = window.setInterval(function(){
     getList().then((data) => {
+       
         process_series(data);
         process_each_esp(data);
        
@@ -313,9 +380,13 @@ console.log("hahowa"+wh.who);
             let listeData = [];
             resultat.forEach(function (element) {
 		listeData.push([Date.parse(element.date),element.temp]);
+        console.log("chooof --------------------"+serie)
 		//listeData.push([Date.now(),element.value]);
             });
-            serie.setData(listeData); //serie.redraw();
+            if ( serie != undefined){
+                serie.setData(listeData);
+            }else(console.log("raha undifined azebi"))
+            
         },
         error: function (resultat, statut, erreur) {
         },
