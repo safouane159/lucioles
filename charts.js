@@ -1,7 +1,7 @@
 var List_SERIES = [];
 var List_map = [];
 var List_cities = [];
-
+var autorized = false;
 fetch('https://luciole.herokuapp.com/cities')
   .then(response => response.json())
   .then(data =>  setdatae(data) );
@@ -19,7 +19,16 @@ for(let b=0;b<data.length;b++){
 
   }
 
-    
+  function check_user(){
+    fetch('https://luciole.herokuapp.com/checkuser')
+    .then(response => response.json())
+    .then(data =>  setuser(data) );
+
+  }
+  function check_user(decision){
+    autorized = decision;
+
+  }
  
  
 //=== Initialisation des traces/charts de la page html ===
@@ -43,8 +52,8 @@ chart1 = new Highcharts.Chart({
    /* series: [{name: 'ESP1', data: []},
 	     {name: 'ESP2', data: []},
 	     {name: 'ESP3', data: []}],*/
-    //colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
-    colors: ['red', 'green', 'blue'],
+    colors: ['#6CF', '#39F', '#06C', '#036', '#000','#E9967A ','#FFA07A ','#F08080 ','#008080 ','#000080 ','#808080 ','#800000 ','#808000 ','#800080 ','#FFD700','#FFA500',' #00FF7F','#2E8B57',' #FFFF00',' #BDB76B',' #F0E68C','#FFDAB9',' #FFE4B5'],
+    //colors: ['red', 'green', 'blue'],
     plotOptions: {line: {dataLabels: {enabled: true},
 			 //color: "red",
 			 enableMouseTracking: true
@@ -107,27 +116,70 @@ $(function() {
     });
 })
 $(function() {
+    $('#form-auth').submit(function(event) {
+       
+
+        event.preventDefault();
+       
+        //generaing random SHA1 hash
+        
+       // console.log('inside prevent'+$(this).what.val() );
+        
+        node_url = 'https://luciole.herokuapp.com';
+        $.ajax({
+            url: node_url.concat('/setAuth'), // URL to "GET" : /esp/temp ou /esp/light
+            type: 'GET',
+            
+    
+            success: function (resultat, statut) { // Anonymous function on success
+                console.log("Envoi key to server results : "+resultat)
+                
+                
+                
+                
+               
+              
+            },
+            error: function (resultat, statut, erreur) {
+                console.log("Envoi key to server statut : "+statut+"resultat"+resultat+"erreur : "+erreur) 
+            },
+            complete: function (resultat, statut) {
+                console.log("Envoi key to server statut : "+statut+"resultat"+resultat)
+            } });
+
+            document.getElementById('success2').style.display= 'inline';
+            document.getElementById('bt2').style.display =  'none';
+
+    });
+})
+$(function() {
     $('#myform').submit(function(event) {
         event.preventDefault();
-        let xhr = new XMLHttpRequest();
-        let form = document.getElementById('myform');
-        xhr.open("POST", "https://luciole.herokuapp.com/getPaye");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-          }};
-        
-          let textToPost = `{
-           
-            "key": "${form.elements["key"].value}"
-           }`;
-        
-        xhr.send(textToPost);
 
+alert(List_SERIES.length);
+if (List_SERIES.length < 10 || autorized == true ){
+    let xhr = new XMLHttpRequest();
+    let form = document.getElementById('myform');
+    xhr.open("POST", "https://luciole.herokuapp.com/getPaye");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        console.log(xhr.status);
+        console.log(xhr.responseText);
+      }};
+    
+      let textToPost = `{
+       
+        "key": "${form.elements["key"].value}"
+       }`;
+    
+    xhr.send(textToPost);
+alert("You still have : "+10-List_SERIES.length+"cities to add, because you are limited to 10 :( ")}else{
+    alert("you reached your limit :( ")
+}
+        
     });
 })
 $(function() {
@@ -370,6 +422,9 @@ return  new Promise(function(resolve, reject) {
   });}
 
   var intervalId = window.setInterval(function(){
+
+
+check_user();
     getList().then((data) => {
        
         process_series(data);
@@ -432,9 +487,17 @@ function ShowDash(){
     console.log("inside dahs")
     document.getElementById('acceuil').style.display='inline';
     document.getElementById('subscribe').style.display =  'none';
+    document.getElementById('form-auth').style.display =  'none';
 }
 function ShowSub(){
     console.log("inside sub");
     document.getElementById('acceuil').style.display =  'none';;
     document.getElementById('subscribe').style.display='inline';
+    document.getElementById('form-auth').style.display =  'none';
+}
+function Showauth(){
+    console.log("inside sub");
+    document.getElementById('acceuil').style.display =  'none';;
+    document.getElementById('form-auth').style.display='inline';
+    document.getElementById('subscribe').style.display =  'none';
 }

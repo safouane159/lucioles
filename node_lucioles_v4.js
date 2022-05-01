@@ -330,6 +330,28 @@ app.get('/logout', function (req, res) {
 		res.redirect('/') // will always fire after session is destroyed
 	  })
 });
+app.get('/checkuser', function (req, res) {
+	
+	dbo.collection("Users").findOne({email:req.session.email},function(err, result) {
+		if (err) throw err;
+
+	//	req.session.isAuthrized = result.authorized;
+		
+		res.send(result.authorized) ;
+
+		});
+
+});
+app.get('/setAuth', function (req, res) {
+	var myquery = { email: req.session.email };
+	var newvalues = { $set: {authorized: true} };
+	dbo.collection("Users").updateOne(myquery, newvalues, function(err, res) {
+		if (err) throw err;
+		console.log("1 document updated");
+		
+	  });
+
+});
 app.post('/login', function (req, res) {
 
 	var reqeEmail= req.body.email; // temp value
@@ -536,12 +558,7 @@ app.post('/deleteCapital', function(req, res) {
 		
 
 });
-function arrayRemove(arr, value) { 
-	console.log("removed _________________________________ :", value);
-	return arr.filter(function(ele){ 
-		return ele != value; 
-	});
-}
+
 
 var SibApiV3Sdk = require('sib-api-v3-sdk');
 SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
