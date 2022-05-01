@@ -176,7 +176,13 @@ if (List_SERIES.length < 10 || autorized == true ){
        }`;
     
     xhr.send(textToPost);
-alert("You still have : "+10-List_SERIES.length+"cities to add, because you are limited to 10 :( ")}else{
+
+    if (autorized == true ){alert("You are unlimited , add as mush as you want")}else{alert("You still have : "+10-List_SERIES.length+"cities to add, because you are limited to 10 :( ")}
+
+
+
+
+}else{
     alert("you reached your limit :( ")
 }
         
