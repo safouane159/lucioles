@@ -450,7 +450,7 @@ app.get('/geogs/:what', function (req, res) {
 		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 			if (err) throw err;
 	console.log("haaazaaabaa"+ result)
-	if (result  != undefined ){
+	if (result  != null ){
 
 		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
 	  
@@ -659,7 +659,7 @@ var transporter = nodemailer.createTransport({
 			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 			  if (err) { return console.log(err); }
 			  console.log("igot the body");
-			  if (body  != undefined ){
+			  if (body  != null ){
 			  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 			
 			  var second_entry = { date: frTime, // timestamp the value 
