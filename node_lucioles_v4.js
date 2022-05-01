@@ -345,6 +345,9 @@ app.get('/checkuser', function (req, res) {
 app.get('/setAuth', function (req, res) {
 	var myquery = { email: req.session.email };
 	var newvalues = { $set: {authorized: true} };
+
+	console.log("lmail"+req.session.email);
+
 	dbo.collection("Users").updateOne(myquery, newvalues, function(err, res) {
 		if (err) throw err;
 		console.log("1 document updated");
