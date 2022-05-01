@@ -330,7 +330,8 @@ app.get('/logout', function (req, res) {
 		res.redirect('/') // will always fire after session is destroyed
 	  })
 });
-app.get('/checkuser', function (req, res) {
+app.get('/checkuser',isAuth, function (req, res) {
+	
 	
 	dbo.collection("Users").findOne({email:req.session.mail},function(err, result) {
 		if (err) throw err;
