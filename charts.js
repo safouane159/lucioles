@@ -25,7 +25,7 @@ for(let b=0;b<data.length;b++){
     .then(data =>  setuser(data) );
 
   }
-  function check_user(decision){
+  function setuser(decision){
     autorized = decision;
 
   }
