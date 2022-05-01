@@ -7,10 +7,9 @@ const express = require('express');
 const request = require('request');
 const app = express();
 const fs = require('fs');
-// var, const, let :
-// https://medium.com/@vincent.bocquet/var-let-const-en-js-quelles-diff%C3%A9rences-b0f14caa2049
+
 let ejs = require('ejs');
-//--- MQTT module
+
 const mqtt = require('mqtt');
 const crypto = require('crypto')
 var GeoJSON = require('geojson');
@@ -38,11 +37,7 @@ if ( req.session.isAuth){
 }
 
 }
- /* var swig  = require('swig');
-	app.engine('html', swig.renderFile);
-  
-	//app.set('views', path.join(__dirnamee, 'views'));
-	app.set('view engine', 'html');*/
+
    
 // Topics MQTT
 const TOPIC_Miage = 'iot/M1Miage2022/prive'
@@ -110,7 +105,7 @@ async function v0(){
 	dbo.listCollections({name: "sensors"})
 	    .next(function(err, collinfo) {
 		if (collinfo) { // The collection exists
-			console.log("inside drdfop");
+		
 		    //console.log('Collection temp already exists');
 		    dbo.collection("sensors").drop() 
 		}
@@ -157,7 +152,6 @@ async function v0(){
 		dbo.collection("keys").findOne({key:key6},function(err, result) {
 			if (err) throw err;
 			
-			console.log("results of keys",result);
 		if ( result !== null){
 
 
@@ -210,8 +204,8 @@ async function v0(){
 		
 			var second_entry = { date: frTime, // timestamp the value 
 				who: wh,      // identify ESP who provide 
-				latitude: lat,    // temp value
-				longitude: lgn      // light value
+				latitude: lat,   
+				longitude: lgn     
 			  };
 		
 			// On recupere le nom basique du topic du message
@@ -219,8 +213,6 @@ async function v0(){
 	
 	 dbo.collection(key_loc).insertOne(second_entry, function(err, res) {
 			if (err) throw err;
-			console.log("\nItem : ", second_entry, 
-			"\ninserted in db in collection :", key_loc);
 			});
 			}
 
@@ -319,7 +311,6 @@ let cities = JSON.parse(rawdata);
 });
 app.get('/esp/list', function (req, res) {
 	
-	console.log("hahiya "+wholist)
 
     res.send(wholist) ;
 });
@@ -336,8 +327,7 @@ app.get('/checkuser',isAuth, function (req, res) {
 	dbo.collection("Users").findOne({email:req.session.mail},function(err, result) {
 		if (err) throw err;
 
-	//	req.session.isAuthrized = result.authorized;
-		
+
 		res.send(result.authorized) ;
 
 		});
@@ -347,7 +337,6 @@ app.get('/setAuth', isAuth,function (req, res) {
 	var myquery = { email: req.session.mail };
 	var newvalues = { $set: {authorized: true} };
 
-	console.log("lmail"+req.session.mail);
 
 	dbo.collection("Users").updateOne(myquery, newvalues, function(err, res) {
 		if (err) throw err;
@@ -358,9 +347,8 @@ app.get('/setAuth', isAuth,function (req, res) {
 });
 app.post('/login', function (req, res) {
 
-	var reqeEmail= req.body.email; // temp value
+	var reqeEmail= req.body.email;
 	var mdps = req.body.mdps;
-	console.log("reqeEmail",reqeEmail);
 	dbo.collection("Users").findOne({email:reqeEmail},function(err, result) {
 		if (err) throw err;
 		if ( result == null){
@@ -376,9 +364,7 @@ app.post('/login', function (req, res) {
 			req.session.mail = result.email;
 
 
-		//	https://lucioles.herokuapp.com/indexApp.html
 			res.send("https://luciole.herokuapp.com/indexApp") ;
-			//res.sendFile(path.join(__dirname + '/indexApp.html'));
 		}
 		
 
@@ -393,12 +379,11 @@ app.post('/inscription', function (req, res) {
 			  name: req.body.name,      // identify ESP who provide 
 			  email: req.body.email,    // temp value
 			  mdps: req.body.mdps,
-			  authorized: false      // light value
+			  authorized: false     
 			};
 			var ins =	dbo.collection("Users").findOne({email:req.body.email},function(err, result) {
 				if (err) throw err;
 				
-				console.log("results of keys",result);
 			if ( result == null){
 				var key3 = path.parse("Users").base;
 	
@@ -406,9 +391,6 @@ app.post('/inscription', function (req, res) {
 // en utilisant le nom du topic comme key de collection
 dbo.collection(key3).insertOne(new_entry, function(err, res) {
 if (err) throw err;
-console.log("\nItem : ", new_entry, 
-"\ninserted in db in collectiond :", key3);
-
 
 return " inscrit" 
 });
@@ -419,18 +401,6 @@ res.send("inscrit") ;
 				ins = "deja inscrit" ;
 				return "deja inscrit"  ;
 			}	});
-/*
-// On recupere le nom basique du topic du message
-
-return "inscrit" ;*/
-
-			
-
-		
-		
-
-
-			console.log("inx"+ins);	
 
 	
 
@@ -444,12 +414,10 @@ app.get('/geogs/:what', function (req, res) {
 	
 	if (index1 === -1){
 	}else{
-		console.log("haladrezss"+esp_mac_address);
 	
 		var key1 = path.parse("sensors").base;
 		dbo.collection(key1).findOne({who:esp_mac_address},function(err, result) {
 			if (err) throw err;
-	console.log("haaazaaabaa"+ result)
 	if (result  != null ){
 
 		var data = { name: esp_mac_address, temp: result.temp,  lat: result.latitude , lng: result.longitude };
@@ -482,7 +450,6 @@ app.get('/esp/:what', function (req, res) {
 
 
    var index1 = wholist.findIndex(x1 => x1.who==wh);
-   console.log("laaaybareek f3meer sidi-----------------------------------------------------+"+wholist[0].who);
 			if (index1 === -1){
 			}else{
 				wa = req.params.what // get the "what" from the GET request : temp or light ?
@@ -501,12 +468,11 @@ app.get('/esp/:what', function (req, res) {
     //dbo.collection(key).find({who:wh}).toArray(function(err,result) {
     dbo.collection(key2).find({who:wh}).sort({_id:-1}).limit(nb).toArray(function(err, result) {
 	if (err) throw err;
-	console.log('get on ', key2);
 	console.log(result);
 	res.json(result.reverse()); // This is the response.
 	console.log('end find');
     });
-    console.log('end app.get');
+    console.log('end ');
 			}
   
    
@@ -518,7 +484,6 @@ app.post('/getPaye', function(req, res) {
 
 	wh = req.body.key;
 	
-		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
 		
 	    if (index === -1){
@@ -537,7 +502,6 @@ app.post('/deleteCapital', function(req, res) {
 
 	wh = req.body.key;
 	
-		console.log("lmachakil", wh);
 		var index = wholist_payes.findIndex(x => x.who==wh)
 		
 	    if (index === -1){
@@ -558,7 +522,6 @@ app.post('/deleteCapital', function(req, res) {
 	    }else{
 			wholist.splice(index1, 1) 
 		}
-	    console.log("payee using the node server :", wholist_payes);
 		
 
 });
@@ -583,8 +546,6 @@ var key_collection = path.parse("keys").base;
 // en utilisant le nom du topic comme key de collection
 dbo.collection(key_collection).insertOne(new_entry, function(err, res) {
 if (err) throw err;
-console.log("\nItem : ", new_entry, 
-"\ninserted in db in collection :", key_collection);
 });
 
 new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
@@ -618,33 +579,6 @@ new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
 });
 
 
-/*
-var transporter = nodemailer.createTransport({
-	service: 'outlook',
-	auth: {
-	  user: 'cava_159@outlouk.fr',
-	  pass: 'wardaa144159@'
-	}
-  });
-  
-  var mailOptions = {
-	from: 'cava_159@outlouk.fr',
-	to: 'safouane1ouazri@gmail.com',
-	subject: 'Sending Email using Node.js',
-	text: 'your key is : '+key4
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-	if (error) {
-	  console.log(error);
-	} else {
-	  console.log('Email sent: ' + info.response);
-	}
-  });
-*/
-
-	
-		console.log("the key ", key4);
 		
 
 });
@@ -652,13 +586,11 @@ var transporter = nodemailer.createTransport({
 		
 		
 		for ( var i in wholist_payes  ) { 
-			console.log("payee using the node server :", wholist_payes[i]);
-			console.log("idzeb "+i);
 			
 		
 			request('https://api.openweathermap.org/data/2.5/weather?q='+wholist_payes[i].who+'&appid=be603e7ca90475b301b1e312c2e5c71a', { json: true }, (err, res, body) => {
 			  if (err) { return console.log(err); }
-			  console.log("igot the body");
+
 			  if (body  != null ){
 			  var frTime = new Date().toLocaleString("sv-SE", {timeZone: "Europe/Paris"});
 			
@@ -683,8 +615,6 @@ var transporter = nodemailer.createTransport({
 			// en utilisant le nom du topic comme key de collection
 			dbo.collection(key5).insertOne(second_entry, function(err, res) {
 			if (err) throw err;
-			console.log("\ninside insert sensors Item : ", second_entry, 
-			"\ninserted in db in collection :", key5);
 			});
 		}
 
